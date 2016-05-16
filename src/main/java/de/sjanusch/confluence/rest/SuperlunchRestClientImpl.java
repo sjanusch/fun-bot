@@ -56,8 +56,8 @@ public class SuperlunchRestClientImpl implements SuperlunchRestClient {
             .hostnameVerifier(new HostnameVerifierAllowAll())
             .sslContext(sc)
             .build();
-        client.property(ClientProperties.CONNECT_TIMEOUT, 3000);
-        client.property(ClientProperties.READ_TIMEOUT, 3000);
+        client.property(ClientProperties.CONNECT_TIMEOUT, 1000);
+        client.property(ClientProperties.READ_TIMEOUT, 1000);
         return client;
     }
 
@@ -70,8 +70,6 @@ public class SuperlunchRestClientImpl implements SuperlunchRestClient {
         } catch (KeyManagementException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
             e.printStackTrace();
         }
         return null;
@@ -93,7 +91,7 @@ public class SuperlunchRestClientImpl implements SuperlunchRestClient {
         }
     }
 
-    private List<Lunch> superlunchRestApiGet(final WebTarget target) throws IOException, JSONException {
+    private List<Lunch> superlunchRestApiGet(final WebTarget target) throws IOException {
         logger.debug("Requesting  '" + target.getUri() + "' by GET ");
         Response response = null;
         try {

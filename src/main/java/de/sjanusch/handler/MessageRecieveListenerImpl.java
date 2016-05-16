@@ -80,7 +80,9 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
                 }
             }
         } else {
-            stringBuilder.append("Keine Mittagessen verfügbar!");
+            stringBuilder.append("Mittagessen Übersicht noch nicht verfügbar!");
+            stringBuilder.append("\n");
+            stringBuilder.append("Anmelden über https://confluence.rp.seibert-media.net/dashboard.action");
         }
         this.sendMessage(stringBuilder.toString());
     }
