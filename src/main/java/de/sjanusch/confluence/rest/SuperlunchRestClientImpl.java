@@ -2,6 +2,7 @@ package de.sjanusch.confluence.rest;
 
 import de.sjanusch.model.superlunch.Lunch;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.client.filter.HttpBasicAuthFilter;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.json.JSONException;
@@ -13,6 +14,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -54,6 +56,8 @@ public class SuperlunchRestClientImpl implements SuperlunchRestClient {
             .hostnameVerifier(new HostnameVerifierAllowAll())
             .sslContext(sc)
             .build();
+        client.property(ClientProperties.CONNECT_TIMEOUT, 3000);
+        client.property(ClientProperties.READ_TIMEOUT, 3000);
         return client;
     }
 
@@ -91,21 +95,27 @@ public class SuperlunchRestClientImpl implements SuperlunchRestClient {
 
     private List<Lunch> superlunchRestApiGet(final WebTarget target) throws IOException, JSONException {
         logger.debug("Requesting  '" + target.getUri() + "' by GET ");
-        final Response response = target.request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
-        switch (response.getStatus()) {
-            default:
-                logger.error("Unexpected return code from calling '" + response.getStatus());
-                return new LinkedList<Lunch>();
-            case 400:
-                logger.error("Unexpected return code from calling '" + response.getStatus());
-                return new LinkedList<Lunch>();
-            case 403:
-                logger.error("Unexpected return code from calling '" + response.getStatus());
-                return new LinkedList<Lunch>();
-            case 200:
-                Lunch[] lunches = convertResponseToLunchArray(response);
-                return new LinkedList<Lunch>(Arrays.asList(lunches));
+        Response response = null;
+        try {
+            response = target.request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
+            switch (response.getStatus()) {
+                default:
+                    logger.error("Unexpected return code from calling '" + response.getStatus());
+                    break;
+                case 400:
+                    logger.error("Unexpected return code from calling '" + response.getStatus());
+                    break;
+                case 403:
+                    logger.error("Unexpected return code from calling '" + response.getStatus());
+                    break;
+                case 200:
+                    Lunch[] lunches = convertResponseToLunchArray(response);
+                    return new LinkedList<Lunch>(Arrays.asList(lunches));
+            }
+        } catch (ProcessingException pe) {
+            logger.error("Unexpected return code from calling '" + pe.getMessage());
         }
+        return new LinkedList<Lunch>();
     }
 
     private void superlunchRestApiPost(final WebTarget target) throws IOException, JSONException {
