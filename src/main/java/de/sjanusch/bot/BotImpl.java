@@ -32,11 +32,11 @@ public class BotImpl implements Bot {
 
     private final String username = "23504_3927963@chat.hipchat.com";
 
-    private final String botroom = "23504_sjanusch_bot_test";
+    //private final String botroom = "23504_sjanusch_bot_test";
 
     //private final String botroom = "23504_hackathon_-_bot";
 
-    //private final String botroom = "23504_mittagessen";
+    private final String botroom = "23504_mittagessen";
 
     private final String password = "Sandro060979";
 

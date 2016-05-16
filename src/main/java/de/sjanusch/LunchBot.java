@@ -27,26 +27,6 @@ public class LunchBot implements RunnableBot {
 
     public void run() {
         bot.run();
-
-        /*
-        Thread t = new Thread() {
-
-            public void run() {
-                while (true) {
-                    try {
-                        String text = Constants.getRandomText("");
-                        if (text != null) {
-                            //hipchatRequestHandler.sendMessage(text);
-                        }
-                        Thread.sleep(180 * 1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        t.start();
-        */
     }
 
 }

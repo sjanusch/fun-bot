@@ -1,17 +1,20 @@
 package de.sjanusch.handler;
 
 import com.google.inject.Inject;
-import de.sjanusch.confluence.rest.SuperlunchRestClientImpl;
+import de.sjanusch.confluence.handler.SuperlunchRequestHandler;
+import de.sjanusch.data.Constants;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
 import de.sjanusch.model.Room;
+import de.sjanusch.model.superlunch.Lunch;
 import org.jivesoftware.smack.packet.Message;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
+import java.util.List;
 
 /**
  * Created by Sandro Janusch
@@ -24,12 +27,12 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     private final HipchatRequestHandler hipchatRequestHandler;
 
-    private final SuperlunchRestClientImpl superlunchRestClient;
+    private final SuperlunchRequestHandler superlunchRequestHandler;
 
     @Inject
-    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final SuperlunchRestClientImpl superlunchRestClient) {
+    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final SuperlunchRequestHandler superlunchRequestHandler) {
         this.hipchatRequestHandler = hipchatRequestHandler;
-        this.superlunchRestClient = superlunchRestClient;
+        this.superlunchRequestHandler = superlunchRequestHandler;
     }
 
     @SuppressWarnings("unused")
@@ -44,107 +47,91 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
         }
     }
 
-    public void handleMessage(final Message message, final String from, final Room room) throws JSONException, ParseException {
-        logger.debug(from + "(" + room.getTrueName() + ")" + ": " + message);
-        hipchatRequestHandler.sendMessage(message.getBody());
+    private void sendMessage(final String text) {
+        hipchatRequestHandler.sendMessage(text);
 
     }
 
-
-
-    /*
-    public void handleMessage(final String message, final String from, final Room room) throws JSONException, ParseException {
-        logger.debug(from + "(" + room.getTrueName() + ")" + ": " + message);
-        if (message.toLowerCase().contains("/essen") || message.toLowerCase().replace(" ", "").contains("wasgibtesheute")) {
-            lunchOverview(from);
-            return;
-        } else if (message.toLowerCase().contains("hallo") || message.toLowerCase().contains("hello")
-            || message.toLowerCase().contains("servus") || message.toLowerCase().replace(" ", "").contains("gutentag")) {
-            handleHellodMessages(from, message);
-            return;
-        } else if (message.toLowerCase().replace(" ", "").contains("dasgibtesheutezummittagessen:")) {
-            return;
+    private void handleMessage(final Message message, final String from, final Room room) throws JSONException, ParseException {
+        logger.debug("Handle Message from " + from + ": " + message.getBody());
+        final String talkTo = this.convertNames(message.getBody(), from);
+        if (this.checkContentMittagessenInfo(message.getBody())) {
+            this.handleMittagessenInfoMessage(talkTo);
+        } else if (this.checkContentHello(message.getBody())) {
+            this.handleHellodMessages(talkTo);
         } else {
-            handlenoRandomText(from, message);
-            return;
+            this.handlenoRandomText(talkTo, message.getBody());
         }
-
     }
 
-
-    private void lunchOverview(final String from) throws JSONException, ParseException {
-        String newName = convertNames(from);
-        if (lunchObject.getList() != null && lunchObject.getList().size() > 0) {
-            bot.sendMessage("@" + newName + " Das gibt es heute zum Mittagessen:");
-            for (String string : lunchObject.getLunchToday()) {
-                bot.sendMessage(string);
+    private void handleMittagessenInfoMessage(final String talkTo) throws JSONException, ParseException {
+        List<Lunch> lunchList = superlunchRequestHandler.fetchFilteredLunchFromConfluence();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(talkTo);
+        if (lunchList.size() > 0) {
+            for (final Lunch lunch : lunchList) {
+                if (!lunch.isClosed()) {
+                    stringBuilder.append(lunch.getTitle() + "(" + lunch.getCreatorName() + ")");
+                    stringBuilder.append("\n");
+                    stringBuilder.append(lunch.getFormattedPrice() + ", " + this.convertVeggyValue(lunch.isVeggy()));
+                    stringBuilder.append("\n");
+                    stringBuilder.append(lunch.getDetailLink());
+                    stringBuilder.append("\n");
+                }
             }
         } else {
-            bot.sendMessage("@" + newName + " Diesen Wunsch kenne ich noch nicht, versuch es nocheinmal!");
+            stringBuilder.append("Keine Mittagessen verfügbar!");
+        }
+        this.sendMessage(stringBuilder.toString());
+    }
+
+    private void handlenoRandomText(final String talkTo, final String message) {
+        if (!talkTo.isEmpty()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(talkTo);
+            stringBuilder.append(Constants.getNoRandomText(message));
+            this.sendMessage(stringBuilder.toString());
         }
     }
 
-    private void lunchAnmelden() {
-        superlunchRestClient.superlunchRestApiSignIn("1107", "sjanusch");
+    private void handleHellodMessages(final String talkTo) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(talkTo + " Salut");
+        this.sendMessage(stringBuilder.toString());
     }
 
-    private void handleBuzzwordMessages(final String from, final String message) {
-        String text = Constants.getRandomText(message);
-        if (text != null) {
-            String newName = convertNames(from);
-            if (newName != null) {
-                bot.sendMessage("@" + newName + " " + text);
-            } else {
-                bot.sendMessage(text);
+    private boolean checkContentMittagessenInfo(final String content) {
+        final String lowerCaseContent = content.toLowerCase().trim();
+        if (lowerCaseContent.contains("/essen") || lowerCaseContent.contains("/mittagessen") ||
+            (lowerCaseContent.contains("was") && lowerCaseContent.contains("heute") && lowerCaseContent.contains("essen"))) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkContentHello(final String content) {
+        final String lowerCaseContent = content.toLowerCase().trim();
+        if (lowerCaseContent.contains("hallo") || lowerCaseContent.contains("hello")
+            || lowerCaseContent.contains("servus") || lowerCaseContent.contains("guten tag")) {
+            return true;
+        }
+        return false;
+    }
+
+    private String convertVeggyValue(final boolean value) {
+        return (value) ? "vegetarisch" : "nicht vegetarisch";
+    }
+
+    private String convertNames(final String message, final String from) {
+        if (message.toLowerCase().contains("@lunchbot")) {
+            String[] names = from.split(" ");
+            String newName = null;
+            if (names.length > 1) {
+                newName = names[0].toLowerCase().charAt(0) + names[1].toLowerCase();
             }
+            return ("@" + newName + " ");
         }
+        return "";
     }
 
-    private void handlenoRandomText(final String from, final String message) {
-        String text = Constants.getNoRandomText(message);
-        if (text != null) {
-            String newName = convertNames(from);
-            if (newName != null) {
-                bot.sendMessage("@" + newName + " " + text);
-            } else {
-                bot.sendMessage(text);
-            }
-        }
-    }
-
-    private void handleHellodMessages(final String from, final String message) {
-        String text = "Salut";
-        if (text != null) {
-            String newName = convertNames(from);
-            if (newName != null) {
-                bot.sendMessage(text + " @" + newName);
-            } else {
-                bot.sendMessage(text);
-            }
-        }
-    }
-
-    private void handleNormalMessages(final String from) {
-        bot.sendMessage("Leider gibt es nur Bastians " + from);
-    }
-
-    private HipchatUser getHipchatUser(final String name) {
-        List<HipchatUser> list = bot.getUsers();
-        for (HipchatUser hipchatUser : list) {
-            if (hipchatUser.getName().equals(name)) {
-                return hipchatUser;
-            }
-        }
-        return null;
-    }
-
-    private String convertNames(final String from) {
-        String[] names = from.split(" ");
-        String newName = null;
-        if (names.length > 1) {
-            newName = names[0].toLowerCase().charAt(0) + names[1].toLowerCase();
-        }
-        return newName;
-    }
-   */
 }

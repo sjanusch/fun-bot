@@ -15,7 +15,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -30,21 +29,13 @@ public class SuperlunchRestClientImpl implements SuperlunchRestClient {
 
     public static final Logger logger = LoggerFactory.getLogger(SuperlunchRestClientImpl.class);
 
-    private final String restApi = "https://confluence.rp.seibert-media.net";
+    private final String REST_API = "https://confluence.rp.seibert-media.net";
 
-    private final String restApiPath = "/rest/lunch/1.0/lunch";
-
-    private final static String QUERY_PARAM_USERNAME = "username";
-
-    private final static String QUERY_PARAM_DATE_FROM = "dateFrom";
-
-    private final static String QUERY_PARAM_DATE_TO = "dateTo";
+    private final String REST_API_PATH = "/rest/lunch/1.0/lunch";
 
     private final static String CLIENT_USERNAME = "sjanusch";
 
     private final static String CLIENT_PASSWORD = "DyuN5tGMpq0Y43";
-
-    private final static String RESOURCE_BUNDLE = "";
 
     public SuperlunchRestClientImpl() {
 
@@ -69,7 +60,7 @@ public class SuperlunchRestClientImpl implements SuperlunchRestClient {
     @Override
     public List<Lunch> superlunchRestApiGet() {
         try {
-            return superlunchRestApiGet(buildClient().target(restApi).path(restApiPath));
+            return superlunchRestApiGet(buildClient().target(REST_API).path(REST_API_PATH));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (KeyManagementException e) {
@@ -86,7 +77,7 @@ public class SuperlunchRestClientImpl implements SuperlunchRestClient {
     public void superlunchRestApiSignIn(final String id, final String username) {
         try {
             String path = "/" + id + "/join/" + username;
-            superlunchRestApiPost(buildClient().target(restApi).path(restApiPath + path));
+            superlunchRestApiPost(buildClient().target(REST_API).path(REST_API_PATH + path));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (KeyManagementException e) {
@@ -99,18 +90,26 @@ public class SuperlunchRestClientImpl implements SuperlunchRestClient {
     }
 
     private List<Lunch> superlunchRestApiGet(final WebTarget target) throws IOException, JSONException {
-        List<String> jsonObjects = new LinkedList<>();
         logger.debug("Requesting  '" + target.getUri() + "' by GET ");
         final Response response = target.request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
-
-        Lunch[] lunches = convertResponseToLunchArray(response);
-        return new LinkedList<Lunch>(Arrays.asList(lunches));
+        switch (response.getStatus()) {
+            default:
+                logger.error("Unexpected return code from calling '" + response.getStatus());
+                return new LinkedList<Lunch>();
+            case 400:
+                logger.error("Unexpected return code from calling '" + response.getStatus());
+                return new LinkedList<Lunch>();
+            case 403:
+                logger.error("Unexpected return code from calling '" + response.getStatus());
+                return new LinkedList<Lunch>();
+            case 200:
+                Lunch[] lunches = convertResponseToLunchArray(response);
+                return new LinkedList<Lunch>(Arrays.asList(lunches));
+        }
     }
 
     private void superlunchRestApiPost(final WebTarget target) throws IOException, JSONException {
-        List<String> jsonObjects = new LinkedList<>();
         logger.debug("Requesting  '" + target.getUri() + "' by POST ");
-        final String jsonResponse = target.request().post(Entity.json(null), String.class);
     }
 
     private Lunch[] convertResponseToLunchArray(final Response response) throws IOException {
