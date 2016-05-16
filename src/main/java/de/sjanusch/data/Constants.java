@@ -27,7 +27,7 @@ public final class Constants {
         "Am Ende bereust du nicht was du getan hast, sondern nur was du nicht getan hast.",
         "Liebe ist wenn man über einen anderen Menschen mehr nachdenkt als sich selbst.",
         "Wir drücken an Türen auf denen dick und fett ZIEHEN! steht.",
-        "Es gibt zwei Arten von Menschen: Einmal die, die darauf warten das sich alles verändert und die, die erkennen, dass sie die Macht", "besitzten um Alles zu verändern.",
+        "Es gibt zwei Arten von Menschen: Einmal die, die darauf warten das sich alles verändert und die, die erkennen, dass sie die Macht besitzen um Alles zu verändern.",
         "Liebe ist, wenn die Sonne nicht aufgehen muss, um deinen Tag zu bezaubern.",
         "What ever your 100% looks like, give it!",
         "Wissen Sie, was Sie da tun? Nein. ich überrasche mich gern selbst.",
@@ -114,7 +114,7 @@ public final class Constants {
         "Schwinge Dich zum Mond empor, denn selbst wenn Du ihn verfehlst landest Du bei den Sternen!!",
         "Keiner hat mich gefragt ob ich leben will, also sagt mir auch nicht wie ich zu leben habe!!!",
         "Gras wächst nicht schneller, wenn man daran zieht.",
-        "Assembler ist eine Methode, Programme, die zu langsam laufen, so umzuschreiben, daß sie überhaupt nicht mehr laufen.", "
+        "Assembler ist eine Methode, Programme, die zu langsam laufen, so umzuschreiben, daß sie überhaupt nicht mehr laufen.",
         "Ich bin ein speicherrenitentes Programm!!!",
         "Fraktaler Fehler – System abgestürzt",
         "Disk Error Drive A: – Wasser im Laufwerk (Bitte abpumpen)",

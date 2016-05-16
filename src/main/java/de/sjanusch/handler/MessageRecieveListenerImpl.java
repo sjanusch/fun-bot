@@ -104,8 +104,9 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     private boolean checkContentMittagessenInfo(final String content) {
         final String lowerCaseContent = content.toLowerCase().trim();
-        if (lowerCaseContent.contains("/essen") || lowerCaseContent.contains("/mittagessen") ||
-            (lowerCaseContent.contains("was") && lowerCaseContent.contains("heute") && lowerCaseContent.contains("essen"))) {
+        if (lowerCaseContent.contains("/essen") || lowerCaseContent.contains("/mittagessen") || lowerCaseContent.contains("futter") ||
+            (lowerCaseContent.contains("was") && lowerCaseContent.contains("heute") && lowerCaseContent.contains("essen")) ||
+            (lowerCaseContent.contains("habe") && lowerCaseContent.contains("hunger"))) {
             return true;
         }
         return false;
