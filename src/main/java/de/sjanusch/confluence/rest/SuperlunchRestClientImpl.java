@@ -112,10 +112,10 @@ public class SuperlunchRestClientImpl implements SuperlunchRestClient {
                     Lunch[] lunches = convertResponseToLunchArray(response);
                     return new LinkedList<Lunch>(Arrays.asList(lunches));
             }
-        } catch (ProcessingException pe) {
-            logger.error("Unexpected return code from calling '" + pe.getMessage());
+        } catch (ProcessingException e) {
+            logger.error("Unexpected return code from calling '" + e.getMessage());
         }
-        return new LinkedList<Lunch>();
+        return null;
     }
 
     private void superlunchRestApiPost(final WebTarget target) throws IOException, JSONException {

@@ -44,9 +44,11 @@ public class SuperlunchRequestHandlerImpl implements SuperlunchRequestHandler {
         List<Lunch> filteredLunches = new LinkedList<Lunch>();
         try {
             List<Lunch> lunches = superlunchRestClient.superlunchRestApiGet();
-            for (Lunch lunch : lunches) {
-                if (this.isLunchToday(lunch)) {
-                    filteredLunches.add(lunch);
+            if (lunches != null) {
+                for (Lunch lunch : lunches) {
+                    if (this.isLunchToday(lunch)) {
+                        filteredLunches.add(lunch);
+                    }
                 }
             }
         } catch (ParseException e) {
