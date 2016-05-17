@@ -45,4 +45,11 @@ public class BotConfigurationImpl implements BotConfiguration {
         return this.configurationLoader.getPropertyStringValue("bot_chat_room");
     }
 
+
+    @Override
+    public String getBotChatRoomId() throws IOException {
+        return this.configurationLoader.getPropertyStringValue("bot_chat_room_id");
+    }
+
+
 }

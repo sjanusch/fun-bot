@@ -1,5 +1,7 @@
 package de.sjanusch.hipchat.handler;
 
+import de.sjanusch.objects.ChatMessage;
+
 /**
  * Created by Sandro Janusch
  * Date: 13.05.16
@@ -7,6 +9,6 @@ package de.sjanusch.hipchat.handler;
  */
 public interface HipchatRequestHandler {
 
-    void sendMessage(String message);
+    void sendMessage(final ChatMessage chatMessage);
 
 }

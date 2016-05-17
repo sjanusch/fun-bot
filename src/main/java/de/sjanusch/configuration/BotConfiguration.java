@@ -20,4 +20,6 @@ public interface BotConfiguration {
     String getBotChatRoom() throws IOException;
 
     String getBotMentionName() throws IOException;
+
+    String getBotChatRoomId() throws IOException;
 }

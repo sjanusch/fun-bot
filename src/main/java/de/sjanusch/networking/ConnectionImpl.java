@@ -5,7 +5,6 @@ import de.sjanusch.bot.Bot;
 import de.sjanusch.configuration.ChatConnectionConfiguration;
 import de.sjanusch.eventsystem.EventSystem;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
-import de.sjanusch.model.HipchatRoomInfo;
 import de.sjanusch.model.Room;
 import de.sjanusch.networking.exceptions.LoginException;
 import org.jivesoftware.smack.Chat;
@@ -13,14 +12,12 @@ import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.PacketListener;
-import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Message.Body;
 import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smackx.muc.MultiUserChat;
-import org.jivesoftware.smackx.muc.SubjectUpdatedListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -82,61 +79,15 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
         }
         this.password = password;
     }
-    
-    public void sendPM(String message, String to) throws XMPPException {
-        Chat c;
-        if (cache.containsKey(to))
-            c = cache.get(to);
-        else {
-            c = xmpp.getChatManager().createChat(to, this);
-            cache.put(to, c);
-        }
-        c.sendMessage(message);
-    }
-    
+
     public void joinRoom(String room, String nickname) throws XMPPException, IOException {
-        joinRoom("", room, nickname);
-    }
-
-    /*
-    public void joinRoom(String APIKey, String room, String nickname) throws XMPPException {
-        if (!connected || nickname.equals("") || password.equals("") || rooms.containsKey(room))
+        if (!connected || nickname.equals("") || password.equals("")) {
             return;
-        MultiUserChat muc2;
-        if (!isJID(room)) {
-            Room temp = Room.createRoom(APIKey, room);
-            room = temp.getHipchatRoomInfo(APIKey).getJID();
-            muc2 = new MultiUserChat(XMPP, room);
-            temp = null;
-        } else
-            muc2 = new MultiUserChat(XMPP, (room.indexOf("@") != -1 ? room : room + "@" + CONF_URL));
-        muc2.join(nickname, password);
-        final Room obj = Room.createRoom(APIKey, room, muc2, XMPP);
-        muc2.addMessageListener(new PacketListener() {
-
-            @Override
-            public void processPacket(Packet paramPacket) {
-                Message m = new Message();
-                m.setBody(toMessage(paramPacket));
-                m.setFrom(paramPacket.getFrom().split("\\/")[1]);
-                MessageRecivedEvent event = new MessageRecivedEvent(obj, m);
-                eventSystem.callEvent(event);
-            }
-        });
-        rooms.put(obj, muc2);
-    }
-
-    */
-
-    public void joinRoom(String APIKey, String room, String nickname) throws XMPPException, IOException {
-        if (!connected || nickname.equals("") || password.equals(""))
-            return;
-        if (!isJID(room)) {
-            chat = new MultiUserChat(xmpp, room);
-        } else {
-            chat = new MultiUserChat(xmpp, (room.indexOf("@") != -1 ? room : room + "@" + chatConnectionConfiguration.getConfUrl()));
-            chat.join(nickname, password);
-            final Room obj = createRoom(APIKey, room, chat, xmpp);
+        }
+        chat = new MultiUserChat(xmpp, (room.indexOf("@") != -1 ? room : room + "@" + chatConnectionConfiguration.getConfUrl()));
+        chat.join(nickname, password);
+        final Room obj = joinChatRoom(room, chat, xmpp);
+        if (obj != null) {
             chat.addMessageListener(new PacketListener() {
 
                 @Override
@@ -149,41 +100,24 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
                 }
             });
             rooms.put(obj, chat);
+        } else {
+            logger.error("Cannot join in room " + room);
         }
     }
 
-    private Room createRoom(String APIKey, String name, MultiUserChat chat, XMPPConnection con) {
-        Room r = createRoom2(name, chat, con);
-        if (APIKey != null && !APIKey.equals(""))
-            r.hinfo = HipchatRoomInfo.getInfo(APIKey, r);
-        r.api_cache = APIKey;
-        return r;
-    }
-
-    public Room createRoom2(String name, MultiUserChat chat, XMPPConnection con) {
-        final Room r = new Room(this.bot, this.eventSystem);
-        r.setName(name);
-        r.setChat(chat);
-
+    private Room joinChatRoom(String name, MultiUserChat chat, XMPPConnection con) {
         try {
+            final Room r = new Room(this.bot, this.eventSystem);
+            r.setName(name);
+            r.setChat(chat);
             r.info = MultiUserChat.getRoomInfo(con, (name.indexOf("@") != -1 ? name : name + "@" + chatConnectionConfiguration.getConfUrl()));
-        } catch (XMPPException e) {
-            e.printStackTrace();
+            return r;
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (XMPPException e) {
+            e.printStackTrace();
         }
-        r.subject = r.info.getSubject();
-        chat.addSubjectUpdatedListener(new SubjectUpdatedListener() {
-
-            public void subjectUpdated(String newsubject, String from) {
-                r.subject = newsubject;
-            }
-        });
-        for (String user : r.getConnectedUsers()) {
-            r.users.add(user);
-        }
-        r.startThread();
-        return r;
+        return null;
     }
 
     public Room findRoom(final String name, final String apiKey) {
@@ -198,44 +132,22 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
             return r;
     }
 
-    public MultiUserChat getChat() {
-        return chat;
-    }
-
-    public List<Room> getRooms() {
+    private List<Room> getRooms() {
         ArrayList<Room> roomlist = new ArrayList<Room>();
         for (Room room : rooms.keySet()) {
             roomlist.add(room);
         }
         return Collections.unmodifiableList(roomlist);
     }
-    
-    public boolean sendMessageToRoom(String room, String message, String nickname) {
-        if (!rooms.containsKey(room)) {
-            try {
-                joinRoom(room, nickname);
-            } catch (XMPPException e) {
-                e.printStackTrace();
-                return false;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return false;
-            }
-        }
-        Room obj;
-        if ((obj = findConnectedRoom(room)) != null)
-            return obj.sendMessage(message, nickname);
-        return false;
-    }
-    
-    public Room findConnectedRoom(String name) {
+
+    private Room findConnectedRoom(String name) {
         for (Room r : getRooms()) {
             if (r.getXMPPName().equals(name))
                 return r;
         }
         return null;
     }
-    
+
     public boolean isConnected() {
         return connected;
     }
@@ -246,11 +158,7 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
         xmpp.disconnect();
         connected = false;
     }
-    
-    public Roster getRoster() {
-        return xmpp.getRoster();
-    }
-    
+
     @Override
     public void processMessage(Chat arg0, Message arg1) {
         MessageRecivedEvent event = new MessageRecivedEvent(null, arg1);
@@ -289,15 +197,6 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
             if (!connected)
                 break;
             super.wait(0L);
-        }
-    }
-    
-    private boolean isJID(String name) {
-        try {
-            Integer.parseInt(name.split("\\_")[0]);
-            return true;
-        } catch (Exception e) {
-            return false;
         }
     }
     

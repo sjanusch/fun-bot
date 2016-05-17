@@ -1,13 +1,9 @@
 package de.sjanusch.hipchat.handler;
 
 import com.google.inject.Inject;
-import de.sjanusch.configuration.BotConfiguration;
-import de.sjanusch.model.Room;
+import de.sjanusch.hipchat.rest.HipchatRestClient;
 import de.sjanusch.networking.Connection;
-import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smackx.muc.MultiUserChat;
-
-import java.io.IOException;
+import de.sjanusch.objects.ChatMessage;
 
 /**
  * Created by Sandro Janusch
@@ -16,31 +12,17 @@ import java.io.IOException;
  */
 public class HipchatRequestHandlerImpl implements HipchatRequestHandler {
 
-    private final BotConfiguration botConfiguration;
-
     final private Connection connection;
 
+    final private HipchatRestClient hipchatRestClient;
+
     @Inject
-    public HipchatRequestHandlerImpl(final BotConfiguration botConfiguration, final Connection connection) {
-        this.botConfiguration = botConfiguration;
+    public HipchatRequestHandlerImpl(final Connection connection, final HipchatRestClient hipchatRestClient) {
         this.connection = connection;
+        this.hipchatRestClient = hipchatRestClient;
     }
 
-    public void sendMessageToRoom(final String name, final String message) throws IOException {
-        final Room room = connection.findRoom(name, botConfiguration.getBotChatApikey());
-        if (room != null) {
-            sendMessage(message);
-        }
+    public void sendMessage(final ChatMessage chatMessage) {
+        hipchatRestClient.hipchatRestApiSendNotification(chatMessage);
     }
-
-    public void sendMessage(String message) {
-        try {
-            final MultiUserChat chat = connection.getChat();
-            if (connection.getChat() != null)
-                chat.sendMessage(message);
-        } catch (XMPPException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

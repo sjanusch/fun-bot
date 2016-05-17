@@ -6,6 +6,7 @@ import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
 import de.sjanusch.model.Room;
+import de.sjanusch.objects.ChatMessage;
 import de.sjanusch.texte.TextHandler;
 import org.jivesoftware.smack.packet.Message;
 import org.json.JSONException;
@@ -52,8 +53,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     }
 
     private void sendMessage(final String text) {
-        hipchatRequestHandler.sendMessage(text);
-
+        hipchatRequestHandler.sendMessage(this.createChatMessageText(text));
     }
 
     private void handleMessage(final Message message, final String from, final Room room) throws JSONException, ParseException, IOException {
@@ -71,24 +71,15 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     }
 
     private void handlenoRandomText(final String talkTo, final String message) {
-        StringBuilder stringBuilder = new StringBuilder();
-        String text = textHandler.getRandomText(message);
-        if (text != null) {
-            stringBuilder.append(talkTo + text);
-            this.sendMessage(stringBuilder.toString());
-        }
+        this.sendMessage(talkTo + textHandler.getRandomText(message));
     }
 
     private void handleHelloMessages(final String talkTo) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(talkTo + textHandler.getHelloText());
-        this.sendMessage(stringBuilder.toString());
+        this.sendMessage(talkTo + textHandler.getHelloText());
     }
 
     private void handleByeMessages(final String talkTo) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(talkTo + textHandler.getByeText());
-        this.sendMessage(stringBuilder.toString());
+        this.sendMessage(talkTo + textHandler.getByeText());
     }
 
     private boolean checkContentHello(final String content) {
@@ -119,6 +110,15 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
             return ("@" + newName + " ");
         }
         return "";
+    }
+
+    private ChatMessage createChatMessageText(final String text) {
+        ChatMessage message = new ChatMessage();
+        message.setColor("purple");
+        message.setMessage_format("text");
+        message.setMessage(text);
+        message.setNotify(true);
+        return message;
     }
 
 }

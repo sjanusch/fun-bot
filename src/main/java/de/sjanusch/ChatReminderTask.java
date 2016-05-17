@@ -4,6 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import de.sjanusch.guice.GuiceModule;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
+import de.sjanusch.objects.ChatMessage;
 import de.sjanusch.texte.TextHandler;
 
 import java.util.TimerTask;
@@ -27,8 +28,15 @@ public class ChatReminderTask extends TimerTask {
 
     @Override
     public void run() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(textHandler.getRandomText(""));
-        hipchatRequestHandler.sendMessage(stringBuilder.toString());
+        hipchatRequestHandler.sendMessage(this.generateChatMessage());
+    }
+
+    private ChatMessage generateChatMessage() {
+        ChatMessage message = new ChatMessage();
+        message.setColor("red");
+        message.setMessage_format("text");
+        message.setMessage(textHandler.getRandomText(""));
+        message.setNotify(true);
+        return message;
     }
 }
