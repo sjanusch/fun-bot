@@ -2,7 +2,7 @@ package de.sjanusch.handler;
 
 import com.google.inject.Inject;
 import de.sjanusch.confluence.handler.SuperlunchRequestHandler;
-import de.sjanusch.data.Constants;
+import de.sjanusch.data.ConstantTexts;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
@@ -29,10 +29,13 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     private final SuperlunchRequestHandler superlunchRequestHandler;
 
+    private final ConstantTexts constantTexts;
+
     @Inject
-    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final SuperlunchRequestHandler superlunchRequestHandler) {
+    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final SuperlunchRequestHandler superlunchRequestHandler, final ConstantTexts constantTexts) {
         this.hipchatRequestHandler = hipchatRequestHandler;
         this.superlunchRequestHandler = superlunchRequestHandler;
+        this.constantTexts = constantTexts;
     }
 
     @SuppressWarnings("unused")
@@ -95,14 +98,14 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
         if (!talkTo.isEmpty()) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(talkTo);
-            stringBuilder.append(Constants.getNoRandomText(message));
+            stringBuilder.append(constantTexts.getRandomText(message));
             this.sendMessage(stringBuilder.toString());
         }
     }
 
     private void handleHellodMessages(final String talkTo) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(talkTo + " Salut");
+        stringBuilder.append(talkTo + constantTexts.getHelloText());
         this.sendMessage(stringBuilder.toString());
     }
 

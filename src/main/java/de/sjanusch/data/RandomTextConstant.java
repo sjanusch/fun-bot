@@ -1,17 +1,13 @@
 package de.sjanusch.data;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
 /**
  * Created by Sandro Janusch
  * Date: 13.05.16
  * Time: 14:09
  */
-public final class Constants {
+public final class RandomTextConstant {
 
-    public static final String[] CONSTANT_ARRAY = {
+    public static final String[] TEXT = {
         "Mir doch egal, ich lass das jetzt so",
         "Männer, die einer Frau noch die Tür aufhalten, Blumen mitbringen und ihr einen Kuss auf die Stirn geben, sind wahre Helden.",
         "Wer über die Dummheit anderer lacht, hat sich über deren Motivation noch keine Gedanken gemacht.",
@@ -169,30 +165,4 @@ public final class Constants {
         "Der Computer ist die Loesung auf der Suche nach Problemen.",
         "Der Computer bietet Lösungen an, fuer Probleme, die wir ohne ihn gar nicht hätten.",
     };
-
-    public static final List<String> CONSTANT_LIST = Arrays.asList(CONSTANT_ARRAY);
-
-    public static String getRandomText(final String text) {
-        int number = getRandomNumberInRange(0, Constants.CONSTANT_ARRAY.length + 150);
-        if (number >= 0 && number < Constants.CONSTANT_ARRAY.length && !Constants.CONSTANT_LIST.contains(text)) {
-            return Constants.CONSTANT_ARRAY[number];
-        }
-        return null;
-    }
-
-    public static String getNoRandomText(final String text) {
-        int number = getRandomNumberInRange(0, Constants.CONSTANT_ARRAY.length);
-        if (number >= 0 && number < Constants.CONSTANT_ARRAY.length && !Constants.CONSTANT_LIST.contains(text)) {
-            return Constants.CONSTANT_ARRAY[number];
-        }
-        return null;
-    }
-
-    private static int getRandomNumberInRange(int min, int max) {
-        if (min >= max) {
-            throw new IllegalArgumentException("max must be greater than min");
-        }
-        Random r = new Random();
-        return r.nextInt((max - min) + 1) + min;
-    }
 }
