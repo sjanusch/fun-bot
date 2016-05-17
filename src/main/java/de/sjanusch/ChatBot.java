@@ -17,17 +17,14 @@ public class ChatBot implements RunnableBot {
 
     private final Bot bot;
 
-    private final BotReminderTask botReminderTask;
-
     @Inject
-    public ChatBot(final Bot bot, final BotReminderTask botReminderTask) {
+    public ChatBot(final Bot bot) {
         this.bot = bot;
-        this.botReminderTask = botReminderTask;
     }
 
     public void run() {
         bot.run();
-        BotReminderTask botReminderTask = new BotReminderTask();
+        ChatReminderTask botReminderTask = new ChatReminderTask();
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.schedule(botReminderTask, 60, TimeUnit.MINUTES);
     }

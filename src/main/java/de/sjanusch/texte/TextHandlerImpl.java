@@ -65,7 +65,7 @@ public class TextHandlerImpl implements TextHandler {
         if (number >= 0 && number < texts.size() && !texts.contains(text)) {
             return texts.get(number);
         }
-        return null;
+        return this.getText(text, texts);
     }
 
     private String getText(final List<String> texts) {
@@ -73,7 +73,7 @@ public class TextHandlerImpl implements TextHandler {
         if (number >= 0 && number < texts.size()) {
             return texts.get(number);
         }
-        return null;
+        return this.getText(texts);
     }
 
     private int getRandomNumberInRange(int min, int max) {
