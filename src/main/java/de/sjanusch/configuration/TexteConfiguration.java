@@ -10,6 +10,10 @@ import java.util.List;
  */
 public interface TexteConfiguration {
 
-    List<String> getTexteAsList() throws IOException;
+    List<String> getHelloTexteAsList() throws IOException;
+
+    List<String> getThankYouTexteAsList() throws IOException;
+
+    List<String> getRandomTexteAsList() throws IOException;
 
 }

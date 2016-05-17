@@ -7,8 +7,10 @@ import de.sjanusch.configuration.BotConfiguration;
 import de.sjanusch.configuration.BotConfigurationImpl;
 import de.sjanusch.configuration.ChatConnectionConfiguration;
 import de.sjanusch.configuration.ChatConnectionConfigurationImpl;
-import de.sjanusch.data.ConstantTexts;
-import de.sjanusch.data.ConstantTextsImpl;
+import de.sjanusch.configuration.TexteConfiguration;
+import de.sjanusch.configuration.TexteConfigurationImpl;
+import de.sjanusch.texte.TextHandler;
+import de.sjanusch.texte.TextHandlerImpl;
 import de.sjanusch.eventsystem.EventSystem;
 import de.sjanusch.eventsystem.EventSystemImpl;
 import de.sjanusch.handler.MessageRecieveListener;
@@ -30,7 +32,8 @@ public class GuiceModule extends AbstractModule {
         bind(MessageRecieveListener.class).to(MessageRecieveListenerImpl.class);
         bind(BotConfiguration.class).to(BotConfigurationImpl.class);
         bind(ChatConnectionConfiguration.class).to(ChatConnectionConfigurationImpl.class);
-        bind(ConstantTexts.class).to(ConstantTextsImpl.class);
+        bind(TextHandler.class).to(TextHandlerImpl.class);
+        bind(TexteConfiguration.class).to(TexteConfigurationImpl.class);
 
         bind(EventSystem.class).to(EventSystemImpl.class).asEagerSingleton();
         bind(Connection.class).to(ConnectionImpl.class).asEagerSingleton();

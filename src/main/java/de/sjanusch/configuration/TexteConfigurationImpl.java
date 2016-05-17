@@ -17,8 +17,17 @@ public class TexteConfigurationImpl implements TexteConfiguration {
     }
 
     @Override
-    public List<String> getTexteAsList() throws IOException {
-        return this.configurationLoader.getPropertyStringListValue("texte");
+    public List<String> getHelloTexteAsList() throws IOException {
+        return this.configurationLoader.getPropertyStringListValue("hello_texte");
     }
 
+    @Override
+    public List<String> getThankYouTexteAsList() throws IOException {
+        return this.configurationLoader.getPropertyStringListValue("thankyou_texte");
+    }
+
+    @Override
+    public List<String> getRandomTexteAsList() throws IOException {
+        return this.configurationLoader.getPropertyStringListValue("random_texte");
+    }
 }
