@@ -2,8 +2,8 @@ package de.sjanusch.eventsystem.events.model;
 
 import de.sjanusch.eventsystem.EventList;
 import de.sjanusch.eventsystem.events.UserRoomEvent;
-import de.sjanusch.model.HipchatUser;
-import de.sjanusch.model.Room;
+import de.sjanusch.model.hipchat.HipchatUser;
+import de.sjanusch.model.hipchat.Room;
 
 public class UserJoinedRoomEvent extends UserRoomEvent {
 

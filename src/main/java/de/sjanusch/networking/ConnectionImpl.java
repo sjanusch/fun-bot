@@ -5,7 +5,7 @@ import de.sjanusch.bot.Bot;
 import de.sjanusch.configuration.ChatConnectionConfiguration;
 import de.sjanusch.eventsystem.EventSystem;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
-import de.sjanusch.model.Room;
+import de.sjanusch.model.hipchat.Room;
 import de.sjanusch.networking.exceptions.LoginException;
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ConnectionConfiguration;

@@ -1,6 +1,6 @@
 package de.sjanusch.hipchat.rest;
 
-import de.sjanusch.objects.ChatMessage;
+import de.sjanusch.model.hipchat.ChatMessage;
 
 /**
  * Created by Sandro Janusch

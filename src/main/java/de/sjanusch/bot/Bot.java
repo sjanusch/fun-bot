@@ -1,6 +1,6 @@
 package de.sjanusch.bot;
 
-import de.sjanusch.model.Room;
+import de.sjanusch.model.hipchat.Room;
 
 import java.io.IOException;
 

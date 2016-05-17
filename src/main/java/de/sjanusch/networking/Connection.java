@@ -1,6 +1,6 @@
 package de.sjanusch.networking;
 
-import de.sjanusch.model.Room;
+import de.sjanusch.model.hipchat.Room;
 import de.sjanusch.networking.exceptions.LoginException;
 import org.jivesoftware.smack.XMPPException;
 

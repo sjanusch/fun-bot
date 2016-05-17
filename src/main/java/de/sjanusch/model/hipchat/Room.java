@@ -1,4 +1,4 @@
-package de.sjanusch.model;
+package de.sjanusch.model.hipchat;
 
 import com.google.inject.Inject;
 import de.sjanusch.bot.Bot;

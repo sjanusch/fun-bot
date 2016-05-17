@@ -1,4 +1,4 @@
-package de.sjanusch.model;
+package de.sjanusch.model.hipchat;
 
 import com.google.gson.Gson;
 import de.sjanusch.utils.WebUtils;

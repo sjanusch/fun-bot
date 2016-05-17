@@ -3,7 +3,7 @@ package de.sjanusch.hipchat.handler;
 import com.google.inject.Inject;
 import de.sjanusch.hipchat.rest.HipchatRestClient;
 import de.sjanusch.networking.Connection;
-import de.sjanusch.objects.ChatMessage;
+import de.sjanusch.model.hipchat.ChatMessage;
 
 /**
  * Created by Sandro Janusch

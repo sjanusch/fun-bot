@@ -1,7 +1,7 @@
 package de.sjanusch.eventsystem.events;
 
 import de.sjanusch.eventsystem.Event;
-import de.sjanusch.model.Room;
+import de.sjanusch.model.hipchat.Room;
 
 public abstract class RoomEvent extends Event {
     

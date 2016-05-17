@@ -2,7 +2,7 @@ package de.sjanusch.hipchat.rest;
 
 import com.google.inject.Inject;
 import de.sjanusch.configuration.HipchatConfiguration;
-import de.sjanusch.objects.ChatMessage;
+import de.sjanusch.model.hipchat.ChatMessage;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.slf4j.Logger;
