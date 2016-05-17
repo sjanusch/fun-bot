@@ -18,4 +18,6 @@ public interface BotConfiguration {
     String getBotChatApikey() throws IOException;
 
     String getBotChatRoom() throws IOException;
+
+    String getBotMentionName() throws IOException;
 }

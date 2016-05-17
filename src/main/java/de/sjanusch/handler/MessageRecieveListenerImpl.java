@@ -72,7 +72,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
         StringBuilder stringBuilder = new StringBuilder();
         String text = constantTexts.getRandomText(message);
         if (text != null) {
-            stringBuilder.append(talkTo + constantTexts.getRandomText(message));
+            stringBuilder.append(talkTo + text);
             this.sendMessage(stringBuilder.toString());
         }
     }
@@ -85,15 +85,15 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     private boolean checkContentHello(final String content) {
         final String lowerCaseContent = content.toLowerCase().trim();
-        if (lowerCaseContent.contains("hallo") || lowerCaseContent.contains("hello")
+        if (lowerCaseContent.contains("hallo") || lowerCaseContent.contains("hello") || lowerCaseContent.contains("tag")
             || lowerCaseContent.contains("servus") || lowerCaseContent.contains("guten tag")) {
             return true;
         }
         return false;
     }
 
-    private String convertNames(final String message, final String from) {
-        if (message.toLowerCase().contains("@lunchbot")) {
+    private String convertNames(final String message, final String from) throws IOException {
+        if (message.toLowerCase().contains("@" + botConfiguration.getBotMentionName())) {
             String[] names = from.split(" ");
             String newName = null;
             if (names.length > 1) {

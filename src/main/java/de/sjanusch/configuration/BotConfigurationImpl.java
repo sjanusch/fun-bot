@@ -26,6 +26,11 @@ public class BotConfigurationImpl implements BotConfiguration {
     }
 
     @Override
+    public String getBotMentionName() throws IOException {
+        return this.configurationLoader.getPropertyStringValue("bot_mention_name");
+    }
+
+    @Override
     public String getBotPassword() throws IOException {
         return this.configurationLoader.getPropertyStringValue("bot_password");
     }
@@ -39,4 +44,5 @@ public class BotConfigurationImpl implements BotConfiguration {
     public String getBotChatRoom() throws IOException {
         return this.configurationLoader.getPropertyStringValue("bot_chat_room");
     }
+
 }

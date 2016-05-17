@@ -30,7 +30,7 @@ public class ChatBot implements RunnableBot {
         bot.run();
         BotReminderTask botReminderTask = new BotReminderTask(hipchatRequestHandler);
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(botReminderTask, this.getHoursUntilTarget(7), 24, TimeUnit.HOURS);
+        scheduler.schedule(botReminderTask, 60, TimeUnit.MINUTES);
     }
 
     private int getHoursUntilTarget(int targetHour) {
