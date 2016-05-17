@@ -21,6 +21,6 @@ public interface Connection {
 
     void joinRoom(String room, String nickname) throws XMPPException, IOException;
 
-    Room findRoom(final String name, final String apiKey);
+    Room findRoom(final String name);
 
 }

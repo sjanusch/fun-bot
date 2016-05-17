@@ -15,11 +15,7 @@ public interface BotConfiguration {
 
     String getBotPassword() throws IOException;
 
-    String getBotChatApikey() throws IOException;
-
     String getBotChatRoom() throws IOException;
 
     String getBotMentionName() throws IOException;
-
-    String getBotChatRoomId() throws IOException;
 }

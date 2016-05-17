@@ -15,8 +15,12 @@ public class ChatMessage {
 
     private boolean notify = true;
 
+    public ChatMessage(final String message) {
+        this.message = message;
+    }
+
     public String getColor() {
-        return color;
+        return (color != null) ? color : "random";
     }
 
     public void setColor(final String color) {
@@ -32,7 +36,7 @@ public class ChatMessage {
     }
 
     public String getMessage_format() {
-        return message_format;
+        return (message_format != null) ? message_format : "text";
     }
 
     public void setMessage_format(final String message_format) {

@@ -10,8 +10,6 @@ public interface Bot {
 
     Room getSelectedRoom();
 
-    String getApiKey() throws IOException;
-
     String getBotroom() throws IOException;
 
     String getNickname() throws IOException;

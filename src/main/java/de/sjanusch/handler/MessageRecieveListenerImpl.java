@@ -53,7 +53,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     }
 
     private void sendMessage(final String text) {
-        hipchatRequestHandler.sendMessage(this.createChatMessageText(text));
+        hipchatRequestHandler.sendMessage(new ChatMessage(text));
     }
 
     private void handleMessage(final Message message, final String from, final Room room) throws JSONException, ParseException, IOException {
@@ -110,15 +110,6 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
             return ("@" + newName + " ");
         }
         return "";
-    }
-
-    private ChatMessage createChatMessageText(final String text) {
-        ChatMessage message = new ChatMessage();
-        message.setColor("purple");
-        message.setMessage_format("text");
-        message.setMessage(text);
-        message.setNotify(true);
-        return message;
     }
 
 }

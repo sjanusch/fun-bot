@@ -36,20 +36,8 @@ public class BotConfigurationImpl implements BotConfiguration {
     }
 
     @Override
-    public String getBotChatApikey() throws IOException {
-        return this.configurationLoader.getPropertyStringValue("bot_chat_apiKey");
-    }
-
-    @Override
     public String getBotChatRoom() throws IOException {
         return this.configurationLoader.getPropertyStringValue("bot_chat_room");
     }
-
-
-    @Override
-    public String getBotChatRoomId() throws IOException {
-        return this.configurationLoader.getPropertyStringValue("bot_chat_room_id");
-    }
-
 
 }

@@ -28,15 +28,7 @@ public class ChatReminderTask extends TimerTask {
 
     @Override
     public void run() {
-        hipchatRequestHandler.sendMessage(this.generateChatMessage());
+        hipchatRequestHandler.sendMessage(new ChatMessage(textHandler.getRandomText("")));
     }
 
-    private ChatMessage generateChatMessage() {
-        ChatMessage message = new ChatMessage();
-        message.setColor("red");
-        message.setMessage_format("text");
-        message.setMessage(textHandler.getRandomText(""));
-        message.setNotify(true);
-        return message;
-    }
 }

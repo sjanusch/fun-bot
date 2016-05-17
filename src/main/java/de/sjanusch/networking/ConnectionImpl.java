@@ -120,16 +120,8 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
         return null;
     }
 
-    public Room findRoom(final String name, final String apiKey) {
-        Room r = this.findConnectedRoom(name);
-        if (r == null) {
-            for (Room room : this.getRooms()) {
-                if (room.getTrueName(apiKey).equals(name))
-                    return room;
-            }
-            return null;
-        } else
-            return r;
+    public Room findRoom(final String name) {
+        return this.findConnectedRoom(name);
     }
 
     private List<Room> getRooms() {

@@ -1,7 +1,7 @@
 package de.sjanusch.hipchat.rest;
 
 import com.google.inject.Inject;
-import de.sjanusch.configuration.BotConfiguration;
+import de.sjanusch.configuration.HipchatConfiguration;
 import de.sjanusch.objects.ChatMessage;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.jackson.JacksonFeature;
@@ -28,11 +28,11 @@ public class HipchatRestClientImpl implements HipchatRestClient {
 
     public static final Logger logger = LoggerFactory.getLogger(HipchatRestClientImpl.class);
 
-    private final BotConfiguration botConfiguration;
+    private final HipchatConfiguration hipchatConfiguration;
 
     @Inject
-    public HipchatRestClientImpl(final BotConfiguration botConfiguration) {
-        this.botConfiguration = botConfiguration;
+    public HipchatRestClientImpl(final HipchatConfiguration hipchatConfiguration) {
+        this.hipchatConfiguration = hipchatConfiguration;
     }
 
     private Client buildClient() throws NoSuchAlgorithmException, KeyManagementException, IOException {
@@ -52,7 +52,8 @@ public class HipchatRestClientImpl implements HipchatRestClient {
     @Override
     public void hipchatRestApiSendNotification(final ChatMessage chatMessage) {
         try {
-            hipchatSendNotification(buildClient().target("https://api.hipchat.com/v2").path("/room/" + botConfiguration.getBotChatRoomId() + "/notification"), chatMessage);
+            final String path = "/room/" + this.getHipchatRoomId() + "/notification";
+            hipchatSendNotification(buildClient().target(this.getHipchatRestApi()).path(path), chatMessage);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (KeyManagementException e) {
@@ -66,7 +67,7 @@ public class HipchatRestClientImpl implements HipchatRestClient {
         logger.debug("Requesting  '" + target.getUri() + "' by GET ");
         Response response = null;
         try {
-            response = target.request(MediaType.APPLICATION_JSON_TYPE).header("Authorization", "Bearer " + botConfiguration.getBotChatApikey())
+            response = target.request(MediaType.APPLICATION_JSON_TYPE).header("Authorization", this.getHeaderValue())
                 .post(Entity.entity(chatMessage, MediaType.APPLICATION_JSON_TYPE));
             switch (response.getStatus()) {
                 default:
@@ -88,6 +89,18 @@ public class HipchatRestClientImpl implements HipchatRestClient {
         } catch (ProcessingException e) {
             logger.error("Unexpected return code from calling '" + e.getMessage());
         }
+    }
+
+    private String getHeaderValue() throws IOException {
+        return "Bearer " + hipchatConfiguration.getHipchatRestApiKey();
+    }
+
+    private String getHipchatRoomId() throws IOException {
+        return hipchatConfiguration.getHipchatRestApiRoomId();
+    }
+
+    private String getHipchatRestApi() throws IOException {
+        return hipchatConfiguration.getHipchatRestApi();
     }
 
     private final class HostnameVerifierAllowAll implements HostnameVerifier {

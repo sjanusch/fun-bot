@@ -53,7 +53,7 @@ public class BotImpl implements Bot {
 
     public void joinRoom() throws XMPPException, IOException {
         this.connection.joinRoom(this.getBotroom(), this.getNickname());
-        selected = connection.findRoom(this.getBotroom(), this.getApiKey());
+        selected = connection.findRoom(this.getBotroom());
     }
 
     @Override
@@ -61,9 +61,6 @@ public class BotImpl implements Bot {
         return selected;
     }
 
-    public String getApiKey() throws IOException {
-        return botConfiguration.getBotChatApikey();
-    }
 
     public String getBotroom() throws IOException {
         return botConfiguration.getBotChatRoom();
