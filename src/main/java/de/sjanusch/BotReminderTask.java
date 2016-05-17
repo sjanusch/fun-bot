@@ -1,6 +1,9 @@
 package de.sjanusch;
 
-import de.sjanusch.data.ConstantTextsImpl;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import de.sjanusch.texte.TextHandler;
+import de.sjanusch.guice.GuiceModule;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
 
 import java.util.TimerTask;
@@ -12,12 +15,14 @@ import java.util.TimerTask;
  */
 public class BotReminderTask extends TimerTask {
 
-    private final HipchatRequestHandler hipchatRequestHandler;
+    private HipchatRequestHandler hipchatRequestHandler;
 
-    private ConstantTextsImpl constantTexts = new ConstantTextsImpl();
+    private TextHandler constantTexts;
 
-    public BotReminderTask(final HipchatRequestHandler hipchatRequestHandler) {
-        this.hipchatRequestHandler = hipchatRequestHandler;
+    public BotReminderTask() {
+        final Injector injector = Guice.createInjector(new GuiceModule());
+        this.hipchatRequestHandler = injector.getInstance(HipchatRequestHandler.class);
+        this.constantTexts = injector.getInstance(TextHandler.class);
     }
 
     @Override

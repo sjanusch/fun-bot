@@ -2,7 +2,6 @@ package de.sjanusch;
 
 import com.google.inject.Inject;
 import de.sjanusch.bot.Bot;
-import de.sjanusch.hipchat.handler.HipchatRequestHandler;
 import de.sjanusch.runner.RunnableBot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,17 +17,17 @@ public class ChatBot implements RunnableBot {
 
     private final Bot bot;
 
-    private final HipchatRequestHandler hipchatRequestHandler;
+    private final BotReminderTask botReminderTask;
 
     @Inject
-    public ChatBot(final Bot bot, final HipchatRequestHandler hipchatRequestHandler) {
+    public ChatBot(final Bot bot, final BotReminderTask botReminderTask) {
         this.bot = bot;
-        this.hipchatRequestHandler = hipchatRequestHandler;
+        this.botReminderTask = botReminderTask;
     }
 
     public void run() {
         bot.run();
-        BotReminderTask botReminderTask = new BotReminderTask(hipchatRequestHandler);
+        BotReminderTask botReminderTask = new BotReminderTask();
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.schedule(botReminderTask, 60, TimeUnit.MINUTES);
     }

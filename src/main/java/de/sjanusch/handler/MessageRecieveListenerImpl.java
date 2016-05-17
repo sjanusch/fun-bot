@@ -2,7 +2,7 @@ package de.sjanusch.handler;
 
 import com.google.inject.Inject;
 import de.sjanusch.configuration.BotConfiguration;
-import de.sjanusch.data.ConstantTexts;
+import de.sjanusch.texte.TextHandler;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
@@ -26,12 +26,12 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     private final HipchatRequestHandler hipchatRequestHandler;
 
-    private final ConstantTexts constantTexts;
+    private final TextHandler constantTexts;
 
     private final BotConfiguration botConfiguration;
 
     @Inject
-    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final ConstantTexts constantTexts, final BotConfiguration botConfiguration) {
+    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final TextHandler constantTexts, final BotConfiguration botConfiguration) {
         this.hipchatRequestHandler = hipchatRequestHandler;
         this.constantTexts = constantTexts;
         this.botConfiguration = botConfiguration;

@@ -24,13 +24,13 @@ public class ConfigurationLoader {
 
     public String getPropertyStringValue(final String key) throws IOException {
         checkPropertiesLoaded();
-        return properties.getProperty(key);
+        return new String(properties.getProperty(key).getBytes("ISO-8859-1"), "UTF-8");
     }
 
     public String[] getPropertyStringArrayValue(final String key) throws IOException {
         checkPropertiesLoaded();
-        final String value = properties.getProperty(key);
-        return value.split(",");
+        final String value = new String(properties.getProperty(key).getBytes("ISO-8859-1"), "UTF-8");
+        return value.split(";");
     }
 
     public List<String> getPropertyStringListValue(final String key) throws IOException {

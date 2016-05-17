@@ -1,6 +1,6 @@
-package de.sjanusch.data;
+package de.sjanusch.texte;
 
-public interface ConstantTexts {
+public interface TextHandler {
 
     String getRandomText(final String text);
 
