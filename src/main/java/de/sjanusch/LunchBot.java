@@ -30,7 +30,7 @@ public class LunchBot implements RunnableBot {
         bot.run();
         LunchReminderTask lunchReminderTask = new LunchReminderTask(hipchatRequestHandler);
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(lunchReminderTask, this.getHoursUntilTarget(10), 24, TimeUnit.HOURS);
+        scheduler.scheduleAtFixedRate(lunchReminderTask, this.getHoursUntilTarget(7), 24, TimeUnit.HOURS);
     }
 
     private int getHoursUntilTarget(int targetHour) {

@@ -11,18 +11,6 @@ import java.util.Random;
  */
 public class ConstantTextsImpl implements ConstantTexts {
 
-
-
-    /*
-    public static String getRandomText(final String text) {
-        int number = getRandomNumberInRange(0, Constants.RANDOM_TEXT.length + 150);
-        if (number >= 0 && number < Constants.RANDOM_TEXT.length && !Constants.RANDOM_TEXT_LIST.contains(text)) {
-            return Constants.RANDOM_TEXT[number];
-        }
-        return null;
-    }
-    */
-
     public String getRandomText(final String text) {
         return this.getText(text, RandomTextConstant.TEXT);
     }
