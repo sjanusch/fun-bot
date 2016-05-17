@@ -16,4 +16,6 @@ public interface TexteConfiguration {
 
     List<String> getRandomTexteAsList() throws IOException;
 
+    List<String> getByeTexteAsList() throws IOException;
+
 }

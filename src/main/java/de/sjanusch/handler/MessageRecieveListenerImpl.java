@@ -2,11 +2,11 @@ package de.sjanusch.handler;
 
 import com.google.inject.Inject;
 import de.sjanusch.configuration.BotConfiguration;
-import de.sjanusch.texte.TextHandler;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
 import de.sjanusch.model.Room;
+import de.sjanusch.texte.TextHandler;
 import org.jivesoftware.smack.packet.Message;
 import org.json.JSONException;
 import org.slf4j.Logger;
@@ -26,14 +26,14 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     private final HipchatRequestHandler hipchatRequestHandler;
 
-    private final TextHandler constantTexts;
+    private final TextHandler textHandler;
 
     private final BotConfiguration botConfiguration;
 
     @Inject
-    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final TextHandler constantTexts, final BotConfiguration botConfiguration) {
+    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final TextHandler textHandler, final BotConfiguration botConfiguration) {
         this.hipchatRequestHandler = hipchatRequestHandler;
-        this.constantTexts = constantTexts;
+        this.textHandler = textHandler;
         this.botConfiguration = botConfiguration;
     }
 
@@ -61,7 +61,9 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
             logger.debug("Handle Message from " + from + ": " + message.getBody());
             final String talkTo = this.convertNames(message.getBody(), from);
             if (this.checkContentHello(message.getBody())) {
-                this.handleHellodMessages(talkTo);
+                this.handleHelloMessages(talkTo);
+            } else if (this.checkContentBye(message.getBody())) {
+                this.handleByeMessages(talkTo);
             } else {
                 this.handlenoRandomText(talkTo, message.getBody());
             }
@@ -70,23 +72,38 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     private void handlenoRandomText(final String talkTo, final String message) {
         StringBuilder stringBuilder = new StringBuilder();
-        String text = constantTexts.getRandomText(message);
+        String text = textHandler.getRandomText(message);
         if (text != null) {
             stringBuilder.append(talkTo + text);
             this.sendMessage(stringBuilder.toString());
         }
     }
 
-    private void handleHellodMessages(final String talkTo) {
+    private void handleHelloMessages(final String talkTo) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(talkTo + constantTexts.getHelloText());
+        stringBuilder.append(talkTo + textHandler.getHelloText());
+        this.sendMessage(stringBuilder.toString());
+    }
+
+    private void handleByeMessages(final String talkTo) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(talkTo + textHandler.getByeText());
         this.sendMessage(stringBuilder.toString());
     }
 
     private boolean checkContentHello(final String content) {
         final String lowerCaseContent = content.toLowerCase().trim();
         if (lowerCaseContent.contains("hallo") || lowerCaseContent.contains("hello") || lowerCaseContent.contains("tag")
-            || lowerCaseContent.contains("servus") || lowerCaseContent.contains("guten tag")) {
+            || lowerCaseContent.contains("servus") || lowerCaseContent.contains("guten tag") || lowerCaseContent.contains("hi")) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkContentBye(final String content) {
+        final String lowerCaseContent = content.toLowerCase().trim();
+        if (lowerCaseContent.contains("bye") || lowerCaseContent.contains("tschüß") || lowerCaseContent.contains("tschüss")
+            || lowerCaseContent.contains("tschö") || lowerCaseContent.contains("auf wiedersehen") || lowerCaseContent.contains("wiedersehen")) {
             return true;
         }
         return false;

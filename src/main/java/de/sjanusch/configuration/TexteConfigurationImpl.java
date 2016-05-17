@@ -22,6 +22,11 @@ public class TexteConfigurationImpl implements TexteConfiguration {
     }
 
     @Override
+    public List<String> getByeTexteAsList() throws IOException {
+        return this.configurationLoader.getPropertyStringListValue("bye_texte");
+    }
+
+    @Override
     public List<String> getThankYouTexteAsList() throws IOException {
         return this.configurationLoader.getPropertyStringListValue("thankyou_texte");
     }

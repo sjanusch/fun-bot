@@ -50,6 +50,16 @@ public class TextHandlerImpl implements TextHandler {
         return null;
     }
 
+    @Override
+    public String getByeText() {
+        try {
+            return this.getText(texteConfiguration.getByeTexteAsList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private String getText(final String text, final List<String> texts) {
         int number = this.getRandomNumberInRange(0, texts.size());
         if (number >= 0 && number < texts.size() && !texts.contains(text)) {

@@ -7,4 +7,6 @@ public interface TextHandler {
     String getThankYouText();
 
     String getHelloText();
+
+    String getByeText();
 }
