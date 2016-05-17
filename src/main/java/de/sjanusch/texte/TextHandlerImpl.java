@@ -51,6 +51,20 @@ public class TextHandlerImpl implements TextHandler {
     }
 
     @Override
+    public boolean containsHelloText(final String text) {
+        try {
+            for (String hello : texteConfiguration.getHelloTexteAsList()) {
+                if (text.toLowerCase().trim().contains(hello.toLowerCase().trim())) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public String getByeText() {
         try {
             return this.getText(texteConfiguration.getByeTexteAsList());
@@ -58,6 +72,20 @@ public class TextHandlerImpl implements TextHandler {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean containsByeText(final String text) {
+        try {
+            for (String bye : texteConfiguration.getByeTexteAsList()) {
+                if (text.toLowerCase().trim().contains(bye.toLowerCase().trim())) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private String getText(final String text, final List<String> texts) {

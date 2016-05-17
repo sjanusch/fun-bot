@@ -5,8 +5,8 @@ import de.sjanusch.configuration.BotConfiguration;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
-import de.sjanusch.model.hipchat.Room;
 import de.sjanusch.model.hipchat.ChatMessage;
+import de.sjanusch.model.hipchat.Room;
 import de.sjanusch.texte.TextHandler;
 import org.jivesoftware.smack.packet.Message;
 import org.json.JSONException;
@@ -52,17 +52,21 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
         }
     }
 
-    private void sendMessage(final String text) {
-        hipchatRequestHandler.sendMessage(new ChatMessage(text));
+    private void sendMessageText(final String text) {
+        hipchatRequestHandler.sendMessage(new ChatMessage(text, "text"));
+    }
+
+    private void sendMessageHtml(final String text) {
+        hipchatRequestHandler.sendMessage(new ChatMessage(text, "html"));
     }
 
     private void handleMessage(final Message message, final String from, final Room room) throws JSONException, ParseException, IOException {
         if (!from.equals(botConfiguration.getBotNickname())) {
             logger.debug("Handle Message from " + from + ": " + message.getBody());
             final String talkTo = this.convertNames(message.getBody(), from);
-            if (this.checkContentHello(message.getBody())) {
+            if (textHandler.containsHelloText(message.getBody())) {
                 this.handleHelloMessages(talkTo);
-            } else if (this.checkContentBye(message.getBody())) {
+            } else if (textHandler.containsByeText(message.getBody())) {
                 this.handleByeMessages(talkTo);
             } else {
                 this.handlenoRandomText(talkTo, message.getBody());
@@ -71,33 +75,15 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     }
 
     private void handlenoRandomText(final String talkTo, final String message) {
-        this.sendMessage(talkTo + textHandler.getRandomText(message));
+        this.sendMessageText(talkTo + textHandler.getRandomText(message));
     }
 
     private void handleHelloMessages(final String talkTo) {
-        this.sendMessage(talkTo + textHandler.getHelloText());
+        this.sendMessageText(talkTo + textHandler.getHelloText());
     }
 
     private void handleByeMessages(final String talkTo) {
-        this.sendMessage(talkTo + textHandler.getByeText());
-    }
-
-    private boolean checkContentHello(final String content) {
-        final String lowerCaseContent = content.toLowerCase().trim();
-        if (lowerCaseContent.contains("hallo") || lowerCaseContent.contains("hello") || lowerCaseContent.contains("tag")
-            || lowerCaseContent.contains("servus") || lowerCaseContent.contains("guten tag") || lowerCaseContent.contains("hi")) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean checkContentBye(final String content) {
-        final String lowerCaseContent = content.toLowerCase().trim();
-        if (lowerCaseContent.contains("bye") || lowerCaseContent.contains("tschüß") || lowerCaseContent.contains("tschüss")
-            || lowerCaseContent.contains("tschö") || lowerCaseContent.contains("auf wiedersehen") || lowerCaseContent.contains("wiedersehen")) {
-            return true;
-        }
-        return false;
+        this.sendMessageText(talkTo + textHandler.getByeText());
     }
 
     private String convertNames(final String message, final String from) throws IOException {

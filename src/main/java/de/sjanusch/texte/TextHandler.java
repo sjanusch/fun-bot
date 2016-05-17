@@ -9,4 +9,8 @@ public interface TextHandler {
     String getHelloText();
 
     String getByeText();
+
+    boolean containsHelloText(final String text);
+
+    boolean containsByeText(final String text);
 }

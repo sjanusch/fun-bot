@@ -15,8 +15,9 @@ public class ChatMessage {
 
     private boolean notify = true;
 
-    public ChatMessage(final String message) {
+    public ChatMessage(final String message, final String typ) {
         this.message = message;
+        this.message_format = typ;
     }
 
     public String getColor() {
