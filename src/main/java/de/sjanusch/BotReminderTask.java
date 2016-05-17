@@ -1,5 +1,6 @@
 package de.sjanusch;
 
+import de.sjanusch.data.ConstantTextsImpl;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
 
 import java.util.TimerTask;
@@ -13,6 +14,8 @@ public class BotReminderTask extends TimerTask {
 
     private final HipchatRequestHandler hipchatRequestHandler;
 
+    private ConstantTextsImpl constantTexts = new ConstantTextsImpl();
+
     public BotReminderTask(final HipchatRequestHandler hipchatRequestHandler) {
         this.hipchatRequestHandler = hipchatRequestHandler;
     }
@@ -20,9 +23,7 @@ public class BotReminderTask extends TimerTask {
     @Override
     public void run() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("@all Mittagessen Anmeldung nicht vergessen!");
-        stringBuilder.append("\n");
-        stringBuilder.append("https://confluence.rp.seibert-media.net/dashboard.action");
+        stringBuilder.append(constantTexts.getRandomText(""));
         hipchatRequestHandler.sendMessage(stringBuilder.toString());
     }
 }
