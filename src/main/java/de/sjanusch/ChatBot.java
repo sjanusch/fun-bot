@@ -12,25 +12,25 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class LunchBot implements RunnableBot {
+public class ChatBot implements RunnableBot {
 
-    private static final Logger logger = LoggerFactory.getLogger(LunchBot.class);
+    private static final Logger logger = LoggerFactory.getLogger(ChatBot.class);
 
     private final Bot bot;
 
     private final HipchatRequestHandler hipchatRequestHandler;
 
     @Inject
-    public LunchBot(final Bot bot, final HipchatRequestHandler hipchatRequestHandler) {
+    public ChatBot(final Bot bot, final HipchatRequestHandler hipchatRequestHandler) {
         this.bot = bot;
         this.hipchatRequestHandler = hipchatRequestHandler;
     }
 
     public void run() {
         bot.run();
-        LunchReminderTask lunchReminderTask = new LunchReminderTask(hipchatRequestHandler);
+        BotReminderTask botReminderTask = new BotReminderTask(hipchatRequestHandler);
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(lunchReminderTask, this.getHoursUntilTarget(7), 24, TimeUnit.HOURS);
+        scheduler.scheduleAtFixedRate(botReminderTask, this.getHoursUntilTarget(7), 24, TimeUnit.HOURS);
     }
 
     private int getHoursUntilTarget(int targetHour) {

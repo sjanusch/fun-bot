@@ -9,11 +9,11 @@ import java.util.TimerTask;
  * Date: 16.05.16
  * Time: 20:54
  */
-public class LunchReminderTask extends TimerTask {
+public class BotReminderTask extends TimerTask {
 
     private final HipchatRequestHandler hipchatRequestHandler;
 
-    public LunchReminderTask(final HipchatRequestHandler hipchatRequestHandler) {
+    public BotReminderTask(final HipchatRequestHandler hipchatRequestHandler) {
         this.hipchatRequestHandler = hipchatRequestHandler;
     }
 

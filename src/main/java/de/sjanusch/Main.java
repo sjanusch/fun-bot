@@ -9,7 +9,7 @@ public class Main {
     
     public static void main(String[] args) {
         final Injector injector = Guice.createInjector(new GuiceModule());
-        final LunchBot bot = injector.getInstance(LunchBot.class);
+        final ChatBot bot = injector.getInstance(ChatBot.class);
         final BotRunner botRunner = injector.getInstance(BotRunner.class);
         final Thread t = botRunner.runBotDesync(bot);
         t.start();

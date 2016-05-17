@@ -1,20 +1,19 @@
 package de.sjanusch.handler;
 
 import com.google.inject.Inject;
-import de.sjanusch.confluence.handler.SuperlunchRequestHandler;
+import de.sjanusch.configuration.BotConfiguration;
 import de.sjanusch.data.ConstantTexts;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
 import de.sjanusch.model.Room;
-import de.sjanusch.model.superlunch.Lunch;
 import org.jivesoftware.smack.packet.Message;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.text.ParseException;
-import java.util.List;
 
 /**
  * Created by Sandro Janusch
@@ -27,15 +26,15 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     private final HipchatRequestHandler hipchatRequestHandler;
 
-    private final SuperlunchRequestHandler superlunchRequestHandler;
-
     private final ConstantTexts constantTexts;
 
+    private final BotConfiguration botConfiguration;
+
     @Inject
-    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final SuperlunchRequestHandler superlunchRequestHandler, final ConstantTexts constantTexts) {
+    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final ConstantTexts constantTexts, final BotConfiguration botConfiguration) {
         this.hipchatRequestHandler = hipchatRequestHandler;
-        this.superlunchRequestHandler = superlunchRequestHandler;
         this.constantTexts = constantTexts;
+        this.botConfiguration = botConfiguration;
     }
 
     @SuppressWarnings("unused")
@@ -47,6 +46,8 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -55,50 +56,23 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     }
 
-    private void handleMessage(final Message message, final String from, final Room room) throws JSONException, ParseException {
-        logger.debug("Handle Message from " + from + ": " + message.getBody());
-        final String talkTo = this.convertNames(message.getBody(), from);
-        if (this.checkContentMittagessenInfo(message.getBody())) {
-            this.handleMittagessenInfoMessage(talkTo);
-        } else if (this.checkContentHello(message.getBody())) {
-            this.handleHellodMessages(talkTo);
-        } else {
-            this.handlenoRandomText(talkTo, message.getBody());
-        }
-    }
-
-    private void handleMittagessenInfoMessage(final String talkTo) throws JSONException, ParseException {
-        List<Lunch> lunchList = superlunchRequestHandler.fetchFilteredLunchFromConfluence();
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(talkTo);
-        if (lunchList.size() > 0) {
-            for (final Lunch lunch : lunchList) {
-                if (!lunch.isClosed()) {
-                    stringBuilder.append(lunch.getTitle() + "(" + lunch.getCreatorName() + ")");
-                    stringBuilder.append("\n");
-                    stringBuilder.append(lunch.getFormattedPrice() + ", " + this.convertVeggyValue(lunch.isVeggy()));
-                    stringBuilder.append("\n");
-                    stringBuilder.append(lunch.getDetailLink() + "\n");
-                    stringBuilder.append("\n");
-                } else {
-                    stringBuilder.append(lunch.getTitle() + "(" + lunch.getCreatorName() + ") - ");
-                    stringBuilder.append("Anmeldung nicht mehr möglich! \n");
-                    stringBuilder.append("\n");
-                }
+    private void handleMessage(final Message message, final String from, final Room room) throws JSONException, ParseException, IOException {
+        if (!from.equals(botConfiguration.getBotNickname())) {
+            logger.debug("Handle Message from " + from + ": " + message.getBody());
+            final String talkTo = this.convertNames(message.getBody(), from);
+            if (this.checkContentHello(message.getBody())) {
+                this.handleHellodMessages(talkTo);
+            } else {
+                this.handlenoRandomText(talkTo, message.getBody());
             }
-        } else {
-            stringBuilder.append("Mittagessen Übersicht noch nicht verfügbar!");
-            stringBuilder.append("\n");
-            stringBuilder.append("Anmelden über https://confluence.rp.seibert-media.net/dashboard.action");
         }
-        this.sendMessage(stringBuilder.toString());
     }
 
     private void handlenoRandomText(final String talkTo, final String message) {
-        if (!talkTo.isEmpty()) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(talkTo);
-            stringBuilder.append(constantTexts.getRandomText(message));
+        StringBuilder stringBuilder = new StringBuilder();
+        String text = constantTexts.getRandomText(message);
+        if (text != null) {
+            stringBuilder.append(talkTo + constantTexts.getRandomText(message));
             this.sendMessage(stringBuilder.toString());
         }
     }
@@ -109,16 +83,6 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
         this.sendMessage(stringBuilder.toString());
     }
 
-    private boolean checkContentMittagessenInfo(final String content) {
-        final String lowerCaseContent = content.toLowerCase().trim();
-        if (lowerCaseContent.contains("/essen") || lowerCaseContent.contains("/mittagessen") || lowerCaseContent.contains("futter") ||
-            (lowerCaseContent.contains("was") && lowerCaseContent.contains("heute") && lowerCaseContent.contains("essen")) ||
-            (lowerCaseContent.contains("habe") && lowerCaseContent.contains("hunger"))) {
-            return true;
-        }
-        return false;
-    }
-
     private boolean checkContentHello(final String content) {
         final String lowerCaseContent = content.toLowerCase().trim();
         if (lowerCaseContent.contains("hallo") || lowerCaseContent.contains("hello")
@@ -126,10 +90,6 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
             return true;
         }
         return false;
-    }
-
-    private String convertVeggyValue(final boolean value) {
-        return (value) ? "vegetarisch" : "nicht vegetarisch";
     }
 
     private String convertNames(final String message, final String from) {

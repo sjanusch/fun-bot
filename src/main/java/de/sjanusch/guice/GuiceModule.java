@@ -7,12 +7,6 @@ import de.sjanusch.configuration.BotConfiguration;
 import de.sjanusch.configuration.BotConfigurationImpl;
 import de.sjanusch.configuration.ChatConnectionConfiguration;
 import de.sjanusch.configuration.ChatConnectionConfigurationImpl;
-import de.sjanusch.configuration.LunchConfiguration;
-import de.sjanusch.configuration.LunchConfigurationImpl;
-import de.sjanusch.confluence.handler.SuperlunchRequestHandler;
-import de.sjanusch.confluence.handler.SuperlunchRequestHandlerImpl;
-import de.sjanusch.confluence.rest.SuperlunchRestClient;
-import de.sjanusch.confluence.rest.SuperlunchRestClientImpl;
 import de.sjanusch.data.ConstantTexts;
 import de.sjanusch.data.ConstantTextsImpl;
 import de.sjanusch.eventsystem.EventSystem;
@@ -32,11 +26,8 @@ public class GuiceModule extends AbstractModule {
     protected void configure() {
         bind(Bot.class).to(BotImpl.class);
         bind(BotRunner.class).to(BotRunnerImpl.class);
-        bind(SuperlunchRequestHandler.class).to(SuperlunchRequestHandlerImpl.class);
-        bind(SuperlunchRestClient.class).to(SuperlunchRestClientImpl.class);
         bind(HipchatRequestHandler.class).to(HipchatRequestHandlerImpl.class);
         bind(MessageRecieveListener.class).to(MessageRecieveListenerImpl.class);
-        bind(LunchConfiguration.class).to(LunchConfigurationImpl.class);
         bind(BotConfiguration.class).to(BotConfigurationImpl.class);
         bind(ChatConnectionConfiguration.class).to(ChatConnectionConfigurationImpl.class);
         bind(ConstantTexts.class).to(ConstantTextsImpl.class);
