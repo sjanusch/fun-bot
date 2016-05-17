@@ -2,6 +2,7 @@ package de.sjanusch.networking;
 
 import com.google.inject.Inject;
 import de.sjanusch.bot.Bot;
+import de.sjanusch.configuration.ChatConnectionConfiguration;
 import de.sjanusch.eventsystem.EventSystem;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.model.HipchatRoomInfo;
@@ -23,6 +24,7 @@ import org.jivesoftware.smackx.muc.SubjectUpdatedListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,15 +34,9 @@ import java.util.List;
 
 public final class ConnectionImpl implements Connection, MessageListener, ConnectionListener {
 
-    public static final String XMPP_URL = "chat.hipchat.com";
+    private final ChatConnectionConfiguration chatConnectionConfiguration;
 
-    public static final String CONF_URL = "conf.hipchat.com";
-
-    public static final int PORT = 5222;
-    
-    private static final ConnectionConfiguration CONNECTION_CONFIG = new ConnectionConfiguration(XMPP_URL, PORT);
-
-    private final XMPPConnection XMPP = new XMPPConnection(CONNECTION_CONFIG);
+    private XMPPConnection xmpp;
 
     private boolean connected;
 
@@ -59,16 +55,18 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
     private MultiUserChat chat;
 
     @Inject
-    public ConnectionImpl(final EventSystem eventSystem, final Bot bot) {
+    public ConnectionImpl(final ChatConnectionConfiguration chatConnectionConfiguration, final EventSystem eventSystem, final Bot bot) throws IOException {
+        this.chatConnectionConfiguration = chatConnectionConfiguration;
         this.eventSystem = eventSystem;
         this.bot = bot;
+        this.xmpp = new XMPPConnection(new ConnectionConfiguration(chatConnectionConfiguration.getXmppUrl(), chatConnectionConfiguration.getXmppPort()));
     }
 
     public void connect() throws XMPPException {
         if (connected)
             return;
-        XMPP.connect();
-        XMPP.addConnectionListener(this);
+        xmpp.connect();
+        xmpp.addConnectionListener(this);
         connected = true;
     }
     
@@ -78,7 +76,7 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
         if (!username.contains("hipchat.com"))
             logger.error("The username being used does not look like a Jabber ID. Are you sure this is the correct username?");
         try {
-            XMPP.login(username, password);
+            xmpp.login(username, password);
         } catch (XMPPException exception) {
             throw new LoginException("There was an error logging in! Are you using the correct username/password?", exception);
         }
@@ -90,13 +88,13 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
         if (cache.containsKey(to))
             c = cache.get(to);
         else {
-            c = XMPP.getChatManager().createChat(to, this);
+            c = xmpp.getChatManager().createChat(to, this);
             cache.put(to, c);
         }
         c.sendMessage(message);
     }
     
-    public void joinRoom(String room, String nickname) throws XMPPException {
+    public void joinRoom(String room, String nickname) throws XMPPException, IOException {
         joinRoom("", room, nickname);
     }
 
@@ -130,15 +128,15 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
 
     */
 
-    public void joinRoom(String APIKey, String room, String nickname) throws XMPPException {
+    public void joinRoom(String APIKey, String room, String nickname) throws XMPPException, IOException {
         if (!connected || nickname.equals("") || password.equals(""))
             return;
         if (!isJID(room)) {
-            chat = new MultiUserChat(XMPP, room);
+            chat = new MultiUserChat(xmpp, room);
         } else {
-            chat = new MultiUserChat(XMPP, (room.indexOf("@") != -1 ? room : room + "@" + CONF_URL));
+            chat = new MultiUserChat(xmpp, (room.indexOf("@") != -1 ? room : room + "@" + chatConnectionConfiguration.getConfUrl()));
             chat.join(nickname, password);
-            final Room obj = createRoom(APIKey, room, chat, XMPP);
+            final Room obj = createRoom(APIKey, room, chat, xmpp);
             chat.addMessageListener(new PacketListener() {
 
                 @Override
@@ -168,8 +166,10 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
         r.setChat(chat);
 
         try {
-            r.info = MultiUserChat.getRoomInfo(con, (name.indexOf("@") != -1 ? name : name + "@" + CONF_URL));
+            r.info = MultiUserChat.getRoomInfo(con, (name.indexOf("@") != -1 ? name : name + "@" + chatConnectionConfiguration.getConfUrl()));
         } catch (XMPPException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         r.subject = r.info.getSubject();
@@ -217,6 +217,9 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
             } catch (XMPPException e) {
                 e.printStackTrace();
                 return false;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
             }
         }
         Room obj;
@@ -240,12 +243,12 @@ public final class ConnectionImpl implements Connection, MessageListener, Connec
     public void disconnect() {
         if (!connected)
             return;
-        XMPP.disconnect();
+        xmpp.disconnect();
         connected = false;
     }
     
     public Roster getRoster() {
-        return XMPP.getRoster();
+        return xmpp.getRoster();
     }
     
     @Override

@@ -6,6 +6,7 @@ import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -23,9 +24,9 @@ public interface Connection {
 
     void sendPM(String message, String to) throws XMPPException;
 
-    void joinRoom(String room, String nickname) throws XMPPException;
+    void joinRoom(String room, String nickname) throws XMPPException, IOException;
 
-    void joinRoom(String APIKey, String room, String nickname) throws XMPPException;
+    void joinRoom(String APIKey, String room, String nickname) throws XMPPException, IOException;
 
     MultiUserChat getChat();
 
