@@ -1,6 +1,7 @@
 package de.sjanusch.bot;
 
 import com.google.inject.Inject;
+import de.sjanusch.configuration.BotConfiguration;
 import de.sjanusch.eventsystem.EventSystem;
 import de.sjanusch.handler.MessageRecieveListener;
 import de.sjanusch.model.HipchatUser;
@@ -14,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -26,20 +28,6 @@ public class BotImpl implements Bot {
 
     private static final Logger logger = LoggerFactory.getLogger(BotImpl.class);
 
-    private final String nickname = "LunchBot";
-
-    private final String apiKey = "0AvDGI72wHaRkWHUGIwcHKDiQRLav0RQ080Lnvt6";
-
-    private final String username = "23504_3927963@chat.hipchat.com";
-
-    //private final String botroom = "23504_sjanusch_bot_test";
-
-    //private final String botroom = "23504_hackathon_-_bot";
-
-    private final String botroom = "23504_mittagessen";
-
-    private final String password = "Sandro060979";
-
     private Room selected;
 
     private final EventSystem eventSystem;
@@ -48,11 +36,14 @@ public class BotImpl implements Bot {
 
     private final MessageRecieveListener messageRecieveListener;
 
+    private final BotConfiguration botConfiguration;
+
     @Inject
-    public BotImpl(final EventSystem eventSystem, final Connection connection, final MessageRecieveListener messageRecieveListener) {
+    public BotImpl(final EventSystem eventSystem, final Connection connection, final MessageRecieveListener messageRecieveListener, final BotConfiguration botConfiguration) {
         this.eventSystem = eventSystem;
         this.connection = connection;
         this.messageRecieveListener = messageRecieveListener;
+        this.botConfiguration = botConfiguration;
     }
 
     @Override
@@ -60,7 +51,7 @@ public class BotImpl implements Bot {
         this.eventSystem.registerEvents(messageRecieveListener);
         try {
             connection.connect();
-            connection.login(username, password);
+            connection.login(this.getUsername(), this.getPassword());
             this.joinRoom();
             logger.debug("Joined " + getSelectedRoom().getXMPPName() + " !");
         } catch (XMPPException e) {
@@ -72,19 +63,18 @@ public class BotImpl implements Bot {
         }
     }
 
-
-    public void changeRoom(String name) {
-        final Room room = connection.findRoom(name, apiKey);
+    public void changeRoom(String name) throws IOException {
+        final Room room = connection.findRoom(name, botConfiguration.getBotChatApikey());
         if (room != null)
             changeRoom(room);
     }
 
-    public void joinRoom() throws XMPPException {
-        if (apiKey.equals("")) {
-            this.connection.joinRoom(botroom, nickname);
+    public void joinRoom() throws XMPPException, IOException {
+        if (botConfiguration.getBotChatApikey().equals("")) {
+            this.connection.joinRoom(this.getBotroom(), this.getNickname());
         } else {
-            this.connection.joinRoom(apiKey, botroom, nickname);
-            selected = connection.findRoom(botroom, apiKey);
+            this.connection.joinRoom(this.getApiKey(), this.getBotroom(), this.getNickname());
+            selected = connection.findRoom(this.getBotroom(), this.getApiKey());
         }
     }
 
@@ -98,7 +88,7 @@ public class BotImpl implements Bot {
         this.selected = room;
     }
 
-    public boolean sendPM(String message, String to) {
+    public boolean sendPM(String message, String to) throws IOException {
         if (to.indexOf("@") == -1) { //oh noes its not a JID! The user didnt follow the rules!
             HipchatUser user = findUser(to);
             if (user != null)
@@ -115,7 +105,7 @@ public class BotImpl implements Bot {
         return true;
     }
 
-    public boolean sendPM(String message, HipchatUser user) {
+    public boolean sendPM(String message, HipchatUser user) throws IOException {
         return sendPM(message, nickToJID(user.getName()));
     }
 
@@ -127,20 +117,19 @@ public class BotImpl implements Bot {
         return nick;
     }
 
-
     @Override
-    public List<HipchatUser> getUsers() {
+    public List<HipchatUser> getUsers() throws IOException {
         ArrayList<HipchatUser> users = new ArrayList<HipchatUser>();
-        if (apiKey.equals(""))
+        if (this.getApiKey().equals(""))
             return Collections.unmodifiableList(users);
-        HipchatUser[] u = HipchatUser.getHipchatUsers(apiKey);
+        HipchatUser[] u = HipchatUser.getHipchatUsers(this.getApiKey());
         for (HipchatUser user : u) {
             users.add(user);
         }
         return Collections.unmodifiableList(users);
     }
 
-    public HipchatUser findUser(String name) {
+    public HipchatUser findUser(String name) throws IOException {
         for (HipchatUser u : getUsers()) {
             if (u.getName().equals(name))
                 return u;
@@ -149,10 +138,10 @@ public class BotImpl implements Bot {
     }
 
     @Override
-    public String sendNotification(String message) {
+    public String sendNotification(String message) throws IOException {
         if (selected == null)
             return "{\"status\": \"failed\"}";
-        return sendNotification(message, nickname, selected, NotificationType.TEXT, true, NotificationColor.YELLOW);
+        return sendNotification(message, this.getNickname(), selected, NotificationType.TEXT, true, NotificationColor.YELLOW);
     }
 
     @Override
@@ -186,9 +175,9 @@ public class BotImpl implements Bot {
 
     public String sendNotification(String message, String from, Room room, NotificationType type, boolean notifyusers, NotificationColor color) {
         try {
-            URL url = new URL("https://api.hipchat.com/v2/room/*/notification?format=json&auth_token=" + apiKey);
+            URL url = new URL("https://api.hipchat.com/v2/room/*/notification?format=json&auth_token=" + this.getApiKey());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            String tosend = "room_id=" + room.getHipchatRoomInfo(apiKey).getID() + "&from=" + from + "&message=" + message.replaceAll(" ", "+") + "&message_format=" + type.getType() + "&notify=" + notifyusers + "&color=" + color.getType();
+            String tosend = "room_id=" + room.getHipchatRoomInfo(this.getApiKey()).getID() + "&from=" + from + "&message=" + message.replaceAll(" ", "+") + "&message_format=" + type.getType() + "&notify=" + notifyusers + "&color=" + color.getType();
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setRequestMethod("POST");
@@ -235,23 +224,23 @@ public class BotImpl implements Bot {
      * }
      */
 
-    public String getApiKey() {
-        return apiKey;
+    public String getApiKey() throws IOException {
+        return botConfiguration.getBotChatApikey();
     }
 
-    public String getBotroom() {
-        return botroom;
+    public String getBotroom() throws IOException {
+        return botConfiguration.getBotChatRoom();
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getNickname() throws IOException {
+        return botConfiguration.getBotNickname();
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassword() throws IOException {
+        return botConfiguration.getBotPassword();
     }
 
-    public String getUsername() {
-        return username;
+    public String getUsername() throws IOException {
+        return botConfiguration.getBotUsername();
     }
 }

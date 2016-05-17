@@ -3,6 +3,8 @@ package de.sjanusch.guice;
 import com.google.inject.AbstractModule;
 import de.sjanusch.bot.Bot;
 import de.sjanusch.bot.BotImpl;
+import de.sjanusch.configuration.BotConfiguration;
+import de.sjanusch.configuration.BotConfigurationImpl;
 import de.sjanusch.configuration.LunchConfiguration;
 import de.sjanusch.configuration.LunchConfigurationImpl;
 import de.sjanusch.confluence.handler.SuperlunchRequestHandler;
@@ -31,6 +33,7 @@ public class GuiceModule extends AbstractModule {
         bind(HipchatRequestHandler.class).to(HipchatRequestHandlerImpl.class);
         bind(MessageRecieveListener.class).to(MessageRecieveListenerImpl.class);
         bind(LunchConfiguration.class).to(LunchConfigurationImpl.class);
+        bind(BotConfiguration.class).to(BotConfigurationImpl.class);
 
         bind(EventSystem.class).to(EventSystemImpl.class).asEagerSingleton();
         bind(Connection.class).to(ConnectionImpl.class).asEagerSingleton();

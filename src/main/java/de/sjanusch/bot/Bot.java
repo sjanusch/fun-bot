@@ -3,6 +3,7 @@ package de.sjanusch.bot;
 import de.sjanusch.model.HipchatUser;
 import de.sjanusch.model.Room;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface Bot {
@@ -13,19 +14,19 @@ public interface Bot {
 
     Room getSelectedRoom();
 
-    List<HipchatUser> getUsers();
+    List<HipchatUser> getUsers() throws IOException;
 
-    String sendNotification(String message);
+    String sendNotification(String message) throws IOException;
 
     String sendNotification(String message, String from);
 
-    String getApiKey();
+    String getApiKey() throws IOException;
 
-    String getBotroom();
+    String getBotroom() throws IOException;
 
-    String getNickname();
+    String getNickname() throws IOException;
 
-    String getPassword();
+    String getPassword() throws IOException;
 
-    String getUsername();
+    String getUsername() throws IOException;
 }
