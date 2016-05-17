@@ -75,7 +75,11 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
                     stringBuilder.append("\n");
                     stringBuilder.append(lunch.getFormattedPrice() + ", " + this.convertVeggyValue(lunch.isVeggy()));
                     stringBuilder.append("\n");
-                    stringBuilder.append(lunch.getDetailLink());
+                    stringBuilder.append(lunch.getDetailLink() + "\n");
+                    stringBuilder.append("\n");
+                } else {
+                    stringBuilder.append(lunch.getTitle() + "(" + lunch.getCreatorName() + ") - ");
+                    stringBuilder.append("Anmeldung nicht mehr möglich! \n");
                     stringBuilder.append("\n");
                 }
             }
