@@ -25,6 +25,6 @@ public class ChatBot implements RunnableBot {
         bot.run();
         ChatReminderTask botReminderTask = new ChatReminderTask();
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.schedule(botReminderTask, 30, TimeUnit.MINUTES);
+        scheduler.scheduleAtFixedRate(botReminderTask, 5, 30, TimeUnit.MINUTES);
     }
 }
