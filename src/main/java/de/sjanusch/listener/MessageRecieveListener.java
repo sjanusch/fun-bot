@@ -1,6 +1,7 @@
-package de.sjanusch.handler;
+package de.sjanusch.listener;
 
 import de.sjanusch.eventsystem.Listener;
+import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 
 /**
  * Created by Sandro Janusch
@@ -8,5 +9,7 @@ import de.sjanusch.eventsystem.Listener;
  * Time: 20:43
  */
 public interface MessageRecieveListener extends Listener {
-    
+
+    void messageEvent(final MessageRecivedEvent event);
+
 }

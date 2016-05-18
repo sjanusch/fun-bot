@@ -1,11 +1,11 @@
-package de.sjanusch.handler;
+package de.sjanusch.listener;
 
 import com.google.inject.Inject;
 import de.sjanusch.configuration.BotConfiguration;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
-import de.sjanusch.model.hipchat.ChatMessage;
+import de.sjanusch.model.hipchat.HipchatMessage;
 import de.sjanusch.model.hipchat.Room;
 import de.sjanusch.texte.TextHandler;
 import org.jivesoftware.smack.packet.Message;
@@ -53,11 +53,11 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     }
 
     private void sendMessageText(final String text) {
-        hipchatRequestHandler.sendMessage(new ChatMessage(text, "text"));
+        hipchatRequestHandler.sendMessage(new HipchatMessage(text));
     }
 
     private void sendMessageHtml(final String text) {
-        hipchatRequestHandler.sendMessage(new ChatMessage(text, "html"));
+        hipchatRequestHandler.sendMessage(new HipchatMessage(text, "html"));
     }
 
     private void handleMessage(final Message message, final String from, final Room room) throws JSONException, ParseException, IOException {

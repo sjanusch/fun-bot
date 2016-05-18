@@ -1,6 +1,6 @@
 package de.sjanusch.hipchat.rest;
 
-import de.sjanusch.model.hipchat.ChatMessage;
+import de.sjanusch.model.hipchat.HipchatMessage;
 
 /**
  * Created by Sandro Janusch
@@ -9,7 +9,8 @@ import de.sjanusch.model.hipchat.ChatMessage;
  */
 public interface HipchatRestClient {
 
+    void hipchatRestApiSendNotification(final HipchatMessage chatMessage);
 
-    void hipchatRestApiSendNotification(final ChatMessage chatMessage);
+    void hipchatRestApiSendMessage(final HipchatMessage chatMessage);
 
 }

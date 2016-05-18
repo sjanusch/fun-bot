@@ -5,23 +5,27 @@ package de.sjanusch.model.hipchat;
  * Date: 17.05.16
  * Time: 20:38
  */
-public class ChatMessage {
+public class HipchatMessage {
 
-    private String color;
+    private String color = "random";
 
-    private String message_format;
+    private String message_format = "text";
 
     private String message;
 
     private boolean notify = true;
 
-    public ChatMessage(final String message, final String typ) {
+    public HipchatMessage(final String message, final String typ) {
         this.message = message;
         this.message_format = typ;
     }
 
+    public HipchatMessage(final String message) {
+        this.message = message;
+    }
+
     public String getColor() {
-        return (color != null) ? color : "random";
+        return color;
     }
 
     public void setColor(final String color) {
@@ -37,7 +41,7 @@ public class ChatMessage {
     }
 
     public String getMessage_format() {
-        return (message_format != null) ? message_format : "text";
+        return message_format;
     }
 
     public void setMessage_format(final String message_format) {

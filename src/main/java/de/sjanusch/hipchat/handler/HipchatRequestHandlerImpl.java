@@ -2,8 +2,8 @@ package de.sjanusch.hipchat.handler;
 
 import com.google.inject.Inject;
 import de.sjanusch.hipchat.rest.HipchatRestClient;
+import de.sjanusch.model.hipchat.HipchatMessage;
 import de.sjanusch.networking.Connection;
-import de.sjanusch.model.hipchat.ChatMessage;
 
 /**
  * Created by Sandro Janusch
@@ -22,7 +22,11 @@ public class HipchatRequestHandlerImpl implements HipchatRequestHandler {
         this.hipchatRestClient = hipchatRestClient;
     }
 
-    public void sendMessage(final ChatMessage chatMessage) {
+    public void sendMessage(final HipchatMessage chatMessage) {
+        hipchatRestClient.hipchatRestApiSendMessage(chatMessage);
+    }
+
+    public void sendNotification(final HipchatMessage chatMessage) {
         hipchatRestClient.hipchatRestApiSendNotification(chatMessage);
     }
 }

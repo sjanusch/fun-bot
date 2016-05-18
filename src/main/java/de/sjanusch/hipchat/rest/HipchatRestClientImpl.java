@@ -2,7 +2,7 @@ package de.sjanusch.hipchat.rest;
 
 import com.google.inject.Inject;
 import de.sjanusch.configuration.HipchatConfiguration;
-import de.sjanusch.model.hipchat.ChatMessage;
+import de.sjanusch.model.hipchat.HipchatMessage;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.slf4j.Logger;
@@ -50,10 +50,10 @@ public class HipchatRestClientImpl implements HipchatRestClient {
     }
 
     @Override
-    public void hipchatRestApiSendNotification(final ChatMessage chatMessage) {
+    public void hipchatRestApiSendNotification(final HipchatMessage chatMessage) {
         try {
             final String path = "/room/" + this.getHipchatRoomId() + "/notification";
-            hipchatSendNotification(buildClient().target(this.getHipchatRestApi()).path(path), chatMessage);
+            this.hipchatRestApiNotification(buildClient().target(this.getHipchatRestApi()).path(path), chatMessage);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (KeyManagementException e) {
@@ -63,36 +63,63 @@ public class HipchatRestClientImpl implements HipchatRestClient {
         }
     }
 
-    private void hipchatSendNotification(final WebTarget target, final ChatMessage chatMessage) throws IOException {
-        logger.debug("Requesting  '" + target.getUri() + "' by GET ");
-        Response response = null;
+    @Override
+    public void hipchatRestApiSendMessage(final HipchatMessage chatMessage) {
         try {
-            response = target.request(MediaType.APPLICATION_JSON_TYPE).header("Authorization", this.getHeaderValue())
+            final String path = "/room/" + this.getHipchatRoomId() + "/message";
+            this.hipchatRestApiMessage(buildClient().target(this.getHipchatRestApi()).path(path), chatMessage);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void hipchatRestApiNotification(final WebTarget target, final HipchatMessage chatMessage) throws IOException {
+        logger.debug("Requesting  '" + target.getUri() + "' by GET ");
+        try {
+            Response response = target.request(MediaType.APPLICATION_JSON_TYPE).header("Authorization", "Bearer " + hipchatConfiguration.getHipchatRestApiKeyNotification())
                 .post(Entity.entity(chatMessage, MediaType.APPLICATION_JSON_TYPE));
-            switch (response.getStatus()) {
-                default:
-                    logger.error("Unexpected return code from calling '" + response.readEntity(String.class));
-                    break;
-                case 400:
-                    logger.error("Unexpected return code from calling '" + response.readEntity(String.class));
-                    break;
-                case 403:
-                    logger.error("Unexpected return code from calling '" + response.readEntity(String.class));
-                    break;
-                case 204:
-                    logger.debug("Message sucess");
-                    break;
-                case 200:
-                    logger.debug("Message sucess");
-                    break;
-            }
+            this.handleResponse(response);
         } catch (ProcessingException e) {
             logger.error("Unexpected return code from calling '" + e.getMessage());
         }
     }
 
-    private String getHeaderValue() throws IOException {
-        return "Bearer " + hipchatConfiguration.getHipchatRestApiKey();
+    private void hipchatRestApiMessage(final WebTarget target, final HipchatMessage chatMessage) throws IOException {
+        logger.debug("Requesting  '" + target.getUri() + "' by GET ");
+        try {
+            Response response = target.request(MediaType.APPLICATION_JSON_TYPE).header("Authorization", "Bearer " + hipchatConfiguration.getHipchatRestApiKeyMessage())
+                .post(Entity.entity(chatMessage, MediaType.APPLICATION_JSON_TYPE));
+            this.handleResponse(response);
+        } catch (ProcessingException e) {
+            logger.error("Unexpected return code from calling '" + e.getMessage());
+        }
+    }
+
+    private void handleResponse(final Response response) {
+        switch (response.getStatus()) {
+            default:
+                logger.error("Unexpected return: " + response.getStatus() + ", " + response.readEntity(String.class));
+                break;
+            case 400:
+                logger.error("Unexpected return: " + response.getStatus() + ", " + response.readEntity(String.class));
+                break;
+            case 403:
+                logger.error("Unexpected return: " + response.getStatus() + ", " + response.readEntity(String.class));
+                break;
+            case 204:
+                logger.debug("Message sucess");
+                break;
+            case 201:
+                logger.debug("Message sucess");
+                break;
+            case 200:
+                logger.debug("Message sucess");
+                break;
+        }
     }
 
     private String getHipchatRoomId() throws IOException {

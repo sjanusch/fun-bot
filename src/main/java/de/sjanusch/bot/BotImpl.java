@@ -3,7 +3,7 @@ package de.sjanusch.bot;
 import com.google.inject.Inject;
 import de.sjanusch.configuration.BotConfiguration;
 import de.sjanusch.eventsystem.EventSystem;
-import de.sjanusch.handler.MessageRecieveListener;
+import de.sjanusch.listener.MessageRecieveListener;
 import de.sjanusch.model.hipchat.Room;
 import de.sjanusch.networking.Connection;
 import org.jivesoftware.smack.XMPPException;

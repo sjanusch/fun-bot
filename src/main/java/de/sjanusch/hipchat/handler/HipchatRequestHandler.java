@@ -1,6 +1,6 @@
 package de.sjanusch.hipchat.handler;
 
-import de.sjanusch.model.hipchat.ChatMessage;
+import de.sjanusch.model.hipchat.HipchatMessage;
 
 /**
  * Created by Sandro Janusch
@@ -9,6 +9,7 @@ import de.sjanusch.model.hipchat.ChatMessage;
  */
 public interface HipchatRequestHandler {
 
-    void sendMessage(final ChatMessage chatMessage);
+    void sendMessage(final HipchatMessage chatMessage);
 
+    void sendNotification(final HipchatMessage chatMessage);
 }
