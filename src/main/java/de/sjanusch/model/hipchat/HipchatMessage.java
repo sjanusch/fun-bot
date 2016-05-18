@@ -7,7 +7,7 @@ package de.sjanusch.model.hipchat;
  */
 public class HipchatMessage {
 
-    private String color = "random";
+    private String color = "gray";
 
     private String message_format = "text";
 
