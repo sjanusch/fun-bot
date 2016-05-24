@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Calendar;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class ChatBot implements RunnableBot {
 
@@ -21,11 +24,9 @@ public class ChatBot implements RunnableBot {
 
     public void run() {
         bot.run();
-        /*
         ChatReminderTask botReminderTask = new ChatReminderTask();
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(botReminderTask, this.getHoursUntilTarget(5), 4, TimeUnit.HOURS);
-       */
     }
 
     private int getHoursUntilTarget(int targetHour) {

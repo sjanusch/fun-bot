@@ -13,14 +13,18 @@ import de.sjanusch.configuration.TexteConfiguration;
 import de.sjanusch.configuration.TexteConfigurationImpl;
 import de.sjanusch.eventsystem.EventSystem;
 import de.sjanusch.eventsystem.EventSystemImpl;
-import de.sjanusch.listener.MessageRecieveListener;
-import de.sjanusch.listener.MessageRecieveListenerImpl;
 import de.sjanusch.hipchat.handler.HipchatRequestHandler;
 import de.sjanusch.hipchat.handler.HipchatRequestHandlerImpl;
 import de.sjanusch.hipchat.rest.HipchatRestClient;
 import de.sjanusch.hipchat.rest.HipchatRestClientImpl;
+import de.sjanusch.listener.MessageRecieveListener;
+import de.sjanusch.listener.MessageRecieveListenerImpl;
+import de.sjanusch.listener.MessageRecieverBase;
+import de.sjanusch.listener.MessageRecieverBaseImpl;
 import de.sjanusch.networking.Connection;
 import de.sjanusch.networking.ConnectionImpl;
+import de.sjanusch.protocol.MessageProtocol;
+import de.sjanusch.protocol.MessageProtocolImpl;
 import de.sjanusch.runner.BotRunner;
 import de.sjanusch.runner.BotRunnerImpl;
 import de.sjanusch.texte.TextHandler;
@@ -40,8 +44,10 @@ public class GuiceModule extends AbstractModule {
         bind(TextHandler.class).to(TextHandlerImpl.class);
         bind(TexteConfiguration.class).to(TexteConfigurationImpl.class);
         bind(HipchatRestClient.class).to(HipchatRestClientImpl.class);
+        bind(MessageRecieverBase.class).to(MessageRecieverBaseImpl.class);
 
         bind(EventSystem.class).to(EventSystemImpl.class).asEagerSingleton();
         bind(Connection.class).to(ConnectionImpl.class).asEagerSingleton();
+        bind(MessageProtocol.class).to(MessageProtocolImpl.class).asEagerSingleton();
     }
 }

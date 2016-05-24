@@ -1,20 +1,14 @@
 package de.sjanusch.listener;
 
 import com.google.inject.Inject;
-import de.sjanusch.configuration.BotConfiguration;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
-import de.sjanusch.hipchat.handler.HipchatRequestHandler;
-import de.sjanusch.model.hipchat.HipchatMessage;
-import de.sjanusch.model.hipchat.Room;
 import de.sjanusch.texte.TextHandler;
 import org.jivesoftware.smack.packet.Message;
-import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.text.ParseException;
 
 /**
  * Created by Sandro Janusch
@@ -25,77 +19,75 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageRecieveListenerImpl.class);
 
-    private final HipchatRequestHandler hipchatRequestHandler;
-
     private final TextHandler textHandler;
 
-    private final BotConfiguration botConfiguration;
+    private final MessageRecieverBase messageRecieverBase;
 
     @Inject
-    public MessageRecieveListenerImpl(final HipchatRequestHandler hipchatRequestHandler, final TextHandler textHandler, final BotConfiguration botConfiguration) {
-        this.hipchatRequestHandler = hipchatRequestHandler;
+    public MessageRecieveListenerImpl(final TextHandler textHandler, final MessageRecieverBase messageRecieverBase) {
         this.textHandler = textHandler;
-        this.botConfiguration = botConfiguration;
+        this.messageRecieverBase = messageRecieverBase;
     }
 
     @SuppressWarnings("unused")
     @EventHandler
+    @Override
     public void messageEvent(final MessageRecivedEvent event) {
         try {
-            handleMessage(event.getMessage(), event.from(), event.getRoom());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
+            final String from = event.from();
+            if (!messageRecieverBase.isMessageFromBot(from)) {
+                handleMessage(event.getMessage(), from);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
-    private void sendMessageText(final String text) {
-        hipchatRequestHandler.sendMessage(new HipchatMessage(text));
+    private void handleMessage(final Message message, final String from) throws IOException {
+        final String incomeMessage = message.getBody().toLowerCase().trim();
+        final String actualUser = messageRecieverBase.convertNames(from);
+        logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
+
+        if (textHandler.containsHelloText(incomeMessage)) {
+            this.handleHelloMessages(incomeMessage, actualUser);
+            return;
+        }
+        if (textHandler.containsByeText(incomeMessage)) {
+            this.handleByeMessages(incomeMessage, actualUser);
+            return;
+        }
+
+        if (messageRecieverBase.isMessageForBot(incomeMessage)) {
+            this.handleRandomText(incomeMessage, actualUser);
+            return;
+        }
+
+        this.handleRandomGeneratedText();
+
     }
 
-    private void sendMessageHtml(final String text) {
-        hipchatRequestHandler.sendMessage(new HipchatMessage(text, "html"));
+    private void handleRandomGeneratedText() {
+        messageRecieverBase.sendMessageText(textHandler.getRandomGeneratedText());
     }
 
-    private void handleMessage(final Message message, final String from, final Room room) throws JSONException, ParseException, IOException {
-        if (!from.equals(botConfiguration.getBotNickname())) {
-            logger.debug("Handle Message from " + from + ": " + message.getBody());
-            final String talkTo = this.convertNames(message.getBody(), from);
-            if (textHandler.containsHelloText(message.getBody())) {
-                this.handleHelloMessages(talkTo);
-            } else if (textHandler.containsByeText(message.getBody())) {
-                this.handleByeMessages(talkTo);
-            } else {
-                this.handlenoRandomText(talkTo, message.getBody());
-            }
+    private void handleRandomText(final String message, final String actualUser) {
+        messageRecieverBase.sendMessageText(actualUser, textHandler.getRandomText(message));
+    }
+
+    private void handleHelloMessages(final String message, final String actualUser) {
+        if (messageRecieverBase.isMessageForBot(message)) {
+            messageRecieverBase.sendMessageText(actualUser, textHandler.getHelloText());
+        } else {
+            messageRecieverBase.sendMessageText(textHandler.getHelloText());
         }
     }
 
-    private void handlenoRandomText(final String talkTo, final String message) {
-        this.sendMessageText(talkTo + textHandler.getRandomText(message));
-    }
-
-    private void handleHelloMessages(final String talkTo) {
-        this.sendMessageText(talkTo + textHandler.getHelloText());
-    }
-
-    private void handleByeMessages(final String talkTo) {
-        this.sendMessageText(talkTo + textHandler.getByeText());
-    }
-
-    private String convertNames(final String message, final String from) throws IOException {
-        if (message.toLowerCase().contains("@" + botConfiguration.getBotMentionName())) {
-            String[] names = from.split(" ");
-            String newName = null;
-            if (names.length > 1) {
-                newName = names[0].toLowerCase().charAt(0) + names[1].toLowerCase();
-            }
-            return ("@" + newName + " ");
+    private void handleByeMessages(final String message, final String actualUser) {
+        if (messageRecieverBase.isMessageForBot(message)) {
+            messageRecieverBase.sendMessageText(actualUser, textHandler.getByeText());
+        } else {
+            messageRecieverBase.sendMessageText(textHandler.getByeText());
         }
-        return "";
     }
 
 }

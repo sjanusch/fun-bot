@@ -4,6 +4,8 @@ public interface TextHandler {
 
     String getRandomText(final String text);
 
+    String getRandomGeneratedText();
+
     String getThankYouText();
 
     String getHelloText();
@@ -13,4 +15,8 @@ public interface TextHandler {
     boolean containsHelloText(final String text);
 
     boolean containsByeText(final String text);
+
+    boolean containsHelpCommand(final String text);
+
+    String getHelpText();
 }
