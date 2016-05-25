@@ -18,4 +18,6 @@ public interface TexteConfiguration {
 
     List<String> getByeTexteAsList() throws IOException;
 
+    List<String> getPleaseTexteAsList() throws IOException;
+
 }

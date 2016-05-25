@@ -19,4 +19,10 @@ public interface TextHandler {
     boolean containsHelpCommand(final String text);
 
     String getHelpText();
+
+    String getPleaseText();
+
+    boolean containsPleaseText(final String text);
+
+    boolean containsThankYouText(final String text);
 }

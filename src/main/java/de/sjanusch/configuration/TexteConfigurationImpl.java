@@ -35,4 +35,11 @@ public class TexteConfigurationImpl implements TexteConfiguration {
     public List<String> getRandomTexteAsList() throws IOException {
         return this.configurationLoader.getPropertyStringListValue("random_texte");
     }
+
+    @Override
+    public List<String> getPleaseTexteAsList() throws IOException {
+        return this.configurationLoader.getPropertyStringListValue("please_texte");
+    }
+
+
 }

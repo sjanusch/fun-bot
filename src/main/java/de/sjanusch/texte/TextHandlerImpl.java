@@ -64,6 +64,44 @@ public class TextHandlerImpl implements TextHandler {
     }
 
     @Override
+    public String getPleaseText() {
+        try {
+            return this.getText(texteConfiguration.getPleaseTexteAsList());
+        } catch (IOException e) {
+            logger.error("Error loading Configuration: " + e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public boolean containsPleaseText(final String text) {
+        try {
+            for (String please : texteConfiguration.getPleaseTexteAsList()) {
+                if (this.containsWord(text.toLowerCase().trim(), please.toLowerCase().trim())) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            logger.error("Error loading Configuration: " + e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean containsThankYouText(final String text) {
+        try {
+            for (String thanks : texteConfiguration.getThankYouTexteAsList()) {
+                if (this.containsWord(text.toLowerCase().trim(), thanks.toLowerCase().trim())) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            logger.error("Error loading Configuration: " + e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
     public boolean containsHelloText(final String text) {
         try {
             for (String hello : texteConfiguration.getHelloTexteAsList()) {

@@ -52,8 +52,19 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
             this.handleHelloMessages(incomeMessage, actualUser);
             return;
         }
+
         if (textHandler.containsByeText(incomeMessage)) {
             this.handleByeMessages(incomeMessage, actualUser);
+            return;
+        }
+
+        if (textHandler.containsThankYouText(incomeMessage)) {
+            this.handleThankYouMessages(incomeMessage, actualUser);
+            return;
+        }
+
+        if (textHandler.containsPleaseText(incomeMessage)) {
+            this.handlePleaseMessages(incomeMessage, actualUser);
             return;
         }
 
@@ -87,6 +98,22 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
             messageRecieverBase.sendMessageText(actualUser, textHandler.getByeText());
         } else {
             messageRecieverBase.sendMessageText(textHandler.getByeText());
+        }
+    }
+
+    private void handleThankYouMessages(final String message, final String actualUser) {
+        if (messageRecieverBase.isMessageForBot(message)) {
+            messageRecieverBase.sendMessageText(actualUser, textHandler.getPleaseText());
+        } else {
+            messageRecieverBase.sendMessageText(textHandler.getPleaseText());
+        }
+    }
+
+    private void handlePleaseMessages(final String message, final String actualUser) {
+        if (messageRecieverBase.isMessageForBot(message)) {
+            messageRecieverBase.sendMessageText(actualUser, textHandler.getThankYouText());
+        } else {
+            messageRecieverBase.sendMessageText(textHandler.getThankYouText());
         }
     }
 
