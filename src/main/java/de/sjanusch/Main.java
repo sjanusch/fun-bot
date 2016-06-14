@@ -14,5 +14,11 @@ public class Main {
         final BotRunner botRunner = injector.getInstance(BotRunner.class);
         final Thread t = botRunner.runBotDesync(bot);
         t.start();
+
+
     }
+
+
+
+
 }

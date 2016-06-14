@@ -5,6 +5,7 @@ import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.helper.MessageHelper;
 import de.sjanusch.texte.TextHandler;
+import org.alicebot.ab.Chat;
 import org.jivesoftware.smack.packet.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,8 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
   private final MessageRecieverBase messageRecieverBase;
 
   private final MessageHelper messageHelper;
+
+  private final Chat chat = new Chat();
 
   @Inject
   public MessageRecieveListenerImpl(final TextHandler textHandler, final MessageRecieverBase messageRecieverBase, final MessageHelper messageHelper) {
@@ -52,6 +55,22 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     final String actualUser = messageHelper.convertNames(from);
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
 
+    /*
+    AliceBot aliceBot= new AliceBot();
+    MagicStrings.setRootPath();
+
+    AIMLProcessor.extension =  new PCAIMLProcessorExtension();
+
+
+
+    aliceBot.mainFunction();
+      */
+
+
+    messageRecieverBase.sendMessageText(chat.chat(incomeMessage), actualUser);
+
+    return;
+           /*
     if (textHandler.containsHelloText(incomeMessage)) {
       this.handleHelloMessages(incomeMessage, actualUser);
       return;
@@ -78,8 +97,9 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     }
 
     this.handleRandomGeneratedText();
-
+  */
   }
+
 
   private void handleRandomGeneratedText() {
     messageRecieverBase.sendMessageText(textHandler.getRandomGeneratedText(), "");
