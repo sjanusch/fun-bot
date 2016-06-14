@@ -1,10 +1,7 @@
 package de.sjanusch.networking;
 
-import de.sjanusch.model.hipchat.Room;
-import de.sjanusch.networking.exceptions.LoginException;
+import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-
-import java.io.IOException;
 
 /**
  * Created by Sandro Janusch
@@ -17,10 +14,9 @@ public interface Connection {
 
     void connect() throws XMPPException;
 
-    void login(String username, String password) throws LoginException;
+    void disconnect() throws XMPPException;
 
-    void joinRoom(String room, String nickname) throws XMPPException, IOException;
+    boolean isConnected();
 
-    Room findRoom(final String name);
-
+    XMPPConnection getXmpp();
 }

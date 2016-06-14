@@ -7,23 +7,17 @@ package de.sjanusch.listener;
  */
 public interface MessageRecieverBase {
 
+    void sendMessageText(final String text, final String username);
+
+    void sendNotification(final String text, final String username);
+
+    void sendNotificationError(final String text, final String username);
+
+    void sendNotificationSucess(final String text, final String username);
+
+    void sendMessageTextToRoom(final String text);
+
     boolean isMessageFromBot(final String from);
 
-    void sendMessageText(final String text);
-
-    void sendMessageText(final String user, final String text);
-
-    void sendMessageHtml(final String text);
-
-    void sendMessageHtmlError(final String text);
-
-    void sendMessageHtmlSucess(final String text);
-
-    String convertNames(final String from);
-
     boolean isMessageForBot(final String message);
-
-    void sendMessageHtmlError(final String user, final String text);
-
-    void sendMessageHtmlSucess(final String user, final String text);
 }

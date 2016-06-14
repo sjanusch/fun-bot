@@ -10,20 +10,18 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- * Created by Sandro Janusch
- * Date: 18.05.16
- * Time: 20:42
+ * Created by Sandro Janusch Date: 18.05.16 Time: 20:42
  */
-public class MessageRecieverBaseImpl implements MessageRecieverBase {
+public class PrivateMessageRecieverBaseImpl implements PrivateMessageRecieverBase {
 
-  private static final Logger logger = LoggerFactory.getLogger(MessageRecieverBaseImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(PrivateMessageRecieverBaseImpl.class);
 
   private final HipchatRequestHandler hipchatRequestHandler;
 
   private final BotConfiguration botConfiguration;
 
   @Inject
-  public MessageRecieverBaseImpl(final HipchatRequestHandler hipchatRequestHandler, final BotConfiguration botConfiguration) {
+  public PrivateMessageRecieverBaseImpl(final HipchatRequestHandler hipchatRequestHandler, final BotConfiguration botConfiguration) {
     this.hipchatRequestHandler = hipchatRequestHandler;
     this.botConfiguration = botConfiguration;
   }
@@ -31,14 +29,14 @@ public class MessageRecieverBaseImpl implements MessageRecieverBase {
   @Override
   public void sendMessageText(final String text, final String username) {
     if (text != null && username != null) {
-      hipchatRequestHandler.sendMessage(new HipchatMessage(text));
+      hipchatRequestHandler.sendPrivateMessage(new HipchatMessage(text), username);
     }
   }
 
   @Override
   public void sendNotification(final String text, final String username) {
     if (text != null && username != null) {
-      hipchatRequestHandler.sendMessage(new HipchatMessage(text, "html"));
+      hipchatRequestHandler.sendPrivateMessage(new HipchatMessage(text, "html"), username);
     }
   }
 
@@ -47,7 +45,7 @@ public class MessageRecieverBaseImpl implements MessageRecieverBase {
     if (text != null && username != null) {
       final HipchatMessage hipchatMessage = new HipchatMessage(text, "html");
       hipchatMessage.setColor("red");
-      hipchatRequestHandler.sendMessage(hipchatMessage);
+      hipchatRequestHandler.sendPrivateMessage(hipchatMessage, username);
     }
   }
 
@@ -56,7 +54,7 @@ public class MessageRecieverBaseImpl implements MessageRecieverBase {
     if (text != null && username != null) {
       final HipchatMessage hipchatMessage = new HipchatMessage(text, "html");
       hipchatMessage.setColor("green");
-      hipchatRequestHandler.sendMessage(hipchatMessage);
+      hipchatRequestHandler.sendPrivateMessage(hipchatMessage, username);
     }
   }
 
