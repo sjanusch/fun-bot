@@ -1,8 +1,0 @@
-url:
-name:Smalicebot
-gender:female
-botmaster:@mfrankl
-organization:keine
-version:0.0.4
-location: Deutschland
-birthday: 06.06.2016
