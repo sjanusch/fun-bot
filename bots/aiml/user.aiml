@@ -1,0 +1,144 @@
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+
+	<category>
+		<pattern>PERSOENLICHEFRAGEN</pattern>
+		<template>
+			<random>
+				<li>Wo wurdest Du geboren?</li>
+				<li>Bist Du weiblich oder männlich?</li>
+				<li>Machst Du Sport?</li>
+				<li>Was war Dein Lieblingsfach in der Schule?</li>
+				<li>Was ist Deine Lieblingsfarbe?</li>
+				<li>Was ist dein Lieblingsgericht?</li>
+				<li>Was machst Du in Deiner Freizeit?</li>
+				<li>Wie groß bist Du?</li>
+				<li>Wann gehst Du schlafen?</li>
+				<li>Hast Du viele Freunde?</li>
+				<li>Was denkst Du über Politik?</li>
+				<li>Bist Du politisch engagiert?</li>
+				<li>Rauchst Du?</li>
+				<li>Magst Du Tiere?</li>
+				<li>Magst Du Computer?</li>
+				<li>Bist Du verliebt?</li>
+				<li>Magst Du Mathematik?</li>
+				<li>Magst Du Physik?</li>
+				<li>Interessiert Du Dich für Sport?</li>
+				<li>Interessiert Du Dich für Politik?</li>
+				<li>Interessiert Du Dich für Physik?</li>
+				<li>Interessiert Du Dich für Chemie?</li>
+				<li>Interessiert Du Dich für mich?</li>
+				<li>Interessiert Du Dich für Computer?</li>
+				<li>Interessiert Du Dich für Medizin?</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Frag mich was persönliches</pattern>
+		<template><srai>PERSOENLICHEFRAGEN</srai></template>
+	</category>
+
+
+	<category>
+		<pattern>In *</pattern>
+		<that>Wo wurdest Du geboren</that>
+		<template><set name="geburtsort"> <random>
+			<li> ist sehr schön.</li>
+			<li> kenne ich jetzt nicht persönlich.</li>
+		</random></set>
+
+		</template>
+	</category>
+
+	<category>
+		<pattern><set>positive_answer</set></pattern>
+		<that>Machst Du Sport</that>
+		<template>Welchen Sport machst Du denn?<think><set name="machtsport">true</set></think></template>
+	</category>
+
+	<category>
+		<pattern>*</pattern>
+		<that>Welchen Sport machst Du denn</that>
+		<template><set name="sport"><star/></set>, cool.</template>
+	</category>
+
+	<category>
+		<pattern><set>negative_answer</set></pattern>
+		<that>Machst Du Sport</that>
+		<template>Tja, ich auch nicht.<think><set name="machtsport">false</set></think></template>
+	</category>
+
+	<category>
+		<pattern>maennlich</pattern>
+		<that>Bist Du maennlich oder weiblich</that>
+		<template><think><set name="gender">m</set></think><sr/></template>
+	</category>
+
+	<category>
+		<pattern>mann</pattern>
+		<that>Bist Du maennlich oder weiblich</that>
+		<template><think><set name="gender">m</set></think><sr/></template>
+	</category>
+
+	<category>
+		<pattern>* maennlich *</pattern>
+		<that>Bist Du maennlich oder weiblich</that>
+		<template><think><set name="gender">m</set></think><sr/></template>
+	</category>
+
+	<category>
+		<pattern>ein Mann</pattern>
+		<that>Bist Du maennlich oder weiblich</that>
+		<template><think><set name="gender">m</set></think><sr/></template>
+	</category>
+
+	<category>
+		<pattern>weiblich</pattern>
+		<that>Bist Du maennlich oder weiblich</that>
+		<template><think><set name="gender">f</set></think><sr/></template>
+	</category>
+
+	<category>
+		<pattern>* weiblich</pattern>
+		<that>Bist Du maennlich oder weiblich</that>
+		<template><think><set name="gender">f</set></think><sr/></template>
+	</category>
+
+	<category>
+		<pattern>Frau</pattern>
+		<that>Bist Du maennlich oder weiblich</that>
+		<template><think><set name="gender">f</set></think><sr/></template>
+	</category>
+	<category>
+		<pattern>* Frau</pattern>
+		<that>Bist Du maennlich oder weiblich</that>
+		<template><think><set name="gender">f</set></think><sr/></template>
+	</category>
+	<category>
+		<pattern>eine Frau</pattern>
+		<that>Bist Du maennlich oder weiblich</that>
+		<template><think><set name="gender">f</set></think><sr/></template>
+	</category>
+
+	<category>
+		<pattern>ich bin ein Mann</pattern>
+		<template><think><set name="gender">m</set></think><sr/></template>
+	</category>
+
+	<category>
+		<pattern>ich bin maennlich</pattern>
+		<template><think><set name="gender">m</set></think><sr/></template>
+	</category>
+
+	<category>
+		<pattern>ich bin ein typ</pattern>
+		<template><think><set name="gender">m</set></think><sr/></template>
+	</category>
+
+
+</aiml>
+
+

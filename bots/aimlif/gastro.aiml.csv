@@ -1,0 +1,14 @@
+0,INFORMATIONEN,*,*,Wir sind ein schönes Restaurant,gastro.aiml
+0,SPEISEKARTE,*,*,Heute gibt es pizza,gastro.aiml
+0,WAS * SPEISEKARTE,*,*,<srai>Speisekarte</srai>,gastro.aiml
+0,ESSEN,*,*,<srai>Speisekarte</srai>,gastro.aiml
+0,ÖFFNUNGSZEITEN,*,*,Montag bis Freitag : 9:00-1:00 Nachts#Newline			Samstag : 10:00-1:00 Nachts#Newline			Sonntag : 10:00-23:00#Newline			Küche täglich durchgehend geöffnet bis 23:00. Sonntags bis 22:00,gastro.aiml
+0,WIE * ÖFFNUNGSZEITEN,*,*,<srai>Öffnungszeiten</srai>,gastro.aiml
+0,WIE LANGE HABT IHR GEÖFFNET,*,*,<srai>Öffnungszeiten</srai>,gastro.aiml
+0,WIE LANGE HABT IHR OFFEN,*,*,<srai>Öffnungszeiten</srai>,gastro.aiml
+0,HABT IHR OFFEN,*,*,<srai>Öffnungszeiten</srai>,gastro.aiml
+0,HABT IHR AUF,*,*,<srai>Öffnungszeiten</srai>,gastro.aiml
+0,GEÖFFNET,*,*,<srai>Öffnungszeiten</srai>,gastro.aiml
+0,* GEOEFFNET,*,*,<srai>Öffnungszeiten</srai>,gastro.aiml
+0,IST AUF,*,*,<srai>Öffnungszeiten</srai>,gastro.aiml
+0,LERNE * IST *,*,*,ok#Comma ich merke mir dass <star index="1"/> <star index="2"/> ist.,gastro.aiml

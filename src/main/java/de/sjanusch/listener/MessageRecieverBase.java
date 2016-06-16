@@ -9,7 +9,7 @@ public interface MessageRecieverBase {
 
     void sendMessageText(final String text, final String username);
 
-    void sendNotification(final String text, final String username);
+    void sendNotification(final String text);
 
     void sendNotificationError(final String text, final String username);
 

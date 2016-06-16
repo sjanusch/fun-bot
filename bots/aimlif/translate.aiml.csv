@@ -1,0 +1,9 @@
+0,UEBERSETZE * IN *,*,*,<sraix>Übersetze <star index="1"/> in <star index="2"/></sraix>,translate.aiml
+0,ÜBERSETZE * IN *,*,*,<srai>Uebersetze <star index="1"/> in <star index="2"/></srai>,translate.aiml
+0,UEBERSETZE * NACH *,*,*,<srai>Uebersetze <star index="1"/> in <star index="2"/></srai>,translate.aiml
+0,ÜBERSETZE * NACH *,*,*,<srai>Uebersetze <star index="1"/> in <star index="2"/></srai>,translate.aiml
+0,ÜBERSETZE ALLES IN *,*,*,OK#Comma ich übersetze jetzt alles für Dich von Deutsch nach <set name="translatetolanguage"><star/></set>. Wenn ich aufhören soll schreib einfach "jetzt hör auf". <think><set name="topic">translateall</set></think>,translate.aiml
+0,_ HÖR AUF,*,TRANSLATEALL,Ok#Comma fertig. <set name="topic"/>,translate.aiml
+0,_ STOP,*,TRANSLATEALL,Ok#Comma fertig. <set name="topic"/>,translate.aiml
+0,STOP,*,TRANSLATEALL,Ok#Comma ich höre jetzt auf zu übersetzen. <set name="topic"/>,translate.aiml
+0,_,*,TRANSLATEALL,<sraix>Übersetze <star index="1"/> in <get name="translatetolanguage"/></sraix>,translate.aiml

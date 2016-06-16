@@ -24,6 +24,7 @@ import org.alicebot.ab.utils.IOUtils;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -39,7 +40,7 @@ public class AB {
     public boolean filter_wild_mode = false;
     public boolean offer_alice_responses = true;
 
-    public String logfile = MagicStrings.root_path+"/data/"+MagicStrings.ab_sample_file; //normal.txt";
+    public String logfile = getRootPath() + "/data/" + MagicStrings.ab_sample_file; //normal.txt";
 
     public int runCompletedCnt;
     public Bot bot;
@@ -54,7 +55,7 @@ public class AB {
     public static int limit = 500000;
     public AB(Bot bot, String sampleFile) {
         MagicStrings.ab_sample_file = sampleFile;
-        logfile = MagicStrings.root_path+"/data/"+MagicStrings.ab_sample_file;
+        logfile = getRootPath() + "/data/" + MagicStrings.ab_sample_file;
         System.out.println("AB with sample file "+logfile);
         this.bot = bot;
         this.inputGraph = new Graphmaster(bot, "input");
@@ -66,14 +67,11 @@ public class AB {
         testSet = new AIMLSet("1000", bot);
         readDeletedIFCategories();
     }
-    /**
-     * Calculates the botmaster's productivity rate in
-     * categories/sec when using Pattern Suggestor to create content.
-     *
-     * @param  runCompletedCnt  number of categories completed in this run
-     * @param  timer tells elapsed time in ms
-     * @see    AB
-     */
+
+    private String getRootPath() {
+        final String path = Paths.get("fun-bot").toAbsolutePath().toString();
+        return path.substring(0, path.lastIndexOf("fun-bot"));
+    }
 
     public void productivity (int runCompletedCnt, Timer timer) {
         float time = timer.elapsedTimeMins();
@@ -298,7 +296,7 @@ public class AB {
         String logFile = logfile;
         MagicBooleans.trace_mode = false;
         MagicBooleans.enable_external_sets = false;
-        if (offer_alice_responses) alice = new Bot("alice");
+        if (offer_alice_responses) alice = new Bot();
         Timer timer = new Timer();
         bot.brain.nodeStats();
         if (bot.brain.getCategories().size() < MagicNumbers.brain_print_size) bot.brain.printgraph();

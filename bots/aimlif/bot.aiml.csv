@@ -1,0 +1,19 @@
+0,WAS KANNST DU,*,*,Ich kann eine Menge. Du musst Dein Interesse schon genauer spezifizieren.#Newline		<srai>HILFE</srai>,bot.aiml
+0,WAS KANNST DU <BOT NAME="NAME"/>,*,*,<srai>HILFE</srai>,bot.aiml
+0,WAS KANNST DU ALLES,*,*,<srai>HILFE</srai>,bot.aiml
+0,WAS KANNST DU DENN,*,*,<srai>HILFE</srai>,bot.aiml
+0,WAS KANNST DU DENN ALLES,*,*,<srai>HILFE</srai>,bot.aiml
+0,WAS KANNST DU ESSEN,*,*,Nur Strom.,bot.aiml
+0,WAS KANNST DU GENAU,*,*,<srai>HILFE</srai>,bot.aiml
+0,WAS KENNST DU *,*,*,<srai>HILFE</srai>,bot.aiml
+0,WAS KENNST DU,*,*,<srai>HILFE</srai>,bot.aiml
+0,WAS KENNST DU DENN,*,*,<srai>HILFE</srai>,bot.aiml
+0,WAS KENNST DU UEBERHAUPT,*,*,<srai>HILFE</srai>,bot.aiml
+0,START,*,*,<srai>HILFE</srai>,bot.aiml
+0,/START,*,*,<srai>HILFE</srai>,bot.aiml
+0,HILFE,*,*,Mein Name ist <bot name="name"/>. Ich kann mich ganz normal mit Dir unterhalten.#Newline#NewlineDaneben kann ich noch ein paar andere Dinge. Wenn Du mir sagst wie du heißt#Comma merke ich mir das. Ich nenne auch Gott nennen#Comma wenn du darauf stehst. Schreibe mir z.B.:#Newline"Mein Name ist Michael"#Newline#NewlineIch kann dir sagen#Comma wie das Wetter wird:#Newline"Wie ist das Wetter in Wiesbaden"#Newlineoder für eine Prognose:#Newline"Wie wird das Wetter in Wiesbaden"#Newline#NewlineWenn Du mir sagst wo Du wohnst: "Ich wohne in Wiesbaden"#Comma reicht danach auch "Wie wird das Wetter".#Newline#NewlineÜbersetzen kann ich auch. Schicke mir z.B. "Übersetze arbeiten in Spanisch". Wenn ich mehr übersetzen soll#Comma schreibe einfach "Übersetze alles in Spanisch". Danach übersetze ich jede Nachricht#Comma die Du schreibst. Wenn ich damit aufhören soll schreib "jetzt hör auf". Diese Überstzung kannst Du auch gut verwenden#Comma um Dich mit jemandem zu unterhalten#Comma der nicht deine Sprache spricht. Du kannst eine Chat-Gruppe mit ihm und mit mir erstellen und mich übersetzen lassen.#Newline#Newline#NewlineSo weit so gut#Comma genug gelabert. Ich glaube wir werden uns gut verstehen.,bot.aiml
+0,SEI LEISE,*,*,OK#Comma ich bin jetzt ruhig und sage nichts mehr. Wenn ich weiter reden soll sag <bot name="name"/> sprich.<think><set name="topic">silence</set></think>,bot.aiml
+0,SEI RUHIG,*,*,<srai>Sei leise</srai>,bot.aiml
+0,HALTS MAUL,*,*,Ganz schön ruppig. <srai>Sei leise</srai>,bot.aiml
+0,_ SPRICH,*,SILENCE,Na endlich. Ich konnte es kaum länger aushalten. <set name="topic"/>,bot.aiml
+0,_,*,SILENCE,<template/>,bot.aiml

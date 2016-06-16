@@ -1,0 +1,10 @@
+0,WETTER *,*,*,<sraix>Wetter in <star/></sraix>,wetter.aiml
+0,WIE IST DAS WETTER IN *,*,*,<sraix>Wetter in <star/></sraix>,wetter.aiml
+0,WIE IST DAS WETTER,*,*,<srai>Wetter <get name="clientheimat"/></srai>,wetter.aiml
+0,WIE IST DAS WETTER BEI DIR,*,*,<srai>Wetter <bot name="location"/></srai>,wetter.aiml
+0,WIE IST DAS WETTER DORT,*,*,<srai>WIE IST DAS WETTER BEI DIR</srai>,wetter.aiml
+0,WIE WIRD DAS WETTER *,*,*,<sraix>Wie wird das Wetter in <star/></sraix>,wetter.aiml
+0,WIE WIRD DAS WETTER,*,*,<srai>Wie wird das Wetter in <get name="clientheimat"/></srai>,wetter.aiml
+0,WETTERPROGNOSE *,*,*,<srai>Wie wird das Wetter in <star/></srai>,wetter.aiml
+0,WETTERPROGNOSE,*,*,<srai>Wie wird das Wetter in <get name="clientheimat"/></srai>,wetter.aiml
+0,WIE FINDEST DU DAS WETTER,*,*,Ueber das Internet... da findet man noch ganz andere Sachen... :-) <sraix>WIE IST DAS WETTER</sraix>,wetter.aiml

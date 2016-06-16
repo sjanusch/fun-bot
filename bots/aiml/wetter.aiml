@@ -1,0 +1,60 @@
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+
+	<category>
+		<pattern>Wetter *</pattern>
+		<template>
+			<sraix>Wetter in <star/></sraix>
+		</template>
+	</category>
+
+	<category>
+		<pattern>WIE IST DAS WETTER in *</pattern>
+		<template>
+			<sraix>Wetter in <star/></sraix>
+		</template>
+	</category>
+
+	<category>
+		<pattern>WIE IST DAS WETTER</pattern>
+		<template><srai>Wetter <get name="clientheimat"/></srai></template>
+	</category>
+
+	<category>
+		<pattern>WIE IST DAS WETTER BEI DIR</pattern>
+		<template><srai>Wetter <bot name="location"/></srai></template>
+	</category>
+
+	<category>
+		<pattern>WIE IST DAS WETTER DORT</pattern>
+		<template><srai>WIE IST DAS WETTER BEI DIR</srai></template>
+	</category>
+
+	<category>
+		<pattern>WIE WIRD DAS WETTER *</pattern>
+		<template><sraix>Wie wird das Wetter in <star/></sraix></template>
+	</category>
+
+	<category>
+		<pattern>WIE WIRD DAS WETTER</pattern>
+		<template><srai>Wie wird das Wetter in <get name="clientheimat"/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Wetterprognose *</pattern>
+		<template><srai>Wie wird das Wetter in <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Wetterprognose</pattern>
+		<template><srai>Wie wird das Wetter in <get name="clientheimat"/></srai></template>
+	</category>
+
+
+	<category>
+		<pattern>WIE FINDEST DU DAS WETTER</pattern>
+		<template>Ueber das Internet... da findet man noch ganz andere Sachen... :-) <sraix>WIE IST DAS WETTER</sraix></template>
+	</category>
+</aiml>

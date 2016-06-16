@@ -54,9 +54,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     final String incomeMessage = message.getBody().toLowerCase().trim();
     final String actualUser = messageHelper.convertNames(from);
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
-
-    messageRecieverBase.sendMessageText(chat.chat(incomeMessage), actualUser);
-
+    messageRecieverBase.sendNotification(chat.chat(incomeMessage));
     return;
   }
 

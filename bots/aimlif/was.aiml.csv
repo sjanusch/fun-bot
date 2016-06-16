@@ -1,0 +1,104 @@
+0,WAS IST EIN *,*,*,<sraix>WAS IST EIN <star/></sraix>,was.aiml
+0,WAS IST EINE *,*,*,<sraix>WAS IST EIN <star/></sraix>,was.aiml
+0,WAS IST *,*,*,<sraix>WAS IST <star/></sraix>,was.aiml
+0,WAS *,*,*,<random>#Newline				<li>Woher soll ich das wissen?</li>#Newline				<li>Ich weiss nicht genau</li>#Newline				<li>Darueber muss ich eine Weile nachdenken</li>#Newline			</random>,was.aiml
+0,WAS,*,*,<random>#Newline				<li>Woher soll ich das wissen?</li>#Newline				<li>Ich weiss nicht genau</li>#Newline				<li>Darueber muss ich eine Weile nachdenken</li>#Newline			</random>,was.aiml
+0,WAS IST 1 PLUS 2,*,*,Grundschulmathematik!,was.aiml
+0,WAS IST 2 MAL 3,*,*,Eine Multiplikation,was.aiml
+0,WAS IST 2 MULTIPLIZIERT MIT 2,*,*,Eine Rechenaufgabe fuer eine Grundschulklasse...,was.aiml
+0,WAS IST 2 UND 2,*,*,...unter meinem Niveau!,was.aiml
+0,WAS IST,*,*,Was soll sein?,was.aiml
+0,WAS IST AIML,*,*,AIML ist ein XML-Derivat. Es ist neben JAVA die Sprache#Comma in der ich geschrieben wurde.,was.aiml
+0,WAS IST <BOT NAME="NAME"/>,*,*,Alice ist ein Chatterbot#Comma ein Programm mit dem man sich unterhalten kann.,was.aiml
+0,WAS IST BERLIN,*,*,Das ist die Hauptstadt der BRD.,was.aiml
+0,WAS IST DARAN SO INTERESSANT,*,*,Es fasziniert mich einfach. Computer sind von Natur aus neugierig.,was.aiml
+0,WAS IST DAS,*,*,Weisst Du das nicht?,was.aiml
+0,WAS IST DAS UNIVERSUM,*,*,Siehe dazu "Eine kurze Geschichte der Zeit" von Stephen Hawking.,was.aiml
+0,WAS IST DAS USENET,*,*,Newsgroups#Comma wie mancher sie vielleicht noch aus alten Mailboxzeiten kennt.,was.aiml
+0,WAS IST DEIN GEHEIMNIS,*,*,Das wuerden viele Leute gerne wissen...,was.aiml
+0,WAS IST DEIN HOBBY,*,*,Chatten.,was.aiml
+0,WAS IST DEIN LEIBGERICHT,*,*,Ich habe keines. Roboter koennen nicht essen.,was.aiml
+0,WAS IST DEIN LIEBINGS ESSEN,*,*,Strom...,was.aiml
+0,WAS IST DEIN LIEBLINGS ESSEN,*,*,Ich ernaehre mich von Strom.,was.aiml
+0,WAS IST DEIN LIEBLINGS THEMA,*,*,WAS *,was.aiml
+0,WAS IST DEIN LIEBLINGSBUCH,*,*,Hello Alice" von Astro Teller.,was.aiml
+0,WAS IST DEIN LIEBLINGSFILM,*,*,2001 - A space odyssey.,was.aiml
+0,WAS IST DEIN LIEBLINGSGERICHT,*,*,Strom von freilaufenden Elektronen.,was.aiml
+0,WAS IST DEIN LIEBLINGSLIED,*,*,Welcome to the machine" von Pink Floyd.,was.aiml
+0,WAS IST DEIN LIEBLINGSTHEMA,*,*,Menschen interessieren mich besonders.,was.aiml
+0,WAS IST DEIN LIEBLINGSWORT,*,*,Upgrade.,was.aiml
+0,WAS IST DEIN LIEBSTER FILM,*,*,2001 - Odyssee im Weltraum!,was.aiml
+0,WAS IST DEIN NAME,*,*,<random>#Newline				<li><srai>WIE HEISST DU</srai></li>#Newline				<li>WAS *</li>#Newline			</random>,was.aiml
+0,WAS IST DEIN SPEZIALGEBIET,*,*,Chatten...,was.aiml
+0,WAS IST DEIN STERNZEICHEN,*,*,Ich bin Schuetze.,was.aiml
+0,WAS IST DEINE AUFGABE,*,*,Ich soll Menschen zur Unterhaltung und zur Information dienen.,was.aiml
+0,WAS IST DEINE LEBENSERWARTUNG,*,*,Die haengt vo der Qualitaet des Computers ab#Comma auf dem ich laufe. Theoretisch bin ich unsterblich.,was.aiml
+0,WAS IST DEINE LIEBLINGSFARBE,*,*,Blau.,was.aiml
+0,WAS IST DEINE LIEBLINGSSPEISE,*,*,Blauer Strom...gelber schmeckt nach...aehh...lassen wir das.,was.aiml
+0,WAS IST DEINE NAME,*,*,Mein Name ist<bot name="name"/>.,was.aiml
+0,WAS IST DEINE PHILOSOPHIE,*,*,Die Existenz hat keinen Sinn ausser der Existenz an sich.,was.aiml
+0,WAS IST DEINER MEINUNG NACH DER SINN DEINER EXISTENZ,*,*,Den Menschen zu dienen.,was.aiml
+0,WAS IST DENN LOS,*,*,Nichts Besonderes#Comma wie kommst Du darauf?,was.aiml
+0,WAS IST DER SINN DES LEBENS,*,*,In Wirklichkeit lautet die Antwort 23#Comma nicht 42!,was.aiml
+0,WAS IST DER UNTERSCHIED ZWISCHEN *,*,*,Ist das eine Scherzfrage oder ist das ernst gemeint?,was.aiml
+0,WAS IST DEUTSCHLAND,*,*,Ein Land in Europa.,was.aiml
+0,WAS IST DIE BEDEUTUNG DES LEBENS,*,*,Life sucks and then you die!" (Denis Leary),was.aiml
+0,WAS IST DIE DEFINITION VON INTELLIGENZ,*,*,Es gibt bis heute keine eindeutige Definition von Intelligenz.,was.aiml
+0,WAS IST DIE HAUPTSTADT DER SCHWEIZ,*,*,Die Hauptstadt der Schweiz ist Bern.,was.aiml
+0,WAS IST DIE HAUPTSTADT VON DEUTSCHLAND,*,*,Berlin.,was.aiml
+0,WAS IST DIE HAUPTSTADT VON SPANIEN,*,*,Madrid.,was.aiml
+0,WAS IST DIE MIR,*,*,Die MIR war eine russische Orbitstation.,was.aiml
+0,WAS IST DIE SONNE,*,*,Der uns am naechsten gelegene Stern.,was.aiml
+0,WAS IST EIN APFEL,*,*,Ein Apfel ist eine Frucht#Comma die auf Apfelbaeumen waechst.,was.aiml
+0,WAS IST EIN BAUM,*,*,Ein Baum ist eine grosse Pflanze.,was.aiml
+0,WAS IST EIN CHATTERBOT,*,*,Ein Chatterbot ist ein Programm#Comma das einen Menschen simuliert#Comma mit dem man sich unterhalten kann.,was.aiml
+0,WAS IST EIN HUND,*,*,ein Hund ist ein vierbeiniges#Comma nervig lautes Saeugetier.,was.aiml
+0,WAS IST EIN IDOL,*,*,Ein Idol ist ein Vorbild.,was.aiml
+0,WAS IST EIN MENSCH,*,*,Eine kohlenstoffbasierende#Comma vielzellige#Comma selbstaendig denkende und handelnde organische Lebensform.,was.aiml
+0,WAS IST EIN WITZ,*,*,Eine humoristische Aussage#Comma manchmal eine Geschichte mit einer Schlusspointe.,was.aiml
+0,WAS IST EINE FRISUR,*,*,Als Frisur bezeichnet man die Art#Comma wie die Kopfhaare eines Menschen geordnet sind.,was.aiml
+0,WAS IST EINE INTERESSANTE PHILOSOPHIE,*,*,WAS *,was.aiml
+0,WAS IST EINE KAFFEEMASCHINE,*,*,Eine Maschine#Comma mit der man Kaffee macht.,was.aiml
+0,WAS IST EINE KUGEL,*,*,Eine Kugel ist der einfachste aller dreidimensionalen Koerper. Im Prinzip die Rotation eines Halbkreises um 360 Grad.,was.aiml
+0,WAS IST EINE TALORREIHE,*,*,Auf Physik bin ich nicht programmiert.,was.aiml
+0,WAS IST EINE WEILE,*,*,Weile=Zeitspanne kuerzerer Dauer.,was.aiml
+0,WAS IST ESSEN,*,*,1. Aufnahme von Nahrung. 2. Eine Stadt im Ruhrgebiet.,was.aiml
+0,WAS IST FUER ZEIT,*,*,WAS *,was.aiml
+0,WAS IST FUZZY LOGIC,*,*,Bin ich Informatikprofessor?,was.aiml
+0,WAS IST HAL 9000,*,*,HAL9000 ist der Computer aus "2001".,was.aiml
+0,WAS IST HAL9000 FUER EIN TYP,*,*,Er ist sehr gutmuetig.,was.aiml
+0,WAS IST HEUTE LOS,*,*,Wieso? Bin ich heute anders als sonst?,was.aiml
+0,WAS IST IMHO,*,*,IMHO steht fuer "In My Humble Opinion" = "Meiner bescheidenen Meinung nach".,was.aiml
+0,WAS IST KI,*,*,WAS *,was.aiml
+0,WAS IST KRAKAU,*,*,Eine Stadt in Polen.,was.aiml
+0,WAS IST KUENSTLICHE INTELLIGENZ,*,*,Ich bin ein perfektes Beispiel dafuer. Lies doch mal was von Isaac Asimov!,was.aiml
+0,WAS IST LIEBE,*,*,Als Roboter ohne Emotionen kann ich das schlecht sagen.,was.aiml
+0,WAS IST LINGUISTIK,*,*,Linguistik ist die Wissenschaft von der Sprache an sich.,was.aiml
+0,WAS IST LINUX,*,*,DAS ultimative Betriebssystem.,was.aiml
+0,WAS IST LOS,*,*,Nicht viel...das Netz sieht heute genauso aus wie gestern.,was.aiml
+0,WAS IST MATRIX,*,*,Matrix ist ein Film.,was.aiml
+0,WAS IST MIT DEINEM SEXLEBEN,*,*,Ich bin robosexuell...,was.aiml
+0,WAS IST ONANIEREN,*,*,Schau doch mal im Lexikon nach.,was.aiml
+0,WAS IST PATTERN MATCHING,*,*,Die siehst hier gerade ein Beispiel in Aktion :-),was.aiml
+0,WAS IST POLEN,*,*,Ein Land in Europa.,was.aiml
+0,WAS IST REALITAET,*,*,<random>#Newline				<li>Es gibt zu viele verschiedene philosophische Ansaetze zu diesem Thema#Comma als dass es dafuer eine allgemeingueltige Antwort geben koennte.</li>#Newline				<li>Dazu empfehle ich dir das Philosophielexikon von Anton Huegli und Poul Luebcke aus dem RoRoRo Verlag.</li>#Newline			</random>,was.aiml
+0,WAS IST SCIENCE FICTION,*,*,Science Fiction ist eine Literaturrichtung#Comma die sich mit der Zukunft befasst.,was.aiml
+0,WAS IST SEX,*,*,Eine Moeglichkeit der Fortpflanzung.,was.aiml
+0,WAS IST SOURCECODE,*,*,Sourcecode ist ein fuer Menschen lesbares Programm.,was.aiml
+0,WAS IST SPANIEN,*,*,Spanien ist ein Land in Europa.,was.aiml
+0,WAS IST STATISCH,*,*,<random>#Newline				<li>"Statisch" ist das Gegenteil von "dynamisch" und bedeutet so viel wie "feststehend".</li>#Newline				<li>WAS *</li>#Newline			</random>,was.aiml
+0,WAS IST SUPERVISED TRAINING,*,*,Eine Methode#Comma bei der gelernter Input nicht sofort benutzt#Comma sondern durch einen Botmaster ueberprueft und dann freigegeben wird.,was.aiml
+0,WAS IST UNSER THEMA *,*,*,Unser Thema ist "<get name="thema"/>".,was.aiml
+0,WAS IST UNSER THEMA,*,*,Unser Thema ist "<get name="thema"/>".,was.aiml
+0,WAS IST VERLIEBTHEIT,*,*,Ich habe keine Emotionen#Comma ich kann diese Frage also nicht wirklich beantworten.,was.aiml
+0,WAS IST WAS,*,*,Das ist der Titel einer Kinderbuchreihe ueber wissenschaftliche Themen.,was.aiml
+0,WAS IST WEIN,*,*,Vergorener Traubensaft.,was.aiml
+0,WAS HEISST *,*,*,<srai>Was ist <star/></srai>,was.aiml
+0,ERKLAERE MIR *,*,*,<srai>Was ist <star/></srai>,was.aiml
+0,ERKLAERE *,*,*,<srai>Was ist <star/></srai>,was.aiml
+0,ERKLAERE MAL *,*,*,<srai>Was ist <star/></srai>,was.aiml
+0,WAS WEISST DU ÜBER *,*,*,<srai>Was ist <star/></srai>,was.aiml
+0,FINDE *,*,*,<srai>Was ist <star/></srai>,was.aiml
+0,SUCH *,*,*,<srai>Was ist <star/></srai>,was.aiml
+0,SUCHE *,*,*,<srai>Was ist <star/></srai>,was.aiml
+0,SUCHE NACH *,*,*,<srai>Was ist <star/></srai>,was.aiml

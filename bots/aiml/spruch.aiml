@@ -1,0 +1,30 @@
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+	<!-- Free software (c) 2001 ALICE AI Foundation -->
+	<!-- This program is open source code released under -->
+	<!-- the terms of the GNU General Public License -->
+	<!-- as published by the Free Software Foundation. -->
+
+	<category>
+		<pattern>SPRUCH</pattern>
+		<template>
+			<random>
+				<li>Mut ist oft Mangel an Einsicht, während Feigheit nicht selten auf guten Informationen beruht. Sir Peter Ustinov</li>
+				<li>Ein Freund ist ein Mensch, der Dich mag, obwohl er Dich kennt!</li>
+				<li>Glück ist heutzutage, wenn man im neu gekauften Auto mit 150 km/h durch die innere Leere fährt. Sigismund von Radecki</li>
+				<li>Die Schwierigkeit, mit den meisten Leuten umzugehen, besteht darin, zu ihnen gleichzeitig ehrlich und höflich zu sein. André Helle</li>
+				<li>Das erste, was man beim Abmagern verliert, ist die gute Laune. Gert Fröbe</li>
+				<li>Alt werden ist natürlich kein reines Vergnügen. Aber denken wir an die einzige Alternative. Robert Lembke</li>
+				<li>Jesus ist tot, Marx ist tot - und ich fühle mich heute auch nicht ganz wohl! Eugène Ionesco</li>
+				<li>Altern ist ein hochinteressanter Vorgang: Man denkt und denkt und denkt - plötzlich kann man sich an nichts mehr erinnern. Ephraim Kishon</li>
+				<li>Niemand muss ein Vollidiot sein, um Politiker zu werden, aber es erleichtert die Sache ungemein!</li>
+				<li>Geduld ist die Kunst, nur langsam wütend zu werden!</li>
+				<li>Ein kluger Mann widerspricht nie einer Frau. Er wartet, bis sie es selbst tut. Humphrey Bogart</li>
+			</random>
+		</template>
+	</category>
+</aiml>
+
+

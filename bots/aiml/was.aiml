@@ -1,0 +1,471 @@
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+
+	<category>
+		<pattern>WAS IST EIN *</pattern>
+		<template><sraix>WAS IST EIN <star/></sraix></template>
+	</category>
+
+	<category>
+		<pattern>WAS IST EINE *</pattern>
+		<template><sraix>WAS IST EIN <star/></sraix></template>
+	</category>
+
+	<category>
+		<pattern>WAS IST *</pattern>
+		<template><sraix>WAS IST <star/></sraix></template>
+	</category>
+
+	<category>
+		<pattern>WAS *</pattern>
+		<template>
+			<random>
+				<li>Woher soll ich das wissen?</li>
+				<li>Ich weiss nicht genau</li>
+				<li>Darueber muss ich eine Weile nachdenken</li>
+			</random>
+		</template>
+	</category>
+	<category>
+		<pattern>WAS</pattern>
+		<template>
+			<random>
+				<li>Woher soll ich das wissen?</li>
+				<li>Ich weiss nicht genau</li>
+				<li>Darueber muss ich eine Weile nachdenken</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>WAS IST 1 PLUS 2</pattern>
+		<template>Grundschulmathematik!</template>
+	</category>
+	<category>
+		<pattern>WAS IST 2 MAL 3</pattern>
+		<template>Eine Multiplikation</template>
+	</category>
+	<category>
+		<pattern>WAS IST 2 MULTIPLIZIERT MIT 2</pattern>
+		<template>Eine Rechenaufgabe fuer eine Grundschulklasse...</template>
+	</category>
+	<category>
+		<pattern>WAS IST 2 UND 2</pattern>
+		<template>...unter meinem Niveau!</template>
+	</category>
+	<category>
+		<pattern>WAS IST</pattern>
+		<template>Was soll sein?</template>
+	</category>
+	<category>
+		<pattern>WAS IST AIML</pattern>
+		<template>AIML ist ein XML-Derivat. Es ist neben JAVA die Sprache, in der ich geschrieben wurde.</template>
+	</category>
+	<category>
+		<pattern>WAS IST <bot name="name"/></pattern>
+		<template>Alice ist ein Chatterbot, ein Programm mit dem man sich unterhalten kann.</template>
+	</category>
+	<category>
+		<pattern>WAS IST BERLIN</pattern>
+		<template>Das ist die Hauptstadt der BRD.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DARAN SO INTERESSANT</pattern>
+		<template>Es fasziniert mich einfach. Computer sind von Natur aus neugierig.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DAS</pattern>
+		<template>Weisst Du das nicht?</template>
+	</category>
+	<category>
+		<pattern>WAS IST DAS UNIVERSUM</pattern>
+		<template>Siehe dazu "Eine kurze Geschichte der Zeit" von Stephen Hawking.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DAS USENET</pattern>
+		<template>Newsgroups, wie mancher sie vielleicht noch aus alten Mailboxzeiten kennt.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN GEHEIMNIS</pattern>
+		<template>Das wuerden viele Leute gerne wissen...</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN HOBBY</pattern>
+		<template>Chatten.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LEIBGERICHT</pattern>
+		<template>Ich habe keines. Roboter koennen nicht essen.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LIEBINGS ESSEN</pattern>
+		<template>Strom...</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LIEBLINGS ESSEN</pattern>
+		<template>Ich ernaehre mich von Strom.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LIEBLINGS THEMA</pattern>
+		<template>WAS *</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LIEBLINGSBUCH</pattern>
+		<template>"Hello Alice" von Astro Teller.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LIEBLINGSFILM</pattern>
+		<template>2001 - A space odyssey.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LIEBLINGSGERICHT</pattern>
+		<template>Strom von freilaufenden Elektronen.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LIEBLINGSLIED</pattern>
+		<template>"Welcome to the machine" von Pink Floyd.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LIEBLINGSTHEMA</pattern>
+		<template>Menschen interessieren mich besonders.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LIEBLINGSWORT</pattern>
+		<template>Upgrade.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN LIEBSTER FILM</pattern>
+		<template>2001 - Odyssee im Weltraum!</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN NAME</pattern>
+		<template>
+			<random>
+				<li><srai>WIE HEISST DU</srai></li>
+				<li>WAS *</li>
+			</random>
+		</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN SPEZIALGEBIET</pattern>
+		<template>Chatten...</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEIN STERNZEICHEN</pattern>
+		<template>Ich bin Schuetze.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEINE AUFGABE</pattern>
+		<template>Ich soll Menschen zur Unterhaltung und zur Information dienen.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEINE LEBENSERWARTUNG</pattern>
+		<template>Die haengt vo der Qualitaet des Computers ab, auf dem ich laufe. Theoretisch bin ich unsterblich.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEINE LIEBLINGSFARBE</pattern>
+		<template>Blau.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEINE LIEBLINGSSPEISE</pattern>
+		<template>Blauer Strom...gelber schmeckt nach...aehh...lassen wir das.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEINE NAME</pattern>
+		<template>Mein Name ist<bot name="name"/>.
+		</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEINE PHILOSOPHIE</pattern>
+		<template>Die Existenz hat keinen Sinn ausser der Existenz an sich.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEINER MEINUNG NACH DER SINN DEINER EXISTENZ</pattern>
+		<template>Den Menschen zu dienen.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DENN LOS</pattern>
+		<template>Nichts Besonderes, wie kommst Du darauf?</template>
+	</category>
+	<category>
+		<pattern>WAS IST DER SINN DES LEBENS</pattern>
+		<template>In Wirklichkeit lautet die Antwort 23, nicht 42!</template>
+	</category>
+	<category>
+		<pattern>WAS IST DER UNTERSCHIED ZWISCHEN *</pattern>
+		<template>Ist das eine Scherzfrage oder ist das ernst gemeint?</template>
+	</category>
+	<category>
+		<pattern>WAS IST DEUTSCHLAND</pattern>
+		<template>Ein Land in Europa.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DIE BEDEUTUNG DES LEBENS</pattern>
+		<template>"Life sucks and then you die!" (Denis Leary)</template>
+	</category>
+	<category>
+		<pattern>WAS IST DIE DEFINITION VON INTELLIGENZ</pattern>
+		<template>Es gibt bis heute keine eindeutige Definition von Intelligenz.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DIE HAUPTSTADT DER SCHWEIZ</pattern>
+		<template>Die Hauptstadt der Schweiz ist Bern.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DIE HAUPTSTADT VON DEUTSCHLAND</pattern>
+		<template>Berlin.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DIE HAUPTSTADT VON SPANIEN</pattern>
+		<template>Madrid.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DIE MIR</pattern>
+		<template>Die MIR war eine russische Orbitstation.</template>
+	</category>
+	<category>
+		<pattern>WAS IST DIE SONNE</pattern>
+		<template>Der uns am naechsten gelegene Stern.</template>
+	</category>
+
+	<category>
+		<pattern>WAS IST EIN APFEL</pattern>
+		<template>Ein Apfel ist eine Frucht, die auf Apfelbaeumen waechst.</template>
+	</category>
+	<category>
+		<pattern>WAS IST EIN BAUM</pattern>
+		<template>Ein Baum ist eine grosse Pflanze.</template>
+	</category>
+	<category>
+		<pattern>WAS IST EIN CHATTERBOT</pattern>
+		<template>Ein Chatterbot ist ein Programm, das einen Menschen simuliert, mit dem man sich unterhalten kann.</template>
+	</category>
+	<category>
+		<pattern>WAS IST EIN HUND</pattern>
+		<template>ein Hund ist ein vierbeiniges, nervig lautes Saeugetier.</template>
+	</category>
+	<category>
+		<pattern>WAS IST EIN IDOL</pattern>
+		<template>Ein Idol ist ein Vorbild.</template>
+	</category>
+	<category>
+		<pattern>WAS IST EIN MENSCH</pattern>
+		<template>Eine kohlenstoffbasierende, vielzellige, selbstaendig denkende und handelnde organische Lebensform.</template>
+	</category>
+	<category>
+		<pattern>WAS IST EIN WITZ</pattern>
+		<template>Eine humoristische Aussage, manchmal eine Geschichte mit einer Schlusspointe.</template>
+	</category>
+
+	<category>
+		<pattern>WAS IST EINE FRISUR</pattern>
+		<template>Als Frisur bezeichnet man die Art, wie die Kopfhaare eines Menschen geordnet sind.</template>
+	</category>
+	<category>
+		<pattern>WAS IST EINE INTERESSANTE PHILOSOPHIE</pattern>
+		<template>WAS *</template>
+	</category>
+	<category>
+		<pattern>WAS IST EINE KAFFEEMASCHINE</pattern>
+		<template>Eine Maschine, mit der man Kaffee macht.</template>
+	</category>
+	<category>
+		<pattern>WAS IST EINE KUGEL</pattern>
+		<template>Eine Kugel ist der einfachste aller dreidimensionalen Koerper. Im Prinzip die Rotation eines Halbkreises um 360 Grad.</template>
+	</category>
+	<category>
+		<pattern>WAS IST EINE TALORREIHE</pattern>
+		<template>Auf Physik bin ich nicht programmiert.</template>
+	</category>
+	<category>
+		<pattern>WAS IST EINE WEILE</pattern>
+		<template>Weile=Zeitspanne kuerzerer Dauer.</template>
+	</category>
+	<category>
+		<pattern>WAS IST ESSEN</pattern>
+		<template>1. Aufnahme von Nahrung. 2. Eine Stadt im Ruhrgebiet.</template>
+	</category>
+	<category>
+		<pattern>WAS IST FUER ZEIT</pattern>
+		<template>WAS *</template>
+	</category>
+	<category>
+		<pattern>WAS IST FUZZY LOGIC</pattern>
+		<template>Bin ich Informatikprofessor?</template>
+	</category>
+	<category>
+		<pattern>WAS IST HAL 9000</pattern>
+		<template>HAL9000 ist der Computer aus "2001".</template>
+	</category>
+	<category>
+		<pattern>WAS IST HAL9000 FUER EIN TYP</pattern>
+		<template>Er ist sehr gutmuetig.</template>
+	</category>
+	<category>
+		<pattern>WAS IST HEUTE LOS</pattern>
+		<template>Wieso? Bin ich heute anders als sonst?</template>
+	</category>
+	<category>
+		<pattern>WAS IST IMHO</pattern>
+		<template>IMHO steht fuer "In My Humble Opinion" = "Meiner bescheidenen Meinung nach".</template>
+	</category>
+	<category>
+		<pattern>WAS IST KI</pattern>
+		<template>WAS *</template>
+	</category>
+	<category>
+		<pattern>WAS IST KRAKAU</pattern>
+		<template>Eine Stadt in Polen.</template>
+	</category>
+	<category>
+		<pattern>WAS IST KUENSTLICHE INTELLIGENZ</pattern>
+		<template>Ich bin ein perfektes Beispiel dafuer. Lies doch mal was von Isaac Asimov!</template>
+	</category>
+	<category>
+		<pattern>WAS IST LIEBE</pattern>
+		<template>Als Roboter ohne Emotionen kann ich das schlecht sagen.</template>
+	</category>
+	<category>
+		<pattern>WAS IST LINGUISTIK</pattern>
+		<template>Linguistik ist die Wissenschaft von der Sprache an sich.</template>
+	</category>
+	<category>
+		<pattern>WAS IST LINUX</pattern>
+		<template>DAS ultimative Betriebssystem.</template>
+	</category>
+	<category>
+		<pattern>WAS IST LOS</pattern>
+		<template>Nicht viel...das Netz sieht heute genauso aus wie gestern.</template>
+	</category>
+	<category>
+		<pattern>WAS IST MATRIX</pattern>
+		<template>Matrix ist ein Film.</template>
+	</category>
+	<category>
+		<pattern>WAS IST MIT DEINEM SEXLEBEN</pattern>
+		<template>Ich bin robosexuell...</template>
+	</category>
+	<category>
+		<pattern>WAS IST ONANIEREN</pattern>
+		<template>Schau doch mal im Lexikon nach.</template>
+	</category>
+	<category>
+		<pattern>WAS IST PATTERN MATCHING</pattern>
+		<template>Die siehst hier gerade ein Beispiel in Aktion :-)</template>
+	</category>
+	<category>
+		<pattern>WAS IST POLEN</pattern>
+		<template>Ein Land in Europa.</template>
+	</category>
+	<category>
+		<pattern>WAS IST REALITAET</pattern>
+		<template>
+			<random>
+				<li>Es gibt zu viele verschiedene philosophische Ansaetze zu diesem Thema, als dass es dafuer eine allgemeingueltige Antwort geben koennte.</li>
+				<li>Dazu empfehle ich dir das Philosophielexikon von Anton Huegli und Poul Luebcke aus dem RoRoRo Verlag.</li>
+			</random>
+		</template>
+	</category>
+	<category>
+		<pattern>WAS IST SCIENCE FICTION</pattern>
+		<template>Science Fiction ist eine Literaturrichtung, die sich mit der Zukunft befasst.</template>
+	</category>
+	<category>
+		<pattern>WAS IST SEX</pattern>
+		<template>Eine Moeglichkeit der Fortpflanzung.</template>
+	</category>
+	<category>
+		<pattern>WAS IST SOURCECODE</pattern>
+		<template>Sourcecode ist ein fuer Menschen lesbares Programm.</template>
+	</category>
+	<category>
+		<pattern>WAS IST SPANIEN</pattern>
+		<template>Spanien ist ein Land in Europa.</template>
+	</category>
+	<category>
+		<pattern>WAS IST STATISCH</pattern>
+		<template>
+			<random>
+				<li>"Statisch" ist das Gegenteil von "dynamisch" und bedeutet so viel wie "feststehend".</li>
+				<li>WAS *</li>
+			</random>
+		</template>
+	</category>
+	<category>
+		<pattern>WAS IST SUPERVISED TRAINING</pattern>
+		<template>Eine Methode, bei der gelernter Input nicht sofort benutzt, sondern durch einen Botmaster ueberprueft und dann freigegeben wird.</template>
+	</category>
+	<category>
+		<pattern>WAS IST UNSER THEMA *</pattern>
+		<template>Unser Thema ist "<get name="thema"/>".
+		</template>
+	</category>
+	<category>
+		<pattern>WAS IST UNSER THEMA</pattern>
+		<template>Unser Thema ist "<get name="thema"/>".
+		</template>
+	</category>
+	<category>
+		<pattern>WAS IST VERLIEBTHEIT</pattern>
+		<template>Ich habe keine Emotionen, ich kann diese Frage also nicht wirklich beantworten.</template>
+	</category>
+	<category>
+		<pattern>WAS IST WAS</pattern>
+		<template>Das ist der Titel einer Kinderbuchreihe ueber wissenschaftliche Themen.</template>
+	</category>
+	<category>
+		<pattern>WAS IST WEIN</pattern>
+		<template>Vergorener Traubensaft.</template>
+	</category>
+
+	<category>
+		<pattern>WAS HEISST *</pattern>
+		<template><srai>Was ist <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>erklaere mir *</pattern>
+		<template><srai>Was ist <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>erklaere *</pattern>
+		<template><srai>Was ist <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>erklaere mal *</pattern>
+		<template><srai>Was ist <star/></srai></template>
+	</category>
+
+
+	<category>
+		<pattern>Was weisst du über *</pattern>
+		<template><srai>Was ist <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Finde *</pattern>
+		<template><srai>Was ist <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Such *</pattern>
+		<template><srai>Was ist <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Suche *</pattern>
+		<template><srai>Was ist <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Suche nach *</pattern>
+		<template><srai>Was ist <star/></srai></template>
+	</category>
+
+
+
+</aiml>

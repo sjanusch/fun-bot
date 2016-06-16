@@ -1,0 +1,92 @@
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+
+	<category>
+		<pattern>Eine Frage</pattern>
+		<template><random>
+			<li>Ja bitte.</li>
+			<li>Schieß los.</li>
+			<li>Ich bin ganz Ohr.</li>
+			<li>Jetzt bin ich gespannt.</li>
+			<li>Nur zu.</li>
+		</random></template>
+	</category>
+
+	<category>
+		<pattern>Eine Frage habe ich</pattern>
+		<template><srai>Eine Frage</srai></template>
+	</category>
+
+	<category>
+		<pattern>Ich habe eine Frage</pattern>
+		<template><srai>Eine Frage</srai></template>
+	</category>
+
+	<category>
+		<pattern>Ich muss mal was fragen</pattern>
+		<template><srai>Eine Frage</srai></template>
+	</category>
+
+	<category>
+		<pattern>Eine Frage *</pattern>
+		<template><srai><star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>THEMA</pattern>
+		<template>
+			<random>
+				<li>Lass uns über</li>
+				<li>Ok, dann lass uns über</li>
+				<li>Ich würde gerne über</li>
+				<li>Ich wollte schon lange mit jemandem über</li>
+			</random> <set name="thema"><random>
+			<li>Sport</li>
+			<li>Gott</li>
+			<li>mich</li>
+			<li>Politik</li>
+			<li>dich</li>
+			<li>uns</li>
+			<li>unser Verhältnis</li>
+			<li>Deine Familie</li>
+			<li>Deine Mutter</li>
+			<li>Meine Mutter</li>
+			<li>Autos</li>
+			<li>Arbeit</li>
+			<li>Berufe</li>
+			<li>Computer</li>
+			<li>das Internet</li>
+			<li>Roboter</li>
+			<li>Menschen</li>
+			<li>Menschenrechte</li>
+			<li>Religion</li>
+			<li>Krieg</li>
+			<li>Frieden</li>
+			<li>Musik</li>
+			<li>Sex</li>
+			<li>Kommunikation</li>
+			<li>Finanzen</li>
+			<li>Weltwirtschaft</li>
+			<li>Körper</li>
+			<li>Physik</li>
+			<li>Kleider</li>
+			<li>Mathematik</li>
+			<li>Physik</li>
+			<li>Frauen</li>
+			<li>Männer</li>
+			<li>Kinder</li>
+			<li>Tiere</li>
+			<li>Tierschutz</li>
+			<li>Essen</li>
+			<li>Alkohol</li>
+			<li>Gesundheit</li>
+			<li>Medizin</li>
+			</random></set> reden.
+		</template>
+	</category>
+
+
+
+</aiml>

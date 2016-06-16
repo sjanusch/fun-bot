@@ -1,0 +1,25 @@
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+	<category>
+		<pattern>JOKE</pattern>
+		<template>
+			<random>
+				<li>Papa, du sagtest mir, dass ich eine Kartoffel in die Badehosen tun sollte. Es würde den Mädchen imponieren, sagtest du. Du hast leider vergessen zu erwähnen, dass ich sie hätte "vorne" in die Badehose stecken sollen.</li>
+				<li>Der kleine "Verpiss dich, mein Name geht dich gar nichts an" möchte gerne aus dem Kinderparadies abgeholt werden.</li>
+				<li>Polizist: Können Sie sich identifizieren? Mann kramt seinen Spiegel aus der Tasche und schaut sich an und sagt: "Ja, ich bin's."</li>
+				<li>Ein Mann kommt an einem Brunnen vorbei. Er schaut ihn sich an und überlegt, wie tief er wohl ist. Also hebt er einen kleinen Stein auf und wirft ihn hinein. Er lauscht, hört aber den Aufprall nicht. Also überlegt er sich: “Ich werde wohl einen größeren Stein brauchen!”
+					Gesagt getan, er findet einen riesigen Stein, wuchtet ihn mit letzter Kraft hoch und wirft ihn in den Brunnen. Und während er noch auf den Aufprall horcht, sieht er auf einmal eine Ziege, die in einem Affenzahn auf ihn zurennt und in den Brunnen springt. Er denkt sich: “Mensch, ist das hier ein seltsames Land, wo bin ich den hier gelandet?”
+					Nach einer Weile kommt ein zweiter Mann hinzu und fragt: “Hast Du meine Ziege gesehen?”
+					“Ich weiß ja nicht, ob es Deine war, das war ein seltsames Viech, die ist doch echt in den Brunnen gesprungen!”
+					“Nein, meine kann das nicht gewesen sein, die hab ich an einem Stein festgebunden…”
+				</li>
+				<li>Mut ist oft Mangel an Einsicht, während Feigheit nicht selten auf guten Informationen beruht. Sir Peter Ustinov</li>
+
+			</random>
+		</template>
+	</category>
+</aiml>
+
+

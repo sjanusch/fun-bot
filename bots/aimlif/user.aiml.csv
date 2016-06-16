@@ -1,0 +1,18 @@
+0,PERSOENLICHEFRAGEN,*,*,<random>#Newline				<li>Wo wurdest Du geboren?</li>#Newline				<li>Bist Du weiblich oder männlich?</li>#Newline				<li>Machst Du Sport?</li>#Newline				<li>Was war Dein Lieblingsfach in der Schule?</li>#Newline				<li>Was ist Deine Lieblingsfarbe?</li>#Newline				<li>Was ist dein Lieblingsgericht?</li>#Newline				<li>Was machst Du in Deiner Freizeit?</li>#Newline				<li>Wie groß bist Du?</li>#Newline				<li>Wann gehst Du schlafen?</li>#Newline				<li>Hast Du viele Freunde?</li>#Newline				<li>Was denkst Du über Politik?</li>#Newline				<li>Bist Du politisch engagiert?</li>#Newline				<li>Rauchst Du?</li>#Newline				<li>Magst Du Tiere?</li>#Newline				<li>Magst Du Computer?</li>#Newline				<li>Bist Du verliebt?</li>#Newline				<li>Magst Du Mathematik?</li>#Newline				<li>Magst Du Physik?</li>#Newline				<li>Interessiert Du Dich für Sport?</li>#Newline				<li>Interessiert Du Dich für Politik?</li>#Newline				<li>Interessiert Du Dich für Physik?</li>#Newline				<li>Interessiert Du Dich für Chemie?</li>#Newline				<li>Interessiert Du Dich für mich?</li>#Newline				<li>Interessiert Du Dich für Computer?</li>#Newline				<li>Interessiert Du Dich für Medizin?</li>#Newline			</random>,user.aiml
+0,FRAG MICH WAS PERSÖNLICHES,*,*,<srai>PERSOENLICHEFRAGEN</srai>,user.aiml
+0,IN *,WO WURDEST DU GEBOREN,*,<set name="geburtsort"> <random>#Newline			<li> ist sehr schön.</li>#Newline			<li> kenne ich jetzt nicht persönlich.</li>#Newline		</random></set>,user.aiml
+0,<SET>POSITIVE_ANSWER</SET>,MACHST DU SPORT,*,Welchen Sport machst Du denn?<think><set name="machtsport">true</set></think>,user.aiml
+0,*,WELCHEN SPORT MACHST DU DENN,*,<set name="sport"><star/></set>#Comma cool.,user.aiml
+0,<SET>NEGATIVE_ANSWER</SET>,MACHST DU SPORT,*,Tja#Comma ich auch nicht.<think><set name="machtsport">false</set></think>,user.aiml
+0,MAENNLICH,BIST DU MAENNLICH ODER WEIBLICH,*,<think><set name="gender">m</set></think><sr/>,user.aiml
+0,MANN,BIST DU MAENNLICH ODER WEIBLICH,*,<think><set name="gender">m</set></think><sr/>,user.aiml
+0,* MAENNLICH *,BIST DU MAENNLICH ODER WEIBLICH,*,<think><set name="gender">m</set></think><sr/>,user.aiml
+0,EIN MANN,BIST DU MAENNLICH ODER WEIBLICH,*,<think><set name="gender">m</set></think><sr/>,user.aiml
+0,WEIBLICH,BIST DU MAENNLICH ODER WEIBLICH,*,<think><set name="gender">f</set></think><sr/>,user.aiml
+0,* WEIBLICH,BIST DU MAENNLICH ODER WEIBLICH,*,<think><set name="gender">f</set></think><sr/>,user.aiml
+0,FRAU,BIST DU MAENNLICH ODER WEIBLICH,*,<think><set name="gender">f</set></think><sr/>,user.aiml
+0,* FRAU,BIST DU MAENNLICH ODER WEIBLICH,*,<think><set name="gender">f</set></think><sr/>,user.aiml
+0,EINE FRAU,BIST DU MAENNLICH ODER WEIBLICH,*,<think><set name="gender">f</set></think><sr/>,user.aiml
+0,ICH BIN EIN MANN,*,*,<think><set name="gender">m</set></think><sr/>,user.aiml
+0,ICH BIN MAENNLICH,*,*,<think><set name="gender">m</set></think><sr/>,user.aiml
+0,ICH BIN EIN TYP,*,*,<think><set name="gender">m</set></think><sr/>,user.aiml
