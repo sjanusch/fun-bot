@@ -2,7 +2,10 @@ package de.sjanusch.hipchat.rest;
 
 import com.google.inject.Inject;
 import de.sjanusch.configuration.HipchatConfiguration;
+import de.sjanusch.model.hipchat.Error;
 import de.sjanusch.model.hipchat.HipchatMessage;
+import de.sjanusch.model.hipchat.HipchatRestError;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.slf4j.Logger;
@@ -121,13 +124,7 @@ public class HipchatRestClientImpl implements HipchatRestClient {
   private void handleResponse(final Response response) {
     switch (response.getStatus()) {
       default:
-        logger.error("Unexpected return: " + response.getStatus() + ", " + response.readEntity(String.class));
-        break;
-      case 400:
-        logger.error("Unexpected return: " + response.getStatus() + ", " + response.readEntity(String.class));
-        break;
-      case 403:
-        logger.error("Unexpected return: " + response.getStatus() + ", " + response.readEntity(String.class));
+        this.sendResponseError(response);
         break;
       case 204:
         logger.debug("Message success");
@@ -138,6 +135,20 @@ public class HipchatRestClientImpl implements HipchatRestClient {
       case 200:
         logger.debug("Message success");
         break;
+    }
+  }
+
+  private void sendResponseError(final Response response) {
+    final String errorString = response.readEntity(String.class);
+    try {
+      final HipchatRestError hipchatRestError = new ObjectMapper().readValue(errorString, HipchatRestError.class);
+      final Error error = hipchatRestError.getError();
+      logger.error("Unexpected return: " + error.getCode() + ", " + error.getMessage() + ", " + error.getType());
+      final HipchatMessage hipchatMessage = new HipchatMessage(error.getType() + ": " + error.getMessage(), "html");
+      hipchatMessage.setColor("red");
+      this.hipchatRestApiSendMessage(hipchatMessage);
+    } catch (IOException e) {
+      logger.error("parsing hipchat JSON response: " + errorString);
     }
   }
 
