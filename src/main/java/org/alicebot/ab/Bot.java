@@ -121,21 +121,8 @@ public class Bot {
     MagicStrings.pannous_api_key = Utilities.getPannousAPIKey(this);
     MagicStrings.pannous_login = Utilities.getPannousLogin(this);
     addCategoriesFromAIML();
-    if ("auto".equals("csv2aiml")) addCategoriesFromAIMLIF();
-    else if ("auto".equals("chat-app")) {
-      if (MagicBooleans.trace_mode) System.out.println("Loading only AIMLIF files");
-      cnt = addCategoriesFromAIMLIF();
-    } else if (aimlDate.after(aimlIFDate)) {
-      if (MagicBooleans.trace_mode) System.out.println("AIML modified after AIMLIF");
-      cnt = addCategoriesFromAIML();
-      writeAIMLIFFiles();
-    } else {
-      addCategoriesFromAIMLIF();
-      if (brain.getCategories().size() == 0) {
-        System.out.println("No AIMLIF Files found.  Looking for AIML");
-        cnt = addCategoriesFromAIML();
-      }
-    }
+    //addCategoriesFromAIMLIF();
+    //writeAIMLIFFiles();
     Category b = new Category(0, "PROGRAM VERSION", "*", "*", MagicStrings.program_name_version, "update.aiml");
     brain.addCategory(b);
     brain.nodeStats();
