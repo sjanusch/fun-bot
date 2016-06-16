@@ -45,7 +45,7 @@ public class Bot {
     public String root_path = "c:/ab";
     public String bot_path = root_path+"/bots";
     public String bot_name_path = bot_path+"/super";
-    public String aimlif_path = bot_path+"/aiml";
+    public String aimlif_path = bot_path+"/aimlif";
     public String aiml_path = bot_path+"/aiml";
     public String config_path = bot_path+"/config";
     public String log_path = bot_path+"/log";
@@ -62,7 +62,7 @@ public class Bot {
         bot_name_path = bot_path+"/"+name;
         if (MagicBooleans.trace_mode) System.out.println("Name = "+name+" Path = "+bot_name_path);
         aiml_path = bot_name_path+"/aiml";
-        aimlif_path = bot_name_path+"/aiml";
+        aimlif_path = bot_name_path+"/aimlif";
         config_path = bot_name_path+"/config";
         log_path = bot_name_path+"/logs";
         sets_path = bot_name_path+"/sets";

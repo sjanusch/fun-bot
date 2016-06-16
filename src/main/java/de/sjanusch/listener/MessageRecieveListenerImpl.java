@@ -55,22 +55,6 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     final String actualUser = messageHelper.convertNames(from);
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
 
-    /*
-    AliceBot aliceBot= new AliceBot();
-    MagicStrings.setRootPath();
-
-    AIMLProcessor.extension =  new PCAIMLProcessorExtension();
-
-
-
-    aliceBot.mainFunction();
-      */
-
-
-    messageRecieverBase.sendMessageText(chat.chat(incomeMessage), actualUser);
-
-    return;
-           /*
     if (textHandler.containsHelloText(incomeMessage)) {
       this.handleHelloMessages(incomeMessage, actualUser);
       return;
@@ -96,8 +80,10 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
       return;
     }
 
-    this.handleRandomGeneratedText();
-  */
+
+    messageRecieverBase.sendMessageText(chat.chat(incomeMessage), actualUser);
+
+    return;
   }
 
 

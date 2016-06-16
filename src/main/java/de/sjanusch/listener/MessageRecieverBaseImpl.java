@@ -31,7 +31,7 @@ public class MessageRecieverBaseImpl implements MessageRecieverBase {
   @Override
   public void sendMessageText(final String text, final String username) {
     if (text != null && username != null) {
-      hipchatRequestHandler.sendMessage(new HipchatMessage(text));
+      hipchatRequestHandler.sendMessage(new HipchatMessage("@" + username + " " + text));
     }
   }
 
