@@ -19,6 +19,8 @@ package org.alicebot.ab;
         Boston, MA  02110-1301, USA.
 */
 
+import java.nio.file.Paths;
+
 /**
  * Global values for many strings in Program AB
  */
@@ -164,6 +166,22 @@ public class MagicStrings {
   public static String map_singular = "singular";
 
   public static String map_plural = "plural";
+
+  // paths
+  public static String root_path = getRootPath();
+
+  public static void setRootPath(String newRootPath) {
+    root_path = newRootPath;
+  }
+
+  public static void setRootPath() {
+    setRootPath(getRootPath());
+  }
+
+  private static String getRootPath() {
+    final String path = Paths.get("fun-bot").toAbsolutePath().toString();
+    return path.substring(0, path.lastIndexOf("fun-bot"));
+  }
 
 }
 

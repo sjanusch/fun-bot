@@ -158,10 +158,10 @@ public class Chat {
 
     response = AIMLProcessor.respond(input, that, topic, this);
     //MagicBooleans.trace("in chat.respond(), response: " + response);
-    String normResponse = bot.getPreProcessor().normalize(response);
+    String normResponse = bot.preProcessor.normalize(response);
     //MagicBooleans.trace("in chat.respond(), normResponse: " + normResponse);
     if (MagicBooleans.jp_tokenize) normResponse = JapaneseUtils.tokenizeSentence(normResponse);
-    String sentences[] = bot.getPreProcessor().sentenceSplit(normResponse);
+    String sentences[] = bot.preProcessor.sentenceSplit(normResponse);
     for (int i = 0; i < sentences.length; i++) {
       that = sentences[i];
       //System.out.println("That "+i+" '"+that+"'");
@@ -200,10 +200,10 @@ public class Chat {
     String response = "";
     matchTrace = "";
     try {
-      String normalized = bot.getPreProcessor().normalize(request);
+      String normalized = bot.preProcessor.normalize(request);
       normalized = JapaneseUtils.tokenizeSentence(normalized);
       //MagicBooleans.trace("in chat.multisentenceRespond(), normalized: " + normalized);
-      String sentences[] = bot.getPreProcessor().sentenceSplit(normalized);
+      String sentences[] = bot.preProcessor.sentenceSplit(normalized);
       History<String> contextThatHistory = new History<String>("contextThat");
       for (int i = 0; i < sentences.length; i++) {
         //System.out.println("Human: "+sentences[i]);

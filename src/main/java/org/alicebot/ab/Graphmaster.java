@@ -535,7 +535,7 @@ public class Graphmaster {
             if (DEBUG) System.out.println("in Graphmaster.setMatch, setMatch starWords =\""+starWords+"\"");
             for (Path qath = path.next; qath != null &&  !currentWord.equals("<THAT>") && !currentWord.equals("<TOPIC>") && length <= aimlSet.maxLength; qath = qath.next) {
                 if (DEBUG) System.out.println("in Graphmaster.setMatch, qath.word = "+qath.word);
-                String phrase = bot.getPreProcessor().normalize(starWords.trim()).toUpperCase();
+                String phrase = bot.preProcessor.normalize(starWords.trim()).toUpperCase();
                 if (DEBUG) System.out.println("in Graphmaster.setMatch, setMatch trying \""+phrase+"\" in "+setName);
                 if (aimlSet.contains(phrase) && (matchedNode = match(qath, nextNode, input, starState, starIndex + 1, inputStars, thatStars, topicStars, matchTrace)) != null) {
                     setStars(starWords, starIndex, starState, inputStars, thatStars, topicStars);
