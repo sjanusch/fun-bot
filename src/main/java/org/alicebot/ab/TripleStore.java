@@ -29,9 +29,9 @@ public class TripleStore {
         public Triple(String s, String p, String o) {
 			Bot bot = TripleStore.this.bot;
             if (bot != null) {
-                s = bot.preProcessor.normalize(s);
-                p = bot.preProcessor.normalize(p);
-                o = bot.preProcessor.normalize(o);
+                s = bot.getPreProcessor().normalize(s);
+                p = bot.getPreProcessor().normalize(p);
+                o = bot.getPreProcessor().normalize(o);
             }
             if (s != null && p != null && o != null)  {
                 //System.out.println("New triple "+s+":"+p+":"+o);

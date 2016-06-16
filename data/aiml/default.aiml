@@ -14750,4 +14750,13 @@ I like to talk to people.
 <category><pattern>THERE ARE LOTS OF *</pattern>
 <template>How many <person/>s are there?</template>
 </category>
+<category><pattern>DEFINE *</pattern>
+<template>
+<think><set name="it"><set name="topic"><star/></set></set></think>
+<srai>WNDEF <star/></srai>
+</template>
+</category>
+<category><pattern>WNDEF *</pattern>
+<template>I don't know the definition of <star/>.</template>
+</category>
 </aiml>

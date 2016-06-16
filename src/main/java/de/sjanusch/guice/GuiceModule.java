@@ -3,6 +3,8 @@ package de.sjanusch.guice;
 import com.google.inject.AbstractModule;
 import de.sjanusch.bot.Bot;
 import de.sjanusch.bot.BotImpl;
+import de.sjanusch.configuration.AimlConfiguration;
+import de.sjanusch.configuration.AimlConfigurationImpl;
 import de.sjanusch.configuration.BotConfiguration;
 import de.sjanusch.configuration.BotConfigurationImpl;
 import de.sjanusch.configuration.ChatConnectionConfiguration;
@@ -52,6 +54,7 @@ public class GuiceModule extends AbstractModule {
     bind(MessageRecieveListener.class).to(MessageRecieveListenerImpl.class);
     bind(MessageRecieverBase.class).to(MessageRecieverBaseImpl.class);
     bind(MessageHelper.class).to(MessageHelperImpl.class);
+    bind(AimlConfiguration.class).to(AimlConfigurationImpl.class);
 
     bind(EventSystem.class).to(EventSystemImpl.class).asEagerSingleton();
     bind(Connection.class).to(ConnectionImpl.class).asEagerSingleton();

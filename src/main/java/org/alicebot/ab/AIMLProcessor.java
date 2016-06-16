@@ -20,6 +20,7 @@ package org.alicebot.ab;
 */
 
 import org.alicebot.ab.utils.*;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -35,6 +36,8 @@ import java.util.Set;
  * https://docs.google.com/document/d/1wNT25hJRyupcG51aO89UcQEiG-HkXRXusukADpFnDs4/pub
  */
 public class AIMLProcessor {
+
+  private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AIMLProcessor.class);
 
 	static private boolean DEBUG = false;
 
@@ -190,13 +193,13 @@ public class AIMLProcessor {
      * @return              bot's reply.
      */
  public static String respond(String input, String that, String topic, Chat chatSession, int srCnt) {
-	 MagicBooleans.trace("input: " + input + ", that: " + that + ", topic: " + topic + ", chatSession: " + chatSession + ", srCnt: " + srCnt);
+   logger.trace("input: " + input + ", that: " + that + ", topic: " + topic + ", chatSession: " + chatSession + ", srCnt: " + srCnt);
         String response;
         if (input == null || input.length()==0) input = MagicStrings.null_input;
         sraiCount = srCnt;
         response = MagicStrings.default_bot_response;
          try {
-            Nodemapper leaf = chatSession.bot.brain.match(input, that, topic);
+            Nodemapper leaf = chatSession.bot.getBrain().match(input, that, topic);
             if (leaf == null) {return(response);}
             ParseState ps = new ParseState(0, chatSession, input, that, topic, leaf);
             //chatSession.matchTrace += leaf.category.getTemplate()+"\n";
@@ -344,14 +347,14 @@ public class AIMLProcessor {
             String result = evalTagContent(node, ps, null);
             result = result.trim();
             result = result.replaceAll("(\r\n|\n\r|\r|\n)", " ");
-            result = ps.chatSession.bot.preProcessor.normalize(result);
+            result = ps.chatSession.bot.getPreProcessor().normalize(result);
             result = JapaneseUtils.tokenizeSentence(result);
             String topic = ps.chatSession.predicates.get("topic");     // the that stays the same, but the topic may have changed
             if (MagicBooleans.trace_mode) {
                 System.out.println(trace_count+". <srai>"+result+"</srai> from "+ps.leaf.category.inputThatTopic()+" topic="+topic+") ");
                 trace_count++;
             }
-            Nodemapper leaf = ps.chatSession.bot.brain.match(result, ps.that, topic);
+            Nodemapper leaf = ps.chatSession.bot.getBrain().match(result, ps.that, topic);
             if (leaf == null) {return(response);}
             //System.out.println("Srai returned "+leaf.category.inputThatTopic()+":"+leaf.category.getTemplate());
             response = evalTemplate(leaf.category.getTemplate(), new ParseState(ps.depth+1, ps.chatSession, ps.input, ps.that, topic, leaf));
@@ -463,11 +466,11 @@ public class AIMLProcessor {
         String value=result.trim();
         if (predicateName != null) {
 			ps.chatSession.predicates.put(predicateName, result);
-			MagicBooleans.trace("Set predicate "+predicateName+" to "+result+" in "+ps.leaf.category.inputThatTopic());
+          logger.trace("Set predicate "+predicateName+" to "+result+" in "+ps.leaf.category.inputThatTopic());
 		}
         if (varName != null) {
 			ps.vars.put(varName, result);
-			MagicBooleans.trace("Set var "+varName+" to "+value+" in "+ps.leaf.category.inputThatTopic());
+          logger.trace("Set var "+varName+" to "+value+" in "+ps.leaf.category.inputThatTopic());
 		}
         if (ps.chatSession.bot.pronounSet.contains(predicateName)) {
 			result = predicateName;
@@ -644,16 +647,16 @@ public class AIMLProcessor {
         return ps.chatSession.customerId;
     }
     /**
-     * return the size of the robot brain (number of AIML categories loaded).
+     * return the size of the robot getBrain() (number of AIML categories loaded).
      * implements {@code <size/>}
      *
      *
      * @param node     current XML parse node
      * @param ps       AIML parse state
-     * @return         bot brain size
+     * @return         bot getBrain() size
      */
     private static String size(Node node, ParseState ps) {
-        int size = ps.chatSession.bot.brain.getCategories().size();
+        int size = ps.chatSession.bot.getBrain().getCategories().size();
         return String.valueOf(size);
     }
     /**
@@ -666,7 +669,7 @@ public class AIMLProcessor {
      * @return         bot vocabulary size
      */
     private static String vocabulary(Node node, ParseState ps) {
-        int size = ps.chatSession.bot.brain.getVocabulary().size();
+        int size = ps.chatSession.bot.getBrain().getVocabulary().size();
         return String.valueOf(size);
     }
     /**
@@ -802,7 +805,7 @@ public class AIMLProcessor {
         //MagicBooleans.trace("AIMLPreprocessor.normalize(node: " + node + ", ps: " + ")");
         String result = evalTagContent(node, ps, null);
         //MagicBooleans.trace("in AIMLPreprocessor.normalize(), result: " + result);
-		String returning = ps.chatSession.bot.preProcessor.normalize(result);
+		String returning = ps.chatSession.bot.getPreProcessor().normalize(result);
 		//MagicBooleans.trace("in AIMLPreprocessor.normalize(), returning: " + returning);
         return returning;
     }
@@ -816,7 +819,7 @@ public class AIMLProcessor {
      */
     private static String denormalize(Node node, ParseState ps) {            // AIML 2.0
         String result = evalTagContent(node, ps, null);
-        return ps.chatSession.bot.preProcessor.denormalize(result);
+        return ps.chatSession.bot.getPreProcessor().denormalize(result);
     }
     /**
      * evaluate tag contents and return result in upper case
@@ -881,7 +884,7 @@ public class AIMLProcessor {
           result = evalTagContent(node, ps, null);
         else result = ps.starBindings.inputStars.star(0);   // for <person/>
         result = " "+result+" ";
-        result = ps.chatSession.bot.preProcessor.person(result);
+        result = ps.chatSession.bot.getPreProcessor().person(result);
         return result.trim();
     }
     /**
@@ -898,7 +901,7 @@ public class AIMLProcessor {
             result = evalTagContent(node, ps, null);
         else result = ps.starBindings.inputStars.star(0);   // for <person2/>
         result = " "+result+" ";
-        result = ps.chatSession.bot.preProcessor.person2(result);
+        result = ps.chatSession.bot.getPreProcessor().person2(result);
         return result.trim();
     }
     /**
@@ -912,7 +915,7 @@ public class AIMLProcessor {
     private static String gender(Node node, ParseState ps) {
         String result = evalTagContent(node, ps, null);
         result = " "+result+" ";
-        result = ps.chatSession.bot.preProcessor.gender(result);
+        result = ps.chatSession.bot.getPreProcessor().gender(result);
         return result.trim();
     }
 
@@ -999,8 +1002,8 @@ public class AIMLProcessor {
                     c = new Category(0, pattern, that, "*", template, MagicStrings.learnf_aiml_file);
                     ps.chatSession.bot.learnfGraph.addCategory(c);
                 }
-                ps.chatSession.bot.brain.addCategory(c);
-                  //ps.chatSession.bot.brain.printgraph();
+                ps.chatSession.bot.getBrain().addCategory(c);
+                  //ps.chatSession.bot.getBrain().printgraph();
             }
         }
         return "";
@@ -1253,7 +1256,7 @@ public class AIMLProcessor {
         } catch (Exception ex) {
            ex.printStackTrace();
         }
-		MagicBooleans.trace("in AIMLProcessor.javascript, returning result: " + result);
+      logger.trace("in AIMLProcessor.javascript, returning result: " + result);
         return result;
     }
 
@@ -1283,7 +1286,7 @@ public class AIMLProcessor {
     }
     public static String rest(Node node, ParseState ps) {
         String content = evalTagContent(node, ps, null);
-        content = ps.chatSession.bot.preProcessor.normalize(content);
+        content = ps.chatSession.bot.getPreProcessor().normalize(content);
         return restWords(content);
 
     }
@@ -1445,7 +1448,7 @@ public class AIMLProcessor {
      * @return              true or false.
      */
     public static boolean validTemplate(String template) {
-		MagicBooleans.trace("AIMLProcessor.validTemplate(template: " + template + ")");
+      logger.trace("AIMLProcessor.validTemplate(template: " + template + ")");
         try {
             template = "<template>"+template+"</template>";
             DomUtils.parseString(template);
