@@ -55,32 +55,6 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     final String actualUser = messageHelper.convertNames(from);
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
 
-    if (textHandler.containsHelloText(incomeMessage)) {
-      this.handleHelloMessages(incomeMessage, actualUser);
-      return;
-    }
-
-    if (textHandler.containsByeText(incomeMessage)) {
-      this.handleByeMessages(incomeMessage, actualUser);
-      return;
-    }
-
-    if (textHandler.containsThankYouText(incomeMessage)) {
-      this.handleThankYouMessages(incomeMessage, actualUser);
-      return;
-    }
-
-    if (textHandler.containsPleaseText(incomeMessage)) {
-      this.handlePleaseMessages(incomeMessage, actualUser);
-      return;
-    }
-
-    if (messageRecieverBase.isMessageForBot(incomeMessage)) {
-      this.handleRandomText(incomeMessage, actualUser);
-      return;
-    }
-
-
     messageRecieverBase.sendMessageText(chat.chat(incomeMessage), actualUser);
 
     return;
