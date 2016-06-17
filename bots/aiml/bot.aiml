@@ -116,5 +116,53 @@ So weit so gut, genug gelabert. Ich glaube wir werden uns gut verstehen.
 
 	</topic>
 
+	<category>
+		<pattern>dei mudder *</pattern>
+		<template>Was hast Du über mei mudder zu sagen, alder? Ich denke dei mutter <star/> <srai>DEIMUDDERWITZ</srai></template>
+	</category>
 
+	<category>
+		<pattern>dei mudder</pattern>
+		<template>Was hast Du über mei mudder zu sagen, alder? <srai>DEIMUDDERWITZ</srai></template>
+	</category>
+
+	<category>
+		<pattern>DEIMUDDERWITZ</pattern>
+		<template><random>
+			<li>Deine Mutter wurde von Elfenbeinhändlern erschossen.</li>
+			<li>Deine Mudder arbeitet in der Losbude als Niete.</li>
+			<li>Deine Mudder beantragt bei Monopoly Hartz 4.</li>
+			<li>Deine Mutter zupft sich die Augenbrauen mit einer Rohrzange.</li>
+			
+			<li>Deine Mudder hat Homezone auf’m Kiez</li>
+			
+			<li>Deine Mutter ist zu hässlich für Telefonsex.</li>
+			
+			<li>Deine Mutter wollte dich eigentlich nach deinem Erzeuger benennen, aber GANGBANG ist ein blöder Name.</li>
+			
+			<li>Deine Mudda heißt Bernd und boxt aufm Rummel.</li>
+			
+			<li>Deine Mutter legt Karten auf Astro-TV</li>
+			
+			<li>Deine Mutter ist so versoffen, die fragt bei McDonalds nach der Weinkarte.</li>
+			
+			<li>Deine Mudda liegt besoffen vor ALDI und stinkt nach Bockwurst!</li>
+			
+			<li>Deine Mudder sitzt bei Aldi unter der Kasse und macht “Piep”.</li>
+			
+			<li>Deine Mudder is wie Arcor, unter der Woche billiger und am Wochenende umsonst.</li>
+			
+			<li>Deine Mudda hat Orangenhaut mit ganzen Früchten</li>
+			
+			<li>Deine Mutter zupft sich die Augenbrauen mit einer Rohrzange.</li>
+			
+			<li>Deine Mutter schickt Problemberichte an Microsoft und wartet auf Antwort</li>
+			
+			<li>Bei deiner Mudder liegt ein Gästebuch neben dem Bett.</li>
+			
+			<li>Deine Mudder beantragt bei Monopoly Hartz 4.</li>
+			
+			<li>Um deine Mutter zu überfahren, muss man 2 mal tanken</li>
+		</random></template>
+	</category>
 </aiml>

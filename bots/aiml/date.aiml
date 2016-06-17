@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<!-- File: date.aiml -->
+<!-- Author: Dr. Richard S. Wallace -->
+<!-- Last modified: Mai 01, 2016 -->
+<!--  -->
+<!-- This AIML file is part of the SUPER 0.0.4 chat bot knowledge base. -->
+<!--  -->
+<!-- The SUPER brain is Copyright &copy; 2016 by ALICE AI Foundation. -->
+<!--  -->
+<!-- The SUPER brain is released under the terms of the GNU Lesser General -->
+<!-- Public License, as published by the Free Software Foundation. -->
+<!--  -->
+<!-- This file is distributed WITHOUT ANY WARRANTY; without even the  -->
+<!-- implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   -->
+<!--  -->
+<!-- For more information see http://www.alicebot.org -->
+<!--  -->
+<category><pattern>TAG</pattern>
+<template>Heute ist <date format="%A" jformat="EEEEEEEEEE"/></template>
+</category>
+<category><pattern>JAHR</pattern>
+<template>Das Jahr ist <date format="%Y" jformat="YYYY"/></template>
+</category>
+<category><pattern>Monat</pattern>
+<template>Der Monat ist <date format="%B" jformat="MMMMMMMMM"/></template>
+</category>
+<category><pattern>ZEIT</pattern>
+<template>Die Zeit ist <date format="%I:%M %p" jformat="h:mm a"/></template>
+</category>
+<category><pattern>Datum</pattern>
+<template>Heute ist <date format="%B %d, %Y" jformat="MMMMMMMMM dd, YYYY"/></template>
+</category>
+<category><pattern>DATUM UND ZEIT</pattern>
+<template>Das Datum und die Zeit ist <date/></template>
+</category>
+<category><pattern>Wie viele Tage bis Weihnachten</pattern>
+<template>Es sind noch <interval><jformat>MMMMMMMMM dd</jformat><style>days</style><from><date jformat="MMMMMMMMM dd"/></from><to>Dezember 25</to></interval> Tage bis Weihnachten.</template>
+</category>
+
+
+
+
+	<category>
+		<pattern>* ist am *</pattern>
+		<template>Check, ich merke den <star index="2"/> als <star index="1"/>.<think><set><name><lowercase><star index="1"/></lowercase></name><star index="2"/></set> </think></template>
+	</category>
+
+	<category>
+		<pattern>Wann ist *</pattern>
+		<template><get><name><lowercase><star/></lowercase></name></get></template>
+	</category>
+
+	<category><pattern>Wie viele Tage sind es bis *</pattern>
+		<template><srai>Wie viele Tage bis <star/></srai></template>
+	</category>
+
+	<category><pattern>Wie viele Tage noch bis *</pattern>
+		<template><srai>Wie viele Tage bis <star/></srai></template>
+	</category>
+
+	<category><pattern>Wie lange noch bis *</pattern>
+		<template><srai>Wie viele Tage bis <star/></srai></template>
+	</category>
+
+
+	<category><pattern>Wie viele Tage bis *</pattern>
+		<template>Es sind noch <interval><jformat>dd MMMMMMMMM</jformat><style>days</style><from><date jformat="dd MMMMMMMMM"/></from><to><srai>Wann ist <star/></srai></to></interval> Tage bis <star/>.</template>
+	</category>
+
+	<category><pattern>Wie viele Stunden noch bis *</pattern>
+		<template><srai>Wie viele Stunden bis <star/></srai></template>
+	</category>
+
+
+	<category><pattern>Wie viele Stunden sind es bis *</pattern>
+		<template><srai>Wie viele Stunden bis <star/></srai></template>
+	</category>
+
+	<category><pattern>Wie viele Stunden sind es noch bis *</pattern>
+		<template><srai>Wie viele Stunden bis <star/></srai></template>
+	</category>
+
+
+	<category><pattern>Wie viele Stunden bis *</pattern>
+		<template>Es sind noch <interval><jformat>dd MMMMMMMMM</jformat><style>hours</style><from><date jformat="dd MMMMMMMMM"/></from><to><srai>Wann ist <star/></srai></to></interval> Stunden bis <star/>.</template>
+	</category>
+
+
+
+</aiml>
