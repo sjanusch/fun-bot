@@ -1,26 +1,8 @@
 package org.alicebot.ab;
-/* Program AB Reference AIML 2.0 implementation
-        Copyright (C) 2013 ALICE A.I. Foundation
-        Contact: info@alicebot.org
-        Contact: info@alicebot.org
-
-        This library is free software; you can redistribute it and/or
-        modify it under the terms of the GNU Library General Public
-        License as published by the Free Software Foundation; either
-        version 2 of the License, or (at your option) any later version.
-
-        This library is distributed in the hope that it will be useful,
-        but WITHOUT ANY WARRANTY; without even the implied warranty of
-        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-        Library General Public License for more details.
-
-        You should have received a copy of the GNU Library General Public
-        License along with this library; if not, write to the
-        Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
-        Boston, MA  02110-1301, USA.
-*/
 
 import org.alicebot.ab.utils.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -38,47 +20,39 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Class representing the AIML bot
- */
 public class Bot {
 
-  public final Properties properties = new Properties();
+  private final Properties properties = new Properties();
 
-  public final PreProcessor preProcessor;
+  private final PreProcessor preProcessor;
 
-  public final Graphmaster brain;
+  private final Graphmaster brain;
 
-  public Graphmaster learnfGraph;
+  private Graphmaster learnfGraph;
 
-  public Graphmaster learnGraph;
+  private Graphmaster learnGraph;
 
-  // public Graphmaster unfinishedGraph;
-  //  public final ArrayList<Category> categories;
+  private HashMap<String, AIMLSet> setMap = new HashMap<String, AIMLSet>();
 
-  public String name = "alice";
+  private HashMap<String, AIMLMap> mapMap = new HashMap<String, AIMLMap>();
 
-  public HashMap<String, AIMLSet> setMap = new HashMap<String, AIMLSet>();
+  private HashSet<String> pronounSet = new HashSet<String>();
 
-  public HashMap<String, AIMLMap> mapMap = new HashMap<String, AIMLMap>();
+  private String bot_path = this.getRootPath() + "bots";
 
-  public HashSet<String> pronounSet = new HashSet<String>();
+  private String aimlif_path = bot_path + "/aimlif";
 
-  public String root_path;
+  private String aiml_path = bot_path + "/aiml";
 
-  public String bot_path = this.getRootPath() + "bots";
+  private String config_path = bot_path + "/config";
 
-  public String aimlif_path = bot_path + "/aimlif";
+  private String log_path = bot_path + "/log";
 
-  public String aiml_path = bot_path + "/aiml";
+  private String sets_path = bot_path + "/sets";
 
-  public String config_path = bot_path + "/config";
+  private String maps_path = bot_path + "/maps";
 
-  public String log_path = bot_path + "/log";
-
-  public String sets_path = bot_path + "/sets";
-
-  public String maps_path = bot_path + "/maps";
+  private static final Logger logger = LoggerFactory.getLogger(Bot.class);
 
   private String getRootPath() {
     final String path = Paths.get("fun-bot").toAbsolutePath().toString();
@@ -87,18 +61,14 @@ public class Bot {
 
   public Bot() {
     int cnt = 0;
-    int elementCnt = 0;
 
     this.brain = new Graphmaster(this);
-
     this.learnfGraph = new Graphmaster(this, "learnf");
     this.learnGraph = new Graphmaster(this, "learn");
-    //      this.unfinishedGraph = new Graphmaster(this);
-    //  this.categories = new ArrayList<Category>();
 
     preProcessor = new PreProcessor(this);
     addProperties();
-    cnt = addAIMLSets();
+    addAIMLSets();
     if (MagicBooleans.trace_mode) System.out.println("Loaded " + cnt + " set elements.");
     cnt = addAIMLMaps();
     if (MagicBooleans.trace_mode) System.out.println("Loaded " + cnt + " map elements");
@@ -128,6 +98,50 @@ public class Bot {
     brain.nodeStats();
     learnfGraph.nodeStats();
 
+  }
+
+  public Properties getProperties() {
+    return properties;
+  }
+
+  public PreProcessor getPreProcessor() {
+    return preProcessor;
+  }
+
+  public Graphmaster getBrain() {
+    return brain;
+  }
+
+  public Graphmaster getLearnfGraph() {
+    return learnfGraph;
+  }
+
+  public Graphmaster getLearnGraph() {
+    return learnGraph;
+  }
+
+  public HashMap<String, AIMLSet> getSetMap() {
+    return setMap;
+  }
+
+  public HashMap<String, AIMLMap> getMapMap() {
+    return mapMap;
+  }
+
+  public HashSet<String> getPronounSet() {
+    return pronounSet;
+  }
+
+  public String getConfig_path() {
+    return config_path;
+  }
+
+  public String getMaps_path() {
+    return maps_path;
+  }
+
+  public String getSets_path() {
+    return sets_path;
   }
 
   HashSet<String> getPronouns() {
@@ -496,8 +510,7 @@ public class Bot {
   /**
    * Load all AIML Sets
    */
-  int addAIMLSets() {
-    int cnt = 0;
+  private void addAIMLSets() {
     Timer timer = new Timer();
     timer.start();
     try {
@@ -511,20 +524,21 @@ public class Bot {
           if (listOfFile.isFile()) {
             file = listOfFile.getName();
             if (file.endsWith(".txt") || file.endsWith(".TXT")) {
-              if (MagicBooleans.trace_mode) System.out.println(file);
+              logger.debug(file);
               String setName = file.substring(0, file.length() - ".txt".length());
-              if (MagicBooleans.trace_mode) System.out.println("Read AIML Set " + setName);
+              logger.debug("Read AIML Set " + setName);
               AIMLSet aimlSet = new AIMLSet(setName, this);
-              cnt += aimlSet.readAIMLSet(this);
+              aimlSet.readAIMLSet(this);
               setMap.put(setName, aimlSet);
             }
           }
         }
-      } else System.out.println("addAIMLSets: " + sets_path + " does not exist.");
+      } else {
+        logger.debug("addAIMLSets: " + sets_path + " does not exist.");
+      }
     } catch (Exception ex) {
-      ex.printStackTrace();
+      logger.error("Error adding AIML Set " + ex.getMessage());
     }
-    return cnt;
   }
 
   /**

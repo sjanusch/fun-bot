@@ -1,6 +1,6 @@
 package de.sjanusch.protocol;
 
-import de.sjanusch.flow.MessageFlow;
+import org.alicebot.ab.Chat;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,11 +12,11 @@ import java.util.Map;
  */
 public class MessageProtocolImpl implements MessageProtocol {
 
-    private Map<String, MessageFlow> messageProtocol = new HashMap<>();
+    private Map<String, Chat> messageProtocol = new HashMap<>();
 
-    public void addFlowForUser(final String username, final MessageFlow flow) {
+    public void addFlowForUser(final String username, final Chat chat) {
         if (!messageProtocol.containsKey(username)) {
-            messageProtocol.put(username, flow);
+            messageProtocol.put(username, chat);
         }
     }
 
@@ -26,10 +26,10 @@ public class MessageProtocolImpl implements MessageProtocol {
         }
     }
 
-    public MessageFlow getCurrentFlowForUser(final String username) {
+    public Chat getCurrentFlowForUser(final String username) {
         if (messageProtocol.containsKey(username)) {
-            final MessageFlow messageFlow = messageProtocol.get(username);
-            return messageFlow;
+            final Chat chat = messageProtocol.get(username);
+            return chat;
         }
         return null;
     }

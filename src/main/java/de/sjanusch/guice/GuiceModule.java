@@ -29,6 +29,8 @@ import de.sjanusch.networking.ChatClient;
 import de.sjanusch.networking.ChatClientImpl;
 import de.sjanusch.networking.Connection;
 import de.sjanusch.networking.ConnectionImpl;
+import de.sjanusch.protocol.MessageProtocol;
+import de.sjanusch.protocol.MessageProtocolImpl;
 import de.sjanusch.runner.BotRunner;
 import de.sjanusch.runner.BotRunnerImpl;
 import de.sjanusch.texte.TextHandler;
@@ -55,5 +57,6 @@ public class GuiceModule extends AbstractModule {
 
     bind(EventSystem.class).to(EventSystemImpl.class).asEagerSingleton();
     bind(Connection.class).to(ConnectionImpl.class).asEagerSingleton();
+    bind(MessageProtocol.class).to(MessageProtocolImpl.class).asEagerSingleton();
   }
 }

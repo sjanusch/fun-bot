@@ -24,17 +24,17 @@ public class Chat {
 
   private History<String> responseHistory = new History<String>("response");
 
-  public History<String> inputHistory = new History<String>("input");
+  private History<String> inputHistory = new History<String>("input");
 
-  public Predicates predicates = new Predicates();
+  private Predicates predicates = new Predicates();
 
-  public boolean locationKnown = false;
+  private boolean locationKnown = false;
 
-  public String longitude;
+  private String longitude;
 
-  public String latitude;
+  private String latitude;
 
-  public TripleStore tripleStore = new TripleStore("anon", this);
+  private TripleStore tripleStore = new TripleStore("anon", this);
 
   private static final Logger logger = LoggerFactory.getLogger(Chat.class);
 
@@ -52,12 +52,58 @@ public class Chat {
     predicates.put("jsenabled", "true");
   }
 
-  /**
-   * Load all predicate defaults
-   */
-  void addPredicates() {
+  public Bot getBot() {
+    return bot;
+  }
+
+  public String getCustomerId() {
+    return customerId;
+  }
+
+  public History<History> getThatHistory() {
+    return thatHistory;
+  }
+
+  public History<String> getRequestHistory() {
+    return requestHistory;
+  }
+
+  public History<String> getResponseHistory() {
+    return responseHistory;
+  }
+
+  public History<String> getInputHistory() {
+    return inputHistory;
+  }
+
+  public Predicates getPredicates() {
+    return predicates;
+  }
+
+  public boolean isLocationKnown() {
+    return locationKnown;
+  }
+
+  public TripleStore getTripleStore() {
+    return tripleStore;
+  }
+
+  public String getLatitude() {
+    return latitude;
+  }
+
+  public String getLongitude() {
+    return longitude;
+  }
+
+  public String chat(String test) {
+    String response = multisentenceRespond(test);
+    return response;
+  }
+
+  private void addPredicates() {
     try {
-      predicates.getPredicateDefaults(bot.config_path + "/predicates.txt");
+      predicates.getPredicateDefaults(bot.getConfig_path() + "/predicates.txt");
     } catch (Exception ex) {
       ex.printStackTrace();
     }
@@ -65,8 +111,8 @@ public class Chat {
 
   private int addTriples() {
     int tripleCnt = 0;
-    logger.debug("Loading Triples from " + bot.config_path + "/triples.txt");
-    File f = new File(bot.config_path + "/triples.txt");
+    logger.debug("Loading Triples from " + bot.getConfig_path() + "/triples.txt");
+    File f = new File(bot.getConfig_path() + "/triples.txt");
     if (f.exists())
       try {
         InputStream is = new FileInputStream(f);
@@ -91,11 +137,6 @@ public class Chat {
     return tripleCnt;
   }
 
-  public String chat(String test) {
-    String response = multisentenceRespond(test);
-    return response;
-  }
-
   private String respond(String input, String that, String topic, History contextThatHistory) {
     logger.debug("chat.respond(input: " + input + ", that: " + that + ", topic: " + topic + ", contextThatHistory: " + contextThatHistory + ")");
     boolean repetition = true;
@@ -114,10 +155,10 @@ public class Chat {
 
     response = AIMLProcessor.respond(input, that, topic, this);
     logger.debug("in chat.respond(), response: " + response);
-    String normResponse = bot.preProcessor.normalize(response);
+    String normResponse = bot.getPreProcessor().normalize(response);
     logger.debug("in chat.respond(), normResponse: " + normResponse);
     if (MagicBooleans.jp_tokenize) normResponse = JapaneseUtils.tokenizeSentence(normResponse);
-    String sentences[] = bot.preProcessor.sentenceSplit(normResponse);
+    String sentences[] = bot.getPreProcessor().sentenceSplit(normResponse);
     for (int i = 0; i < sentences.length; i++) {
       that = sentences[i];
       logger.debug("That " + i + " '" + that + "'");
@@ -129,7 +170,7 @@ public class Chat {
     return result;
   }
 
-  String respond(String input, History<String> contextThatHistory) {
+  private String respond(String input, History<String> contextThatHistory) {
     History hist = thatHistory.get(0);
     String that;
     if (hist == null) that = "unknown";
@@ -137,14 +178,14 @@ public class Chat {
     return respond(input, that, predicates.get("topic"), contextThatHistory);
   }
 
-  public String multisentenceRespond(String request) {
+  private String multisentenceRespond(String request) {
     logger.debug("chat.multisentenceRespond(request: " + request + ")");
     String response = "";
     try {
-      String normalized = bot.preProcessor.normalize(request);
+      String normalized = bot.getPreProcessor().normalize(request);
       normalized = JapaneseUtils.tokenizeSentence(normalized);
       logger.debug("in chat.multisentenceRespond(), normalized: " + normalized);
-      String sentences[] = bot.preProcessor.sentenceSplit(normalized);
+      String sentences[] = bot.getPreProcessor().sentenceSplit(normalized);
       History<String> contextThatHistory = new History<String>("contextThat");
       for (int i = 0; i < sentences.length; i++) {
         logger.debug("Human: " + sentences[i]);
@@ -168,25 +209,5 @@ public class Chat {
     }
     logger.debug("in chat.multisentenceRespond(), returning: " + response);
     return response;
-  }
-
-  public Bot getBot() {
-    return bot;
-  }
-
-  public String getCustomerId() {
-    return customerId;
-  }
-
-  public History<History> getThatHistory() {
-    return thatHistory;
-  }
-
-  public History<String> getRequestHistory() {
-    return requestHistory;
-  }
-
-  public History<String> getResponseHistory() {
-    return responseHistory;
   }
 }

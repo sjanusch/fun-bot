@@ -1,6 +1,6 @@
 package de.sjanusch.protocol;
 
-import de.sjanusch.flow.MessageFlow;
+import org.alicebot.ab.Chat;
 
 /**
  * Created by Sandro Janusch
@@ -9,10 +9,10 @@ import de.sjanusch.flow.MessageFlow;
  */
 public interface MessageProtocol {
 
-    void addFlowForUser(final String username, final MessageFlow flow);
+    void addFlowForUser(final String username, final Chat chat);
 
     void removeFlowForUser(final String username);
 
-    MessageFlow getCurrentFlowForUser(final String username);
+    Chat getCurrentFlowForUser(final String username);
 
 }

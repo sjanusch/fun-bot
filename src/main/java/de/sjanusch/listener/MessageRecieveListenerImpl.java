@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.helper.MessageHelper;
+import de.sjanusch.protocol.MessageProtocol;
 import de.sjanusch.texte.TextHandler;
 import org.alicebot.ab.Chat;
 import org.jivesoftware.smack.packet.Message;
@@ -27,13 +28,14 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
   private final MessageHelper messageHelper;
 
-  private final Chat chat = new Chat();
+  private final MessageProtocol messageProtocol;
 
   @Inject
-  public MessageRecieveListenerImpl(final TextHandler textHandler, final MessageRecieverBase messageRecieverBase, final MessageHelper messageHelper) {
+  public MessageRecieveListenerImpl(final TextHandler textHandler, final MessageRecieverBase messageRecieverBase, final MessageHelper messageHelper, final MessageProtocol messageProtocol) {
     this.textHandler = textHandler;
     this.messageRecieverBase = messageRecieverBase;
     this.messageHelper = messageHelper;
+    this.messageProtocol = messageProtocol;
   }
 
   @SuppressWarnings("unused")
@@ -53,11 +55,19 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
   private void handleMessage(final Message message, final String from) throws IOException {
     final String incomeMessage = message.getBody().toLowerCase().trim();
     final String actualUser = messageHelper.convertNames(from);
+    final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
+
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
-    messageRecieverBase.sendNotification(chat.chat(incomeMessage));
+
+    if (chat != null) {
+      messageRecieverBase.sendNotification(chat.chat(incomeMessage));
+    } else {
+      final Chat newChat = new Chat();
+      messageProtocol.addFlowForUser(actualUser, newChat);
+      messageRecieverBase.sendNotification(newChat.chat(incomeMessage));
+    }
     return;
   }
-
 
   private void handleRandomGeneratedText() {
     messageRecieverBase.sendMessageText(textHandler.getRandomGeneratedText(), "");

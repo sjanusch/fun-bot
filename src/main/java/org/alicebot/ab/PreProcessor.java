@@ -19,8 +19,13 @@ package org.alicebot.ab;
         Boston, MA  02110-1301, USA.
 */
 
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,11 +58,11 @@ public class PreProcessor {
      */
     public PreProcessor (Bot bot) {
 
-        normalCount = readSubstitutions(bot.config_path+"/normal.txt", normalPatterns, normalSubs);
-        denormalCount = readSubstitutions(bot.config_path+"/denormal.txt", denormalPatterns, denormalSubs);
-        personCount = readSubstitutions(bot.config_path +"/person.txt", personPatterns, personSubs);
-        person2Count = readSubstitutions(bot.config_path +"/person2.txt", person2Patterns, person2Subs);
-        genderCount = readSubstitutions(bot.config_path +"/gender.txt", genderPatterns, genderSubs);
+        normalCount = readSubstitutions(bot.getConfig_path() + "/normal.txt", normalPatterns, normalSubs);
+        denormalCount = readSubstitutions(bot.getConfig_path() + "/denormal.txt", denormalPatterns, denormalSubs);
+        personCount = readSubstitutions(bot.getConfig_path() + "/person.txt", personPatterns, personSubs);
+        person2Count = readSubstitutions(bot.getConfig_path() + "/person2.txt", person2Patterns, person2Subs);
+        genderCount = readSubstitutions(bot.getConfig_path() + "/gender.txt", genderPatterns, genderSubs);
         if (MagicBooleans.trace_mode) System.out.println("Preprocessor: "+normalCount+" norms "+personCount+" persons "+person2Count+" person2 ");
     }
 

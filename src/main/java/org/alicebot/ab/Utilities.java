@@ -91,12 +91,12 @@ public class Utilities {
     }
 
     public static String getPannousAPIKey (Bot bot) {
-       String apiKey = getFile(bot.config_path+"/pannous-apikey.txt");
+        String apiKey = getFile(bot.getConfig_path() + "/pannous-apikey.txt");
        if (apiKey.equals("")) apiKey = MagicStrings.pannous_api_key;
        return apiKey;
     }
     public static String getPannousLogin (Bot bot) {
-        String login = getFile(bot.config_path+"/pannous-login.txt");
+        String login = getFile(bot.getConfig_path() + "/pannous-login.txt");
         if (login.equals("")) login = MagicStrings.pannous_login;
         return login;
     }
