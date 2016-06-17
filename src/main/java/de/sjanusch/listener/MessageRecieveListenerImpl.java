@@ -6,6 +6,7 @@ import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.helper.MessageHelper;
 import de.sjanusch.protocol.MessageProtocol;
 import de.sjanusch.texte.TextHandler;
+import org.alicebot.ab.Bot;
 import org.alicebot.ab.Chat;
 import org.jivesoftware.smack.packet.Message;
 import org.slf4j.Logger;
@@ -29,6 +30,8 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
   private final MessageHelper messageHelper;
 
   private final MessageProtocol messageProtocol;
+
+  private final Bot bot = new Bot();
 
   @Inject
   public MessageRecieveListenerImpl(final TextHandler textHandler, final MessageRecieverBase messageRecieverBase, final MessageHelper messageHelper, final MessageProtocol messageProtocol) {
@@ -62,7 +65,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     if (chat != null) {
       messageRecieverBase.sendNotification(chat.chat(incomeMessage));
     } else {
-      final Chat newChat = new Chat();
+      final Chat newChat = new Chat(bot);
       messageProtocol.addFlowForUser(actualUser, newChat);
       messageRecieverBase.sendNotification(newChat.chat(incomeMessage));
     }

@@ -38,8 +38,7 @@ public class Chat {
 
   private static final Logger logger = LoggerFactory.getLogger(Chat.class);
 
-  public Chat() {
-    Bot bot = new Bot();
+  public Chat(final Bot bot) {
     this.customerId = "0";
     this.bot = bot;
     this.doWrites = true;
