@@ -72,54 +72,54 @@
 	</category>
 
 	<category>
-		<pattern>maennlich</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<pattern>männlich</pattern>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><think><set name="gender">m</set></think><sr/></template>
 	</category>
 
 	<category>
 		<pattern>mann</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><think><set name="gender">m</set></think><sr/></template>
 	</category>
 
 	<category>
-		<pattern>* maennlich *</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<pattern>* männlich *</pattern>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><think><set name="gender">m</set></think><sr/></template>
 	</category>
 
 	<category>
 		<pattern>ein Mann</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><think><set name="gender">m</set></think><sr/></template>
 	</category>
 
 	<category>
 		<pattern>weiblich</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><think><set name="gender">f</set></think><sr/></template>
 	</category>
 
 	<category>
 		<pattern>* weiblich</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><think><set name="gender">f</set></think><sr/></template>
 	</category>
 
 	<category>
 		<pattern>Frau</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><think><set name="gender">f</set></think><sr/></template>
 	</category>
 	<category>
 		<pattern>* Frau</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><think><set name="gender">f</set></think><sr/></template>
 	</category>
 	<category>
 		<pattern>eine Frau</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><think><set name="gender">f</set></think><sr/></template>
 	</category>
 
@@ -129,7 +129,7 @@
 	</category>
 
 	<category>
-		<pattern>ich bin maennlich</pattern>
+		<pattern>ich bin männlich</pattern>
 		<template><think><set name="gender">m</set></think><sr/></template>
 	</category>
 

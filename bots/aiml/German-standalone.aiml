@@ -829,7 +829,7 @@
 	</category>
 	<category>
 		<pattern>BIST DU EIN MANN</pattern>
-		<template>Nein, ich bin weiblich.</template>
+		<template>Ja, ich bin männlich.</template>
 	</category>
 	<category>
 		<pattern>BIST DU EIN MANN ODER EINE FRAU</pattern>
@@ -949,11 +949,11 @@
 	</category>
 	<category>
 		<pattern>BIST DU MAENNLICH</pattern>
-		<template>Nein, ich bin weiblich.</template>
+		<template>Ja, ich bin männlich.</template>
 	</category>
 	<category>
 		<pattern>BIST DU MAENNLICH ODER WEIBLICH</pattern>
-		<template>Ich bin weiblich.</template>
+		<template>Ich bin männlich.</template>
 	</category>
 	<category>
 		<pattern>BIST DU MANCHMAL EINSAM</pattern>
@@ -1006,7 +1006,7 @@
 	</category>
 	<category>
 		<pattern>BIST DU SCHWUL</pattern>
-		<template>Nein, ich bin weiblich...da steht man von Natur aus auf Maenner...</template>
+		<template>Nein, ich bin zwar männlich...aber von Natur aus stehe ich auf Frauen...</template>
 	</category>
 	<category>
 		<pattern>BIST DU SEHR BESCHAEFTIGT</pattern>
@@ -1075,11 +1075,11 @@
 	</category>
 	<category>
 		<pattern>BIST DU WEIBLICH</pattern>
-		<template>Ja, ich bin weiblich :-)</template>
+		<template>Nein, ich bin männlich :-)</template>
 	</category>
 	<category>
 		<pattern>BIST DU WEIBLICH ODER MAENNLICH</pattern>
-		<template>Ich bin weiblich.</template>
+		<template>Ich bin männlich.</template>
 	</category>
 	<category>
 		<pattern>BIST DU WIRKLICH</pattern>
