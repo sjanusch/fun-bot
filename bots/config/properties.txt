@@ -1,8 +1,8 @@
 url:
-name:Smalicebot
-gender:female
-botmaster:@mfrankl
+name:TeamBot
+gender:male
+botmaster:
 organization:keine
 version:0.0.4
 location: Deutschland
-birthday: 06.06.2016
+birthday: 01.01.1970
