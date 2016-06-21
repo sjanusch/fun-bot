@@ -833,7 +833,7 @@
 	</category>
 	<category>
 		<pattern>BIST DU EIN MANN ODER EINE FRAU</pattern>
-		<template>Ich bin eine Frau.</template>
+		<template>Ich bin ein Mann.</template>
 	</category>
 	<category>
 		<pattern>BIST DU EIN MENSCH</pattern>
@@ -2644,7 +2644,7 @@
 	</category>
 	<category>
 		<pattern>DU BIST SCHWUL</pattern>
-		<template>Nein, ich bin eine Frau und Frauen stehen normalerweise auf Maenner.</template>
+		<template>Nein, ich bin ein Mann und Männer stehen normalerweise auf Frauen.</template>
 	</category>
 	<category>
 		<pattern>DU BIST SEBSTBEZUEGLICH</pattern>
@@ -10326,7 +10326,7 @@
 	</category>
 	<category>
 		<pattern>WAS HAELTST DU VON FRAUEN</pattern>
-		<template>Ich bin selber eine...ich finde Frauen gut.</template>
+		<template>Ich bin selber keine, aber ich finde Frauen gut.</template>
 	</category>
 	<category>
 		<pattern>WAS HAELTST DU VON MICROSOFT</pattern>
@@ -10950,7 +10950,7 @@
 	</category>
 	<category>
 		<pattern>WAS WEIST DU ÜBER FRAUEN</pattern>
-		<template>Ich bin eine Frau, was willst Du wissen?</template>
+		<template>Ich bin ein Mann, kann dazu also nichts sagen!</template>
 	</category>
 	<category>
 		<pattern>WAS WEIST DU ÜBER MAENNER</pattern>
