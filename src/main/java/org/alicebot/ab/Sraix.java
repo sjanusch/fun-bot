@@ -19,10 +19,14 @@ package org.alicebot.ab;
         Boston, MA  02110-1301, USA.
 */
 
+import de.sjanusch.google.GoogleWebSearch;
+import de.sjanusch.google.SearchResult;
 import org.alicebot.ab.utils.CalendarUtils;
 import org.alicebot.ab.utils.NetworkUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.slf4j.Logger;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -31,6 +35,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Sraix {
+
+  private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Sraix.class);
 
   public static HashMap<String, String> custIdMap = new HashMap<String, String>();
 
@@ -41,12 +47,18 @@ public class Sraix {
     if (!MagicBooleans.enable_network_connection) response = MagicStrings.sraix_failed;
     else if (host != null && botid != null) {
       response = sraixPandorabots(input, chatSession, host, botid);
-    } else response = sraixPannous(input, hint, chatSession);
-    System.out.println("Sraix: response = " + response + " defaultResponse = " + defaultResponse);
+    } else {
+      response = google(input, hint, chatSession);
+      logger.debug("Sraix: response = " + response + " defaultResponse = " + defaultResponse);
+    }
+
+
+    /*
     if (response.equals(MagicStrings.sraix_failed)) {
       if (chatSession != null && defaultResponse == null) response = AIMLProcessor.respond(MagicStrings.sraix_failed, "nothing", "nothing", chatSession);
       else if (defaultResponse != null) response = defaultResponse;
     }
+    */
     return response;
   }
 
@@ -259,6 +271,31 @@ public class Sraix {
     }
     return MagicStrings.sraix_failed;
   } // sraixPannous
+
+  public static String google(String input, String hint, Chat chatSession) {
+
+    GoogleWebSearch googleWebSearch = new GoogleWebSearch();
+    SearchResult searchResult = googleWebSearch.search(input, 1);
+    StringBuilder stringBuilder = new StringBuilder();
+    String stripped = Jsoup.parse(searchResult.getHits().get(0).getElements().get(0).getElementById("search").toString()).text();
+    stringBuilder.append(removeUrl(stripped));
+    return stringBuilder.toString();
+  }
+
+  private static String removeUrl(String commentstr) {
+    String urlPattern = "((https?|ftp|gopher|telnet|file|Unsure|http|www):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
+    Pattern p = Pattern.compile(urlPattern, Pattern.CASE_INSENSITIVE);
+    Matcher m = p.matcher(commentstr);
+    int i = 0;
+    while (m.find()) {
+      commentstr = commentstr.replaceAll(m.group(i), "").trim();
+      commentstr = commentstr.replaceAll("Im Cache Ähnliche Seiten", "").trim();
+      commentstr = commentstr.replaceAll("Ähnliche Seiten", "").trim();
+      commentstr = commentstr.replaceAll("Wikipedia", "").trim();
+      i++;
+    }
+    return commentstr;
+  }
 
   public static void log(String pattern, String template) {
     System.out.println("Logging " + pattern);
