@@ -1,5 +1,6 @@
 package de.sjanusch.google;
 
+import org.alicebot.ab.Chat;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -108,6 +109,31 @@ public class GoogleWebSearch {
     public String getGoogleSearchUrl() {
       return GOOGLE_SEARCH_URL_PREFIX + "q=" + PLHD_QUERY + PLHD_RESULTS_NUM + PLHD_SITE;
     }
+  }
+
+  public static String google(String input, String hint, Chat chatSession) {
+
+    GoogleWebSearch googleWebSearch = new GoogleWebSearch();
+    SearchResult searchResult = googleWebSearch.search(input, 1);
+    StringBuilder stringBuilder = new StringBuilder();
+    String stripped = Jsoup.parse(searchResult.getHits().get(0).getElements().get(0).getElementById("search").toString()).text();
+    stringBuilder.append(removeUrl(stripped));
+    return stringBuilder.toString();
+  }
+
+  private static String removeUrl(String commentstr) {
+    String urlPattern = "((https?|ftp|gopher|telnet|file|Unsure|http|www):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
+    Pattern p = Pattern.compile(urlPattern, Pattern.CASE_INSENSITIVE);
+    Matcher m = p.matcher(commentstr);
+    int i = 0;
+    while (m.find()) {
+      commentstr = commentstr.replaceAll(m.group(i), "").trim();
+      commentstr = commentstr.replaceAll("Im Cache Ähnliche Seiten", "").trim();
+      commentstr = commentstr.replaceAll("Ähnliche Seiten", "").trim();
+      commentstr = commentstr.replaceAll("Wikipedia", "").trim();
+      i++;
+    }
+    return commentstr;
   }
 }
 
