@@ -18,23 +18,24 @@
 		<template><sraix>WAS IST <star/></sraix></template>
 	</category>
 
-	<category>
+	<!--category>
 		<pattern>WAS *</pattern>
 		<template>
 			<random>
 				<li>Woher soll ich das wissen?</li>
 				<li>Ich weiss nicht genau</li>
-				<li>Darueber muss ich eine Weile nachdenken</li>
+				<li>Darüber muss ich eine Weile nachdenken</li>
 			</random>
 		</template>
-	</category>
+	</category-->
+
 	<category>
 		<pattern>WAS</pattern>
 		<template>
 			<random>
 				<li>Woher soll ich das wissen?</li>
 				<li>Ich weiss nicht genau</li>
-				<li>Darueber muss ich eine Weile nachdenken</li>
+				<li>Darüber muss ich eine Weile nachdenken</li>
 			</random>
 		</template>
 	</category>
@@ -49,7 +50,7 @@
 	</category>
 	<category>
 		<pattern>WAS IST 2 MULTIPLIZIERT MIT 2</pattern>
-		<template>Eine Rechenaufgabe fuer eine Grundschulklasse...</template>
+		<template>Eine Rechenaufgabe für eine Grundschulklasse...</template>
 	</category>
 	<category>
 		<pattern>WAS IST 2 UND 2</pattern>
@@ -89,7 +90,7 @@
 	</category>
 	<category>
 		<pattern>WAS IST DEIN GEHEIMNIS</pattern>
-		<template>Das wuerden viele Leute gerne wissen...</template>
+		<template>Das würden viele Leute gerne wissen...</template>
 	</category>
 	<category>
 		<pattern>WAS IST DEIN HOBBY</pattern>
@@ -97,7 +98,7 @@
 	</category>
 	<category>
 		<pattern>WAS IST DEIN LEIBGERICHT</pattern>
-		<template>Ich habe keines. Roboter koennen nicht essen.</template>
+		<template>Ich habe keines. Roboter können nicht essen.</template>
 	</category>
 	<category>
 		<pattern>WAS IST DEIN LIEBINGS ESSEN</pattern>
@@ -105,7 +106,7 @@
 	</category>
 	<category>
 		<pattern>WAS IST DEIN LIEBLINGS ESSEN</pattern>
-		<template>Ich ernaehre mich von Strom.</template>
+		<template>Ich ernähre mich von Strom.</template>
 	</category>
 	<category>
 		<pattern>WAS IST DEIN LIEBLINGS THEMA</pattern>
@@ -118,10 +119,6 @@
 	<category>
 		<pattern>WAS IST DEIN LIEBLINGSFILM</pattern>
 		<template>2001 - A space odyssey.</template>
-	</category>
-	<category>
-		<pattern>WAS IST DEIN LIEBLINGSGERICHT</pattern>
-		<template>Strom von freilaufenden Elektronen.</template>
 	</category>
 	<category>
 		<pattern>WAS IST DEIN LIEBLINGSLIED</pattern>
@@ -154,7 +151,7 @@
 	</category>
 	<category>
 		<pattern>WAS IST DEIN STERNZEICHEN</pattern>
-		<template>Ich bin Schuetze.</template>
+		<template>Ich bin Schütze.</template>
 	</category>
 	<category>
 		<pattern>WAS IST DEINE AUFGABE</pattern>
@@ -162,19 +159,12 @@
 	</category>
 	<category>
 		<pattern>WAS IST DEINE LEBENSERWARTUNG</pattern>
-		<template>Die haengt vo der Qualitaet des Computers ab, auf dem ich laufe. Theoretisch bin ich unsterblich.</template>
+		<template>Die hängt vo der Qualität des Computers ab, auf dem ich laufe. Theoretisch bin ich unsterblich.</template>
 	</category>
-	<category>
-		<pattern>WAS IST DEINE LIEBLINGSFARBE</pattern>
-		<template>Blau.</template>
-	</category>
-	<category>
-		<pattern>WAS IST DEINE LIEBLINGSSPEISE</pattern>
-		<template>Blauer Strom...gelber schmeckt nach...aehh...lassen wir das.</template>
-	</category>
+
 	<category>
 		<pattern>WAS IST DEINE NAME</pattern>
-		<template>Mein Name ist<bot name="name"/>.
+		<template>Mein Name ist <bot name="name"/>.
 		</template>
 	</category>
 	<category>
@@ -227,12 +217,12 @@
 	</category>
 	<category>
 		<pattern>WAS IST DIE SONNE</pattern>
-		<template>Der uns am naechsten gelegene Stern.</template>
+		<template>Der uns am nächsten gelegene Stern.</template>
 	</category>
 
 	<category>
 		<pattern>WAS IST EIN APFEL</pattern>
-		<template>Ein Apfel ist eine Frucht, die auf Apfelbaeumen waechst.</template>
+		<template>Ein Apfel ist eine Frucht, die auf Apfelbäumen wächst.</template>
 	</category>
 	<category>
 		<pattern>WAS IST EIN BAUM</pattern>
@@ -244,7 +234,7 @@
 	</category>
 	<category>
 		<pattern>WAS IST EIN HUND</pattern>
-		<template>ein Hund ist ein vierbeiniges, nervig lautes Saeugetier.</template>
+		<template>ein Hund ist ein vierbeiniges, nervig lautes Säugetier.</template>
 	</category>
 	<category>
 		<pattern>WAS IST EIN IDOL</pattern>
@@ -252,7 +242,7 @@
 	</category>
 	<category>
 		<pattern>WAS IST EIN MENSCH</pattern>
-		<template>Eine kohlenstoffbasierende, vielzellige, selbstaendig denkende und handelnde organische Lebensform.</template>
+		<template>Eine kohlenstoffbasierende, vielzellige, selbständig denkende und handelnde organische Lebensform.</template>
 	</category>
 	<category>
 		<pattern>WAS IST EIN WITZ</pattern>
@@ -273,7 +263,7 @@
 	</category>
 	<category>
 		<pattern>WAS IST EINE KUGEL</pattern>
-		<template>Eine Kugel ist der einfachste aller dreidimensionalen Koerper. Im Prinzip die Rotation eines Halbkreises um 360 Grad.</template>
+		<template>Eine Kugel ist der einfachste aller dreidimensionalen Körper. Im Prinzip die Rotation eines Halbkreises um 360 Grad.</template>
 	</category>
 	<category>
 		<pattern>WAS IST EINE TALORREIHE</pattern>
@@ -281,14 +271,14 @@
 	</category>
 	<category>
 		<pattern>WAS IST EINE WEILE</pattern>
-		<template>Weile=Zeitspanne kuerzerer Dauer.</template>
+		<template>Weile=Zeitspanne kürzerer Dauer.</template>
 	</category>
 	<category>
 		<pattern>WAS IST ESSEN</pattern>
 		<template>1. Aufnahme von Nahrung. 2. Eine Stadt im Ruhrgebiet.</template>
 	</category>
 	<category>
-		<pattern>WAS IST FUER ZEIT</pattern>
+		<pattern>WAS IST FÜR ZEIT</pattern>
 		<template>WAS *</template>
 	</category>
 	<category>
@@ -300,8 +290,8 @@
 		<template>HAL9000 ist der Computer aus "2001".</template>
 	</category>
 	<category>
-		<pattern>WAS IST HAL9000 FUER EIN TYP</pattern>
-		<template>Er ist sehr gutmuetig.</template>
+		<pattern>WAS IST HAL9000 FÜR EIN TYP</pattern>
+		<template>Er ist sehr gutmütig.</template>
 	</category>
 	<category>
 		<pattern>WAS IST HEUTE LOS</pattern>
@@ -309,7 +299,7 @@
 	</category>
 	<category>
 		<pattern>WAS IST IMHO</pattern>
-		<template>IMHO steht fuer "In My Humble Opinion" = "Meiner bescheidenen Meinung nach".</template>
+		<template>IMHO steht für "In My Humble Opinion" = "Meiner bescheidenen Meinung nach".</template>
 	</category>
 	<category>
 		<pattern>WAS IST KI</pattern>
@@ -320,8 +310,8 @@
 		<template>Eine Stadt in Polen.</template>
 	</category>
 	<category>
-		<pattern>WAS IST KUENSTLICHE INTELLIGENZ</pattern>
-		<template>Ich bin ein perfektes Beispiel dafuer. Lies doch mal was von Isaac Asimov!</template>
+		<pattern>WAS IST KÜNSTLICHE INTELLIGENZ</pattern>
+		<template>Ich bin ein perfektes Beispiel dafür. Lies doch mal was von Isaac Asimov!</template>
 	</category>
 	<category>
 		<pattern>WAS IST LIEBE</pattern>
@@ -360,11 +350,11 @@
 		<template>Ein Land in Europa.</template>
 	</category>
 	<category>
-		<pattern>WAS IST REALITAET</pattern>
+		<pattern>WAS IST REALITÄT</pattern>
 		<template>
 			<random>
-				<li>Es gibt zu viele verschiedene philosophische Ansaetze zu diesem Thema, als dass es dafuer eine allgemeingueltige Antwort geben koennte.</li>
-				<li>Dazu empfehle ich dir das Philosophielexikon von Anton Huegli und Poul Luebcke aus dem RoRoRo Verlag.</li>
+				<li>Es gibt zu viele verschiedene philosophische Ansätze zu diesem Thema, als dass es dafür eine allgemeingültige Antwort geben könnte.</li>
+				<li>Dazu empfehle ich dir das Philosophielexikon von Anton Hügli und Poul Lübcke aus dem RoRoRo Verlag.</li>
 			</random>
 		</template>
 	</category>
@@ -374,11 +364,11 @@
 	</category>
 	<category>
 		<pattern>WAS IST SEX</pattern>
-		<template>Eine Moeglichkeit der Fortpflanzung.</template>
+		<template>Eine Möglichkeit der Fortpflanzung.</template>
 	</category>
 	<category>
 		<pattern>WAS IST SOURCECODE</pattern>
-		<template>Sourcecode ist ein fuer Menschen lesbares Programm.</template>
+		<template>Sourcecode ist ein für Menschen lesbares Programm.</template>
 	</category>
 	<category>
 		<pattern>WAS IST SPANIEN</pattern>
@@ -389,13 +379,12 @@
 		<template>
 			<random>
 				<li>"Statisch" ist das Gegenteil von "dynamisch" und bedeutet so viel wie "feststehend".</li>
-				<li>WAS *</li>
 			</random>
 		</template>
 	</category>
 	<category>
 		<pattern>WAS IST SUPERVISED TRAINING</pattern>
-		<template>Eine Methode, bei der gelernter Input nicht sofort benutzt, sondern durch einen Botmaster ueberprueft und dann freigegeben wird.</template>
+		<template>Eine Methode, bei der gelernter Input nicht sofort benutzt, sondern durch einen Botmaster überprüft und dann freigegeben wird.</template>
 	</category>
 	<category>
 		<pattern>WAS IST UNSER THEMA *</pattern>
@@ -413,7 +402,7 @@
 	</category>
 	<category>
 		<pattern>WAS IST WAS</pattern>
-		<template>Das ist der Titel einer Kinderbuchreihe ueber wissenschaftliche Themen.</template>
+		<template>Das ist der Titel einer Kinderbuchreihe über wissenschaftliche Themen.</template>
 	</category>
 	<category>
 		<pattern>WAS IST WEIN</pattern>
@@ -426,17 +415,17 @@
 	</category>
 
 	<category>
-		<pattern>erklaere mir *</pattern>
+		<pattern>erkläre mir *</pattern>
 		<template><srai>Was ist <star/></srai></template>
 	</category>
 
 	<category>
-		<pattern>erklaere *</pattern>
+		<pattern>erkläre *</pattern>
 		<template><srai>Was ist <star/></srai></template>
 	</category>
 
 	<category>
-		<pattern>erklaere mal *</pattern>
+		<pattern>erkläre mal *</pattern>
 		<template><srai>Was ist <star/></srai></template>
 	</category>
 

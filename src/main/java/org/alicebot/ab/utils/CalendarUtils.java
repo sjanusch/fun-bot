@@ -1,7 +1,5 @@
 package org.alicebot.ab.utils;
 
-import org.alicebot.ab.MagicBooleans;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -43,7 +41,7 @@ public class CalendarUtils {
     public static String date(String jformat, String locale, String timezone)  {
         //HashSet<String> attributeNames = Utilities.stringSet("jformat","format","locale","timezone");
         if (jformat == null) jformat = "EEE MMM dd HH:mm:ss zzz yyyy";
-        if (locale == null) locale = Locale.US.getISO3Country();
+      if (locale == null) locale = Locale.GERMAN.getISO3Country();
         if (timezone == null) timezone = TimeZone.getDefault().getDisplayName();
         //System.out.println("Format = "+format+" Locale = "+locale+" Timezone = "+timezone);
         String dateAsString = new Date().toString();

@@ -16,10 +16,60 @@
 					“Nein, meine kann das nicht gewesen sein, die hab ich an einem Stein festgebunden…”
 				</li>
 				<li>Mut ist oft Mangel an Einsicht, während Feigheit nicht selten auf guten Informationen beruht. Sir Peter Ustinov</li>
+				<li>Sie: "Das Auto ist kaputt. Es hat Wasser im Vergaser." Er: "Wasser im Vergaser? Das ist doch lächerlich. Ich werde das mal überprüfen. Wo ist das Auto?" Sie: "Im Pool."</li>
+				<li>
+					<condition name="gender">
+						<li value="unknown">Ich bin gerade nicht in der Stimmung einen Witz zu erzählen.</li>
+						<li value="f"><random>
+							<li>Warum haben Männer keine Midlife Crisis? Weil sie nie aus der Pubertät kommen!</li>
+							<li>Worin unterscheidet sich ein Mann von einem PC? Dem PC musst du alles nur einmal sagen.</li>
+							<li>Warum sind Blondinenwitze so kurz? Damit auch Männer sie verstehen.</li>
+							<li>Was ist der Unterschied zwischen Männern und Schweinen? Schweine verwandeln sich nicht in Männer, wenn sie betrunken sind.</li>
+							<li>Warum haben Männer keine Cellulite? Weil's scheiße aussieht!</li>
+						</random></li>
+						<li value="m"><random>
+							<li>Widerspreche nie einer Frau! Warte 5 Minuten, dann tut sie’s von selbst!</li>
+							<li>Warum sollten Frauen über 30 nicht mehr verstecken spielen? Weil die keiner mehr sucht!</li>
+							<li>Warum furzen Frauen so selten? Sie können den Mund nicht lange genug halten um den nötigen Druck auf zu bauen.</li>
+							<li>Werner: Ich hab gelesen, dass 67 % der Frauen einen IQ unter 70 haben. Seine Frau: Wie gut, dass ich zu den anderen 13 % gehöre.</li>
+							<li>Gestern hatte ich das Vergnügen, deine Frau zu treffen. "Wieso war es für dich ein Vergnügen?" fragte der Ehemann. Weil ich mich gefreut habe, dass sie nicht meine Frau ist.</li>
+							<li>Was zeigt man einer Frau, die zwei Jahre lang unfallfrei gefahren ist? Den zweiten Gang.</li>
+						</random></li>
+
+					</condition>
+
+				</li>
 
 			</random>
 		</template>
 	</category>
+
+
+	<category>
+		<pattern><set>positive_answer</set></pattern>
+		<that>Kennst Du einen Witz</that>
+		<template>Na, dann hau ihn raus!</template>
+	</category>
+
+	<category>
+		<pattern><set>negative_answer</set></pattern>
+		<that>Kennst Du einen Witz</that>
+		<template>Dann ich. <srai>JOKE</srai></template>
+	</category>
+
+	<category>
+		<pattern>*</pattern>
+		<that>Kennst Du einen Witz</that>
+		<template>Findest Du den selbst witzig, <srai>USERNAME</srai>?</template>
+	</category>
+
+	<category>
+		<pattern>*</pattern>
+		<that>Na, dann hau ihn raus</that>
+		<template>Findest Du den selbst witzig, <srai>USERNAME</srai>?</template>
+	</category>
+
+
 </aiml>
 
 

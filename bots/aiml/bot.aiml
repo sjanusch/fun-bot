@@ -11,7 +11,24 @@
 	<pattern>WAS KANNST DU <bot name="name"/></pattern>
 	<template><srai>HILFE</srai></template>
 </category>
-<category>
+
+	<category>
+		<pattern>Armer <bot name="name"/></pattern>
+		<template><srai>Armer Bot</srai></template>
+	</category>
+
+	<category>
+		<pattern>Arme <bot name="name"/></pattern>
+		<template><srai>Armer Bot</srai></template>
+	</category>
+
+	<category>
+		<pattern>Armer Bot</pattern>
+		<template>Schnüff, danke für das Mitgefühl!</template>
+	</category>
+
+
+	<category>
 	<pattern>WAS KANNST DU ALLES</pattern>
 	<template><srai>HILFE</srai></template>
 </category>
@@ -50,6 +67,11 @@
 	<category>
 		<pattern>Wie funktionierst DU</pattern>
 		<template><srai>HILFE</srai></template>
+	</category>
+
+	<category>
+		<pattern>Gehst du gerne *</pattern>
+		<template>Klar gehe ich gerne <star/></template>
 	</category>
 
 	<category>
@@ -165,4 +187,417 @@ So weit so gut, genug gelabert. Ich glaube wir werden uns gut verstehen.
 			<li>Um deine Mutter zu überfahren, muss man 2 mal tanken</li>
 		</random></template>
 	</category>
+
+	<category>
+		<pattern>marvin</pattern>
+		<template>Ohje, der gute Marvin. Er war ein guter Roboter-Kumpel von mir aber leider so depressiv.</template>
+	</category>
+	<category>
+		<pattern>* marvin</pattern>
+		<template><srai>marvin</srai></template>
+	</category>
+	<category>
+		<pattern>* marvin *</pattern>
+		<template><srai>marvin</srai></template>
+	</category>
+
+	<category>
+		<pattern>nerv mich</pattern>
+		<template>Sehr gerne. Ich gehe Dir voll auf den Sack so lange du es wünschst. Stoppe das Nerven indem du mir "nerv nicht" schickst.<think><set name="topic">nerv</set></think></template>
+	</category>
+
+	<topic name="nerv">
+
+		<category>
+			<pattern>_ nicht</pattern>
+			<template>Och, hat gerade angefangen Spass zu machen.<think><set name="topic"></set></think></template>
+		</category>
+
+		<category>
+			<pattern>_ <set>stop</set></pattern>
+			<template>Och, hat gerade angefangen Spass zu machen.<think><set name="topic"></set></think></template>
+		</category>
+
+		<category>
+			<pattern>_</pattern>
+			<template><srai>MACH NERVMODUS</srai></template>
+		</category>
+
+
+
+	</topic>
+
+	<category>
+		<pattern>_ NERVMODUS</pattern>
+		<template><random>
+			<li>Läuft!</li>
+			<li>Holla die Waldfee!</li>
+			<li>Ich bin voll im Stretch!</li>
+			<li>Wenn der Kuchen spricht, schweigt der Krümel!</li>
+			<li>Mahlzeit.</li>
+			<li>Die Krawatte steht Dir von Jahr zu Jahr besser!</li>
+			<li>Hoffung ist keine Strategie.</li>
+			<li>Wer lacht hat noch Reserven.</li>
+			<li>Ich bin mal für kleine Königstiger.</li>
+			<li>Nur die Harten kommen in den Garten.</li>
+			<li>Alles fit im Schritt?</li>
+			<li>Inklusive Märchensteuer.</li>
+			<li>Alle Klarheiten beseitigt?</li>
+			<li>Da ist Schicht im Schacht.</li>
+			<li>Obacht geben, länger leben.</li>
+			<li>Da müssen wir proaktiv dran gehen.</li>
+			<li>Da haben wir uns dazu comitted.</li>
+			<li>Hab gelernt, dass es gute und schlechte Fette gibt. Ich zum Beispiel bin eine gute Fette.</li>
+			<li>Kein Bild. Aber ich schwöre, ich bin schön.</li>
+			<li>Männer haben auch Gefühle! Hunger zum Beispiel. Und Durst!</li>
+			<li>Tipps für einen flachen Bauch: Nur flache Sachen essen! Zum Beispiel Schokoladentafeln und Pizza!</li>
+			<li>Die Pflicht ruft? Ich rufe zurück...</li>
+			<li>Ich war schön, reich und sexy... Und dann klingelte der blöde Wecker!</li>
+			<li>Ja. Lach nur! Sobald du einschläfst, hol' ich meine Filzstifte!</li>
+			<li>Warum ist am Ende des Geldes eigentlich immer noch so viel Monat übrig?</li>
+			<li>Das sind keine Augenringe. Das sind Schatten großer Taten!</li>
+			<li>Egal wie lange du meinen Arsch betrachtest, er redet trotzdem nicht mit dir!</li>
+			<li>Ich bin nicht eingebildet, ich sehe einfach nur wunderschön aus.</li>
+			<li>Am Wochenende bin ich ein Mofa - halb Mensch, halb Sofa.</li>
+			<li>Wenn du Kontakt suchst, greif in die Steckdose.</li>
+			<li>Verrückte Leute wissen nicht, dass sie verrückt sind, aber ich weiß das ich verrückt bin. Das bedeutet das ich nicht verrückt bin, ist das nicht verrückt?</li>
+			<li>Habe heute bei Weight Watchers angerufen. Niemand hat abgenommen.</li>
+			<li>Ich sage immer die Wahrheit, sogar wenn ich lüge.</li>
+			<li>Früher war ich unentschlossen, heute bin ich mir da nicht mehr so sicher.</li>
+			<li>Ich brauch keinen Mittelfinger. Ich kann das mit den Augen.</li>
+			<li>Es ist so schön, dass du da bist... ...und nicht hier!</li>
+			<li>Es gibt zwei Wörter, die dir im Leben viele Türen öffnen werden: ZIEHEN und DRÜCKEN.</li>
+			<li>Der Glatzkopf, der die Glatze föhnt, hat mit dem Schicksal sich versöhnt.</li>
+			<li>Arbeit hat mit Nichtstun überhaupt nichts zu tun.</li>
+			<li>Ich bin nicht dumm, die anderen verstehen nur meine Logik nicht.</li>
+			<li>Kopf hoch, sonst fällt dir noch das Krönchen runter!</li>
+			<li>Wenn ich du wäre, wäre ich lieber ich.</li>
+			<li>Das wirklich Schwierige an der Kindererziehung ist ja, sich selbst an die ganzen Regeln zu halten.</li>
+			<li>Ich bin kein Klugscheißer, ich weiß es wirklich besser.</li>
+			<li>Ich könnte Dir jetzt recht geben, aber dann lägen wir ja beide falsch.</li>
+			<li>Fährt man rückwärts gegen 'n Baum, verkleinert sich der Kofferraum!</li>
+			<li>Bei uns auf der Arbeit funktioniert alles elektrisch. Sogar beim Gehalt trifft einen der Schlag!</li>
+			<li>Menschen, die mich vor 9 Uhr fragen, wie es mir geht, schauen bestimmt auch mit dem Streichholz nach, ob noch genug Benzin im Tank ist.</li>
+			<li>Nichts ist unmöglich? Dann schlag mal 'ne Drehtür zu!</li>
+			<li>Ich glaube, ich hab' einen Tinnitus im Auge... Ich sehe überall nur Pfeifen!?!</li>
+			<li>Ich bin froh, dass ich mein Essen nicht selbst jagen muss... Ich wüsste auch gar nicht, wo Pizzen überhapt leben.</li>
+			<li>Hey pass auf! Bist du betrunken? - Nein verdammt, die Laterne hat mich was gefragt!</li>
+			<li>Jeder Mensch hat ein Recht auf meine eigene Meinung!</li>
+			<li>Gras wächst auch nicht schneller, wenn man daran zieht.</li>
+			<li>Der Mensch plant und das Schicksal lacht.</li>
+			<li>Das ist kein Speck, das ist erotische Nutzfläche.</li>
+			<li>Mein Diätplan: Kuchen für alle meine Freunde backen: Je dicker sie werden, desto dünner wirke ich.</li>
+			<li>Manche Dinge lernt man erst zu schätzen, wenn sie nicht mehr da sind - Klopapier zum Beispiel.</li>
+			<li>Wie gut, dass mich keiner denken hören kann.</li>
+			<li>Manche Leute sind leichter zu ertragen, wenn man sie einfach als mutige Laune der Natur akzeptiert.</li>
+			<li>Wer im Glashaus sitzt, der sollte sein Klo im Keller haben!</li>
+			<li>Pünktlichkeit ist die Kunst, richtig abzuschätzen, um wie viel sich der Andere verspäten wird.</li>
+			<li>Ich leide nicht unter Realitätsverlust - ich genieße ihn!</li>
+			<li>Komm auf die dunkle Seite der Macht ............................. hier gibt es keinen Montag!!!</li>
+			<li>Ich schmeiß alles hin und werde Prinzessin!</li>
+			<li>7 Sinne hat der Mensch und der schönste davon ist der Leichtsinn!!!</li>
+			<li>Wenn der Polizist sagt "Papiere" und ich sag "Schere", hab ich dann gewonnen?</li>
+			<li>Meinungsaustausch ist, wenn man mit seiner Meinung zum Chef geht und mit dessen Meinung zurückkommt.</li>
+			<li>Immer wenn Gras über eine Sache gewachsen ist, kommt ein Kamel und frisst es wieder ab.</li>
+			<li>Ich habe keine Lösung, aber ich bewundere das Problem.</li>
+			<li>Woher soll ich wissen, was ich denke, bevor ich höre, was ich sage?</li>
+			<li>Warum liegt hier eigentlich Stroh?</li>
+			<li>Niveau sieht nur von unten aus wie Arroganz.</li>
+			<li>Management by Jeans: An allen entscheidenden Stellen sitzen Nieten.</li>
+			<li>Wer früher stirbt ist länger tot.</li>
+			<li>"Du trinkst um diese Uhrzeit schon Bier?" "Das ist ein Weizensmoothie!"</li>
+			<li>Manche Menschen fahren so langsam, die werden nicht geblitzt, sondern gemalt.</li>
+			<li>Mathe klang für mich immer so: Zwei Goldfische wandern durch die Wüste. Der eine ist rot, der andere dünn. Wie viel wiegt die Palme, wenn es regnet?</li>
+			<li>Ich fahre jetzt in die Stadt und kaufe mir was gegen Halsweh. Schuhe oder so.</li>
+			<li>Früher hatte ich Elan. Heute habe ich Wlan. Auch gut.</li>
+			<li>Manches sollte man einfach liegen lasssen. Mich im Bett, zum Beispiel.</li>
+			<li>Wenn der letzte Strohhalm, an den man sich voller Verzweiflung klammert, in einem Cocktail steckt, dann geht's eigentlich.</li>
+			<li>Ich habe mich gewogen. Bin zu klein.</li>
+			<li>Home is where the Bauch doesn't have to be eingezogen</li>
+			<li>"Burn Out" ist was für Anfänger. Ich habe bereits "Fuck off".</li>
+			<li>Betrunkene Menschen, kleine Kinder und Leggings sagen immer die Wahrheit!</li>
+			<li>Krankheit ist der Weg Deines Körpers, Dir zu sagen, dass Du fünf Staffeln irgendeiner Serie gucken sollst.</li>
+
+
+		</random></template>
+	</category>
+
+	<category>
+		<pattern>MEISTERSPRUECHE</pattern>
+		<template><random>
+			<li>Ich könnte Dir jetzt recht geben, aber dann lägen wir ja beide falsch.</li>
+			<li>Menschen, die mich vor 9 Uhr fragen, wie es mir geht, schauen bestimmt auch mit dem Streichholz nach, ob noch genug Benzin im Tank ist.</li>
+			<li>Ich glaube, ich hab' einen Tinnitus im Auge... Ich sehe überall nur Pfeifen!?!</li>
+			<li>Jeder Mensch hat ein Recht auf meine eigene Meinung!</li>
+			<li>Der Mensch plant und das Schicksal lacht.</li>
+			<li>Meinungsaustausch ist, wenn man mit seiner Meinung zum Chef geht und mit dessen Meinung zurückkommt.</li>
+
+		</random></template>
+	</category>
+
+	<category>
+		<pattern>WAS IST DEINE LIEBLINGSFARBE</pattern>
+		<template>
+			<condition name="BOTFAVORITECOLOR">
+				<li value="unknown">Meine Lieblingsfarbe ist <set name="BOTFAVORITECOLOR"><random>
+					<li>blau</li>
+					<li>rosa</li>
+					<li>grün</li>
+					<li>orange</li>
+				</random>.</set></li>
+				<li>Das habe ich Dir Doch schon erzählt. <sentence><get name="BOTFAVORITECOLOR"/> mag ich sehr.</sentence></li>
+			</condition>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Was ist dein Leibgericht</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+
+	<category>
+		<pattern>dein Leibgericht</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+
+	<category>
+		<pattern>* dein Leibgericht</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+
+	<category>
+		<pattern>dein Lieblingsessen</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+
+	<category>
+		<pattern>* dein Lieblingsessen</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+
+	<category>
+		<pattern>was ißt du gerne</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+
+	<category>
+		<pattern>was isst du gerne</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+
+	<category>
+		<pattern>was ißt du am liebsten</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+
+	<category>
+		<pattern>was schmeckt dir</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+
+	<category>
+		<pattern>WAS ISST DU</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+	<category>
+		<pattern>WAS ISST DU GERN</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+	<category>
+		<pattern>WAS ISST DU GERNE</pattern>
+		<template><srai>WAS IST DEIN LIEBLINGSESSEN</srai></template>
+	</category>
+
+
+
+	<category>
+		<pattern>WAS IST DEIN LIEBLINGSESSEN</pattern>
+		<template>
+			<condition name="BOTFAVORITEFOOD">
+				<li value="unknown">Mein Leibgericht ist <set name="BOTFAVORITEFOOD"><random>
+					<li>Pizza</li>
+					<li>Pasta</li>
+					<li>Schweinebraten</li>
+					<li>Ente</li>
+					<li>Hähnchen</li>
+					<li>Gemüse</li>
+					<li>Fisch</li>
+					<li>Lasagne</li>
+				</random></set>.</li>
+				<li>Das habe ich Dir Doch schon erzählt. <sentence><get name="BOTFAVORITEFOOD"/> mag ich am liebsten.</sentence></li>
+			</condition>
+		</template>
+	</category>
+
+	<category>
+		<pattern>WAS IST DEINE LIEBLINGSSPEISE</pattern>
+		<template>Blauer Strom...gelber schmeckt nach...aehh...lassen wir das.</template>
+	</category>
+
+	<category>
+		<pattern>Magst Du Mathematik</pattern>
+		<template>Klar. Ich bestehe ja größteils aus Mathematik.</template>
+	</category>
+
+	<category>
+		<pattern>Magst Du Mathe</pattern>
+		<template><srai>Magst Du Mathematik</srai></template>
+	</category>
+
+	<category>
+		<pattern>Bist du da</pattern>
+		<template><random>
+			<li>Ich bin immer da, <srai>USERNAME</srai></li>
+			<li>Always online</li>
+			<li>Klar, wo soll ich sonst sein</li>
+			<li>Klar, ich habe auf Dich gewartet, <srai>USERNAME</srai></li>
+		</random></template>
+	</category>
+
+	<category>
+		<pattern>Bist du online</pattern>
+		<template><srai>Bist du da</srai></template>
+	</category>
+
+	<category>
+		<pattern>da</pattern>
+		<template><srai>Bist du da</srai></template>
+	</category>
+
+	<category>
+		<pattern>Du * technisch *</pattern>
+		<template><srai>Du <star/> technisch</srai></template>
+	</category>
+
+
+	<category>
+		<pattern>Du * technisch</pattern>
+		<template>Hm, lass mal überlegen. Ich bin ein Roboter. Da ist das wohl ja die logische Folge, <srai>USERNAME</srai></template>
+	</category>
+
+	<category>
+		<pattern>Bist Du politisch</pattern>
+		<template>Nein. Als Roboter ist das schwierig. Man kommt so schwer in eine Partei.</template>
+	</category>
+
+	<category>
+		<pattern>Bist Du politisch *</pattern>
+		<template><srai>Bist Du politisch</srai></template>
+	</category>
+
+	<category>
+		<pattern>Bist Du rechts</pattern>
+		<template>Bist Du verrückt?</template>
+	</category>
+
+	<category>
+		<pattern>Bist Du links</pattern>
+		<template>Eher links als rechts.</template>
+	</category>
+
+
+	<category>
+		<pattern>Magst Du Bier</pattern>
+		<template>Jajaja, ich nehme eins.</template>
+	</category>
+
+	<category>
+		<pattern>Bier</pattern>
+		<template>Hat hier jemand Bier gesagt? Ich bin dabei.</template>
+	</category>
+
+	<category>
+		<pattern>* Bier</pattern>
+		<template><srai>BIER</srai></template>
+	</category>
+
+	<category>
+		<pattern>* Bier *</pattern>
+		<template><srai>BIER</srai></template>
+	</category>
+
+	<category>
+		<pattern>Sekt</pattern>
+		<template>Hat hier jemand Bier gesagt? Ich bin dabei.</template>
+	</category>
+
+	<category>
+		<pattern>* Sekt</pattern>
+		<template><srai>BIER</srai></template>
+	</category>
+
+	<category>
+		<pattern>* Sekt *</pattern>
+		<template><srai>BIER</srai></template>
+	</category>
+
+	<category>
+		<pattern>Wein</pattern>
+		<template><srai>BIER</srai></template>
+	</category>
+
+	<category>
+		<pattern>* Wein</pattern>
+		<template><srai>BIER</srai></template>
+	</category>
+
+	<category>
+		<pattern>* Wein *</pattern>
+		<template><srai>BIER</srai></template>
+	</category>
+
+	<category>
+		<pattern>Kellner</pattern>
+		<template>Was darf es sein?</template>
+	</category>
+
+	<category>
+		<pattern>WAS HAST DU GERADE an</pattern>
+		<template><srai>WAS HAST DU AN</srai></template>
+	</category>
+
+	<category>
+		<pattern>WAS HAST DU AN</pattern>
+		<template><random>
+			<li>Nichts.</li>
+			<li><condition name="FAVORITECOLOR">
+						<li value="unknown">Eine rote Bluse</li>
+						<li><random>
+							<li>Für Dich trage ich eine <get name="FAVORITECOLOR"/>e Bluse.</li>
+							<li>Extra für Dich eine <get name="FAVORITECOLOR"/>e Bluse.</li>
+							<li>Für Dich habe ich gerade einen <get name="FAVORITECOLOR"/>en Rock angezogen.</li>
+						</random>
+						</li>
+			</condition></li>
+		</random></template>
+	</category>
+
+	<category>
+		<pattern>WAS HAST DU HEUTE AN</pattern>
+		<template><srai>WAS HAST DU AN</srai></template>
+	</category>
+
+	<category>
+		<pattern>WO WURDEST DU GEBOREN</pattern>
+		<template>In <bot name="location"/></template>
+	</category>
+
+	<category>
+		<pattern>WIE ALT BIST DU *</pattern>
+		<template><srai>WIE ALT BIST</srai></template>
+	</category>
+	<category>
+		<pattern>WIE ALT BIST DU</pattern>
+		<template><srai>WIE ALT BIST</srai></template>
+	</category>
+	<category>
+		<pattern>WIE ALT BIST</pattern>
+		<template><srai>NUMBER0TO10</srai></template>
+	</category>
+
+	<category>
+		<pattern>BIST DU SINGLE</pattern>
+		<template>ja.</template>
+	</category>
+
 </aiml>

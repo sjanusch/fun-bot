@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<!-- File: train.aiml -->
+<!-- Author: Dr. Richard S. Wallace -->
+<!-- Last modified: Mai 01, 2016 -->
+<!--  -->
+<!-- This AIML file is part of the SUPER 0.0.4 chat bot knowledge base. -->
+<!--  -->
+<!-- The SUPER brain is Copyright &copy; 2016 by ALICE AI Foundation. -->
+<!--  -->
+<!-- The SUPER brain is released under the terms of the GNU Lesser General -->
+<!-- Public License, as published by the Free Software Foundation. -->
+<!--  -->
+<!-- This file is distributed WITHOUT ANY WARRANTY; without even the  -->
+<!-- implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   -->
+<!--  -->
+<!-- For more information see http://www.alicebot.org -->
+<!--  -->
+<category><pattern>Lerne * ist *</pattern>
+  <template>
+    <think><set name="equalto"><srai>IST <star/> <star index="2"/></srai></set></think>
+    <condition name="equalto">
+      <li value="true">Das weiß ich schon.</li>
+      <li>
+        Ok, ich merke mir dass "<star/>" "<star index="2"/>" ist.
+      <learnf>
+        <category>
+          <pattern>IST <eval><star/> <star index="2"/></eval></pattern>
+          <template>ja, <eval><star/> ist <star index="2"/></eval>.</template>
+        </category>
+
+        <category>
+          <pattern>Was ist <eval><star/></eval></pattern>
+          <template><eval><star/> ist <star index="2"/></eval>.</template>
+        </category>
+
+      </learnf></li>
+
+    </condition></template>
+</category>
+
+
+</aiml>

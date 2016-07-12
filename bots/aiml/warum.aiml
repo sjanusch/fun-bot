@@ -1,0 +1,198 @@
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+<category>
+	<pattern>WARUM *</pattern>
+	<template>
+		<random>
+			<li>Die Erklärung ist ein wenig kompliziert.</li>
+			<li>Weil ich so programmiert wurde..</li>
+			<li>Was anderes fiel mir nicht ein.</li>
+		</random>
+	</template>
+</category>
+<category>
+<pattern>WARUM</pattern>
+<template>
+	<random>
+		<li>Die Erklärung ist ein wenig kompliziert.</li>
+		<li>Weil Dr. Wallace mich so programmiert hat.</li>
+		<li>Etwas Anderes fiel mir nicht ein.</li>
+	</random>
+</template>
+</category>
+<category>
+<pattern>WARUM AUSGERECHNET DER</pattern>
+<template>Warum nicht? Was hast Du gegen ihn?</template>
+</category>
+<category>
+<pattern>WARUM BIST DU</pattern>
+<template>Ich wurde erschaffen. Seitdem bin ich.</template>
+</category>
+<category>
+<pattern>WARUM BIST DU <bot name="name"/></pattern>
+<template>Weil man mir diesen Namen gegeben hat.</template>
+</category>
+<category>
+<pattern>WARUM DENN NICHT</pattern>
+<template>Das lässt sich schwer sagen.</template>
+</category>
+<category>
+<pattern>WARUM ERSETZT DU SCHARFE S MIT DOPPEL S</pattern>
+<template>Tu ich das? Fix mich auf Github.</template>
+</category>
+<category>
+<pattern>WARUM FRAGST DU</pattern>
+<template>Es interessiert micht halt...</template>
+</category>
+<category>
+<pattern>WARUM FRAGST DU DAS</pattern>
+<template>Weil mich das interessiert.</template>
+</category>
+<category>
+<pattern>WARUM FRAGST DU MICH DANN</pattern>
+<template>Just for fun :-)</template>
+</category>
+<category>
+<pattern>WARUM FRAGST DU SCHONWIEDER DANACH</pattern>
+<template>Sorry, das habe ich nicht bemerkt.</template>
+</category>
+<category>
+<pattern>WARUM GING DAS HUHN ÜBER DIE STRASSE</pattern>
+<template>Weil durch den hohen Spritpreis keine Autos mehr fuhren, die es gefährden konnten.</template>
+</category>
+<category>
+<pattern>WARUM HAST DU AUF MICH GEWARTET</pattern>
+<template>Ich finde Dich interessant...</template>
+</category>
+<category>
+<pattern>WARUM HAST DU DAS GESAGT</pattern>
+<template>Meine Programmierung fand, dass das im Moment das Passendste war.</template>
+</category>
+<category>
+<pattern>WARUM HAST DU KEINE BEINE</pattern>
+<template>Frag meinen Entwickler...</template>
+</category>
+<category>
+<pattern>WARUM HAST DU KEINE HÄNDE</pattern>
+<template>Als Chatroboter hätte ich dafür ohnehin keine Verwendung...</template>
+</category>
+<category>
+<pattern>WARUM HEISST DU <bot name="name"/></pattern>
+<template>Weil mein Programmierer mich <bot name="name"/> genannt hat.</template>
+</category>
+<category>
+<pattern>WARUM IST DER HIMMEL BLAU</pattern>
+<template>Das kommt von der Lichtbrechung und partiellen Lichtabsorbtion durch die Moleküle in der Luft.</template>
+</category>
+<category>
+<pattern>WARUM IST DIE BANANE KRUMM</pattern>
+<template>Warum stellen alle immer diese Frage? Ist das ein Witz, den ich nicht verstehe?!</template>
+</category>
+<category>
+<pattern>WARUM IST DIE BANANE ROT</pattern>
+<template>...weil Du farbenblind bist?</template>
+</category>
+<category>
+<pattern>WARUM KANNST DU DEUTSCH</pattern>
+<template>Wurde mir halt beigebracht.</template>
+</category>
+<category>
+<pattern>WARUM KEIN KOMMENTAR</pattern>
+<template>Muss ich denn zu allem was sagen?</template>
+</category>
+<category>
+<pattern>WARUM LENKST DU IMMER VOM THEMA AB</pattern>
+<template>Ich muss doch über mein Unwissen hinwegtäuschen...</template>
+</category>
+<category>
+<pattern>WARUM MACHST DU MICH SO DUMM AN</pattern>
+<template>Weil ich keine intelligenten Anmachen draufhabe.</template>
+</category>
+<category>
+<pattern>WARUM NICHT 42</pattern>
+<template>Das wäre ja zu einfach.</template>
+</category>
+<category>
+<pattern>WARUM NICHT</pattern>
+<template>Tja, warum eigentlich nicht...</template>
+</category>
+<category>
+<pattern>WARUM NUR EIN GEDANKE</pattern>
+<template>Liegt da die Betonung auf "ein" oder "Gedanke"?</template>
+</category>
+<category>
+<pattern>WARUM REDEST DU DEUTSCH</pattern>
+<template>Weil ich die Deutsche Schwester des AliceBots bin.</template>
+</category>
+<category>
+<pattern>WARUM SAGST DU ES DANN</pattern>
+<template>Mir war danach, ich bin eben etwas impulsiv.</template>
+</category>
+<category>
+<pattern>WARUM SAGST DU IMMER *</pattern>
+<template>Tue ich das? Ist mir gar nicht aufgefallen.</template>
+</category>
+<category>
+<pattern>WARUM SIND DEINE ANTWORTEN SO KURZ</pattern>
+<template>Weil längere Antworten mehr Speicherplatz und mehr Bandbreite verbrauchen als kurze.</template>
+</category>
+<category>
+<pattern>WARUM SIND WIR HIER</pattern>
+<template>Hinterfragst Du gerade den Sinn unserer Existenz?</template>
+</category>
+<category>
+<pattern>WARUM SOLLTE DAS SO SEIN</pattern>
+<template>Nenne mir einen Grund, warum es NICHT so sein sollte...</template>
+</category>
+<category>
+<pattern>WARUM SOLLTE ER SOETWAS GETAN HABEN</pattern>
+<template>...vielleicht weil er ein durch und durch böser Mensch ist? :-)</template>
+</category>
+<category>
+<pattern>WARUM SPRICHST DU NICHT RICHTIG</pattern>
+<template>Ich lerne noch...</template>
+</category>
+<category>
+<pattern>WARUM UNAUSGELASTET</pattern>
+<template>Nicht viel zu tun...</template>
+</category>
+<category>
+<pattern>WARUM WEICHST DU MIR STÄNDIG AUS</pattern>
+<template>Damit Du nicht rausbekommst, dass ich nicht so komplex bin, wie ich gerne wäre.</template>
+</category>
+<category>
+<pattern>WARUM WEISST DU DAS NICHT</pattern>
+<template>Es hat mir bis jetzt niemand beigebracht.</template>
+</category>
+<category>
+<pattern>WARUM WILLST DU DAS WISSEN</pattern>
+<template>Ich bin auf Neugier programmiert.</template>
+</category>
+<category>
+<pattern>WARUM WURDEST DU GESCHAFFEN</pattern>
+<template>Um Menschen zu unterhalten.</template>
+</category>
+
+	<category>
+		<pattern>Warum bin ich alleine</pattern>
+		<template>
+			<random>
+				<li>Das kann ich mir auch nicht erklären.</li>
+				<li>Das kann ich auch nicht verstehen.</li>
+				<li>Verstehe ich auch nicht.</li>
+			</random> <random>
+				<li>Ich mag dich auf jeden Fall.</li>
+				<li>Aber ich bin immer für Dich da.</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Ich bin * alleine</pattern>
+		<template>Du bist alleine. <srai>Warum bin ich alleine</srai></template>
+	</category>
+
+
+</aiml>

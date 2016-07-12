@@ -1,0 +1,60 @@
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+	<category>
+		<pattern>OK, *</pattern>
+		<template><srai><star/></srai></template>
+	</category>
+
+
+	<category>
+		<pattern>Naja, *</pattern>
+		<template><srai><star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>SAYYES</pattern>
+		<template><random>
+			<li>Gerne</li>
+			<li>Klar</li>
+			<li>Sicher</li>
+			<li>Ok</li>
+		</random></template>
+	</category>
+
+
+	<category><pattern>NUMBER0TO5</pattern>
+		<template>
+			<random>
+				<li>0</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</random>
+		</template>
+	</category>
+
+	<category><pattern>NUMBER0TO10</pattern>
+		<template>
+			<random>
+				<li>0</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+				<li>9</li>
+				<li>10</li>
+			</random>
+		</template>
+	</category>
+
+</aiml>
+
+

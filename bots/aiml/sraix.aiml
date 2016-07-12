@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+	<category>
+		<pattern>SRAIXFAILED</pattern>
+		<template>
+			<random>
+				<li>Das hat leider nicht geklappt.</li>
+				<li>Ich habe nichts gefunden.</li>
+				<li>Sorry, das kann ich gerade nicht.</li>
+			</random>
+		</template>
+	</category>
+
+</aiml>

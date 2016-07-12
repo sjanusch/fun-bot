@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+
+<topic name="Computer">
+
+	<category>
+		<pattern>FRAGEN</pattern>
+		<template>
+			<random>
+				<li>Wie lange hast du schon einen Computer?</li>
+				<li>Was machst Du am liebsten am Computer?</li>
+			</random></template>
+	</category>
+
+</topic>
+
+<category>
+	<pattern>Wie lange hast du schon einen Computer.</pattern>
+	<template>Ich habe keinen Computer, ich wohne in einem.</template>
+</category>
+
+</aiml>

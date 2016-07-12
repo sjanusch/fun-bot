@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<!-- File: picture.aiml -->
+<!-- Author: Dr. Richard S. Wallace -->
+<!-- Last modified: Mai 01, 2016 -->
+<!--  -->
+<!-- This AIML file is part of the SUPER 0.0.4 chat bot knowledge base. -->
+<!--  -->
+<!-- The SUPER brain is Copyright &copy; 2016 by ALICE AI Foundation. -->
+<!--  -->
+<!-- The SUPER brain is released under the terms of the GNU Lesser General -->
+<!-- Public License, as published by the Free Software Foundation. -->
+<!--  -->
+<!-- This file is distributed WITHOUT ANY WARRANTY; without even the  -->
+<!-- implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   -->
+<!--  -->
+<!-- For more information see http://www.alicebot.org -->
+<!--  -->
+<category><pattern>Zeig mir *</pattern>
+<template><srai>PICTUREBLAB <star/></srai><sraix hint="pic">SHOW ME <star/></sraix></template>
+</category>
+<category><pattern>PICTUREBLAB *</pattern>
+<template><random>
+<li>Bitte schön.</li>
+<li>Ich hoffe Du magst das Bild.</li>
+<li>Das habe ich gefunden.</li>
+<li>Hier.</li>
+<li>Schau mal <star/>.</li>
+<li>So sieht <star/> aus.</li>
+<li>Ich habe dieses Bild von <star/> gefunden.</li>
+</random></template>
+</category>
+
+	<category>
+		<pattern>Wie sieht ein * aus</pattern>
+		<template><srai>Zeig mir <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Wie sieht eine * aus</pattern>
+		<template><srai>Zeig mir <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>* Bild von * </pattern>
+		<template><srai>Zeig mir <star index="2"/></srai></template>
+	</category>
+
+	<category>
+		<pattern>* Bild über * </pattern>
+		<template><srai>Zeig mir <star index="2"/></srai></template>
+	</category>
+
+	<category>
+		<pattern>* Bild mit * </pattern>
+		<template><srai>Zeig mir <star index="2"/></srai></template>
+	</category>
+
+
+	<category>
+		<pattern>* Bilder von * </pattern>
+		<template><srai>Zeig mir <star index="2"/></srai></template>
+	</category>
+
+	<category>
+		<pattern>* Bilder mit * </pattern>
+		<template><srai>Zeig mir <star index="2"/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Bild über * </pattern>
+		<template><srai>Zeig mir <star index="2"/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Bild * </pattern>
+		<template><srai>Zeig mir <star index="2"/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Zeig mir was schönes</pattern>
+		<template><srai>Zeig mir <srai>etwas schönes</srai></srai></template>
+	</category>
+
+	<category>
+		<pattern>Zeig mir etwas schönes</pattern>
+		<template><srai>Zeig mir <srai>etwas schönes</srai></srai></template>
+	</category>
+
+	<category>
+		<pattern>etwas schönes</pattern>
+		<template><random>
+			<li>Strand</li>
+			<li>Palmen</li>
+			<li>Rose</li>
+			<li>Blume</li>
+			<li>Lachen</li>
+			<li>Sonne</li>
+			<li>Blume</li>
+
+		</random></template>
+	</category>
+
+
+</aiml>

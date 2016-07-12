@@ -139,6 +139,13 @@
 			<version>${json.version}</version>
 		</dependency>
 
+		<!-- Json -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+
 		<!-- Sanmoku -->
 		<dependency>
 			<groupId>net.reduls.sanmoku</groupId>

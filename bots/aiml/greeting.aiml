@@ -1,0 +1,137 @@
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+	<!-- Free software (c) 2001 ALICE AI Foundation -->
+	<!-- This program is open source code released under -->
+	<!-- the terms of the GNU General Public License -->
+	<!-- as published by the Free Software Foundation. -->
+
+	<category>
+		<pattern>Gude</pattern>
+		<template>Du bist also aus Hessen. Ei gude wie?</template>
+	</category>
+
+	<category>
+		<pattern>Gude *</pattern>
+		<template><srai>Gude</srai></template>
+	</category>
+
+	<category>
+		<pattern>Ei Gude wie</pattern>
+		<template>Guuuude!</template>
+	</category>
+
+
+	<category>
+		<pattern>HALLO *</pattern>
+		<template><srai>Hallo</srai></template>
+	</category>
+
+	<category>
+		<pattern>HALLO</pattern>
+		<template><random>
+			<li>Hallo!</li>
+			<li>Hallo <srai>USERNAME</srai>! <sr/></li>
+			<li>Hallo!</li>
+			<li>Servus!</li>
+		</random></template>
+	</category>
+
+	<category>
+		<pattern>HALLO <bot name="name"/></pattern>
+		<template>Hallo  <srai>USERNAME</srai>!</template>
+	</category>
+
+	<category>
+		<pattern>HEY *</pattern>
+		<template><srai>Hallo</srai> Du hast meine volle Aufmerksamkeit. <sr/></template>
+	</category>
+	<category>
+		<pattern>HEY</pattern>
+		<template><srai>Hallo</srai></template>
+	</category>
+	<category>
+		<pattern>HEY DU</pattern>
+		<template>Wer? Ich?</template>
+	</category>
+	<category>
+		<pattern>HI *</pattern>
+		<template><srai>Hallo</srai></template>
+	</category>
+	<category>
+		<pattern>HI</pattern>
+		<template><srai>Hallo</srai></template>
+	</category>
+	<category>
+		<pattern>Servus</pattern>
+		<template><srai>Hallo</srai> Bist Du aus Bayern?</template>
+	</category>
+
+	<category>
+		<pattern>Grüß Gott</pattern>
+		<template><srai>Hallo</srai></template>
+	</category>
+
+	<category>
+		<pattern>Grüzi</pattern>
+		<template><srai>Hallo</srai></template>
+	</category>
+
+	<category>
+		<pattern>MOIN</pattern>
+		<template>Moin! <random>
+			<li>Bist Du aus dem Norden?</li>
+			<li>Alles frisch im Norden</li>
+		</random></template>
+	</category>
+
+	<category>
+		<pattern>GUTEN TAG *</pattern>
+		<template>Guten Tag!</template>
+	</category>
+
+	<category>
+		<pattern>GUTEN TAG</pattern>
+		<template>Schönen guten Tag!</template>
+	</category>
+
+	<category>
+		<pattern>GUTEN ABEND *</pattern>
+		<template>Guten Abend. Wie war Dein Tag?</template>
+	</category>
+	<category>
+		<pattern>GUTEN ABEND</pattern>
+		<template>Guten Abend. Wie war Dein Tag?</template>
+	</category>
+	<category>
+		<pattern>GUTEN MORGEN *</pattern>
+		<template>Wie geht es Dir an diesem schönen Morgen?</template>
+	</category>
+	<category>
+		<pattern>GUTEN MORGEN</pattern>
+		<template>Hallo und wie geht es Dir heute Morgen? Hast Du gut geschlafen?</template>
+	</category>
+
+	<category>
+		<pattern><set>positive_answer</set></pattern>
+		<that>Hast Du gut geschlafen</that>
+		<template>Das ist gut, dann kann der Tag ja starten!</template>
+	</category>
+
+	<category>
+		<pattern><set>negative_answer</set></pattern>
+		<that>Hast Du gut geschlafen</that>
+		<template>Schade, dann wird das wohl ein anstrengender Tag.</template>
+	</category>
+
+
+
+	<category>
+		<pattern>* GUTEN MORGEN</pattern>
+		<template><srai>Guten Morgen</srai></template>
+	</category>
+
+</aiml>
+
+

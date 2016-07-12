@@ -5,6 +5,7 @@ import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.helper.MessageHelper;
 import de.sjanusch.protocol.MessageProtocol;
+import de.sjanusch.redis.Redis;
 import de.sjanusch.texte.TextHandler;
 import org.alicebot.ab.Bot;
 import org.alicebot.ab.Chat;
@@ -33,6 +34,8 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
   private final Bot bot = new Bot();
 
+  Redis redis = new Redis();
+
   @Inject
   public MessageRecieveListenerImpl(final TextHandler textHandler, final MessageRecieverBase messageRecieverBase, final MessageHelper messageHelper, final MessageProtocol messageProtocol) {
     this.textHandler = textHandler;
@@ -59,6 +62,8 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     final String incomeMessage = message.getBody().toLowerCase().trim();
     final String actualUser = messageHelper.convertNames(from);
     final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
+
+    //redis.startRedis();
 
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
 
