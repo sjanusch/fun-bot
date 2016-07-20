@@ -14,6 +14,16 @@
 	</category>
 
 	<category>
+  	<pattern>Zeige mir *</pattern>
+  	<template><sraix>Zeige mir <star/></sraix></template>
+  </category>
+
+  <category>
+    <pattern>ZEIGE MIR *</pattern>
+    <template><sraix>ZEIGE MIR <star/></sraix></template>
+  </category>
+
+	<category>
 		<pattern>WAS IST *</pattern>
 		<template><sraix>WAS IST <star/></sraix></template>
 	</category>
