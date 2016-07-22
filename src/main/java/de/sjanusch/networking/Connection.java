@@ -10,7 +10,7 @@ import org.jivesoftware.smack.XMPPException;
  */
 public interface Connection {
 
-    void waitForEnd() throws InterruptedException;
+    void waitForEnd() throws InterruptedException, XMPPException;
 
     void connect() throws XMPPException;
 

@@ -23,6 +23,16 @@
     <template><sraix>ZEIGE MIR <star/></sraix></template>
   </category>
 
+  <category>
+    <pattern>Zeig mir *</pattern>
+    <template><sraix>Zeig mir <star/></sraix></template>
+  </category>
+
+  <category>
+    <pattern>ZEIG MIR *</pattern>
+    <template><sraix>ZEIG MIR <star/></sraix></template>
+  </category>
+
 	<category>
 		<pattern>WAS IST *</pattern>
 		<template><sraix>WAS IST <star/></sraix></template>

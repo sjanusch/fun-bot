@@ -87,15 +87,14 @@ public class ConnectionImpl implements Connection, ConnectionListener {
   }
 
   @Override
-  public synchronized void waitForEnd() throws InterruptedException {
+  public synchronized void waitForEnd() throws InterruptedException, XMPPException {
     logger.debug("waitForEnd started");
-    while (true) {
-      if (!connected) {
-        logger.debug("break wait for end");
-        break;
-      }
+    if (connected) {
       super.wait(0L);
+    } else {
+      this.connect();
     }
+
     logger.debug("waitForEnd finished");
   }
 
