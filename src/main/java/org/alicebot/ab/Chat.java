@@ -46,7 +46,7 @@ public class Chat {
     contextThatHistory.add("unknown");
     thatHistory.add(contextThatHistory);
     addPredicates();
-    //addTriples();
+    addTriples();
     predicates.put("topic", "unknown");
     predicates.put("jsenabled", "true");
   }
