@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 
 public class Chat {
 
+  private static final Logger logger = LoggerFactory.getLogger(Chat.class);
+
   private Bot bot;
 
   private boolean doWrites;
@@ -36,8 +38,6 @@ public class Chat {
 
   private TripleStore tripleStore = new TripleStore("anon", this);
 
-  private static final Logger logger = LoggerFactory.getLogger(Chat.class);
-
   public Chat(final Bot bot) {
     this.customerId = "0";
     this.bot = bot;
@@ -46,7 +46,7 @@ public class Chat {
     contextThatHistory.add("unknown");
     thatHistory.add(contextThatHistory);
     addPredicates();
-    addTriples();
+    //addTriples();
     predicates.put("topic", "unknown");
     predicates.put("jsenabled", "true");
   }
