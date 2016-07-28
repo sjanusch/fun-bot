@@ -67,10 +67,12 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
 
+    /*
     if (incomeMessage.equals("ich")) {
-      handleRandomGeneratedText();
+      messageRecieverBase.sendNotification(textHandler.getRandomText(incomeMessage));
       return;
     }
+    */
 
     if (chat != null) {
       messageRecieverBase.sendNotification(chat.chat(incomeMessage));
@@ -80,10 +82,6 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
       messageRecieverBase.sendNotification(newChat.chat(incomeMessage));
     }
     return;
-  }
-
-  private void handleRandomGeneratedText() {
-    messageRecieverBase.sendMessageText(textHandler.getRandomGeneratedText(), "");
   }
 
   private void handleRandomText(final String message, final String actualUser) {
