@@ -1,6 +1,7 @@
 package de.sjanusch.networking;
 
 import com.google.inject.Inject;
+import de.sjanusch.bot.Bot;
 import de.sjanusch.configuration.ChatConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionListener;
@@ -19,11 +20,14 @@ public class ConnectionImpl implements Connection, ConnectionListener {
 
   private final XMPPConnection xmpp;
 
+  private final Bot bot;
+
   private boolean connected;
 
   @Inject
-  public ConnectionImpl(final ChatClient chatClient, final ChatConnectionConfiguration chatConnectionConfiguration) throws IOException {
+  public ConnectionImpl(final ChatConnectionConfiguration chatConnectionConfiguration, final Bot bot) throws IOException {
     this.chatConnectionConfiguration = chatConnectionConfiguration;
+    this.bot = bot;
     this.xmpp = new XMPPConnection(
       new ConnectionConfiguration(this.chatConnectionConfiguration.getXmppUrl(), this.chatConnectionConfiguration.getXmppPort()));
   }
@@ -61,12 +65,14 @@ public class ConnectionImpl implements Connection, ConnectionListener {
   public void connectionClosed() {
     logger.debug("connectionClosed");
     connected = false;
+    bot.leaveChatRoom();
   }
 
   @Override
   public void connectionClosedOnError(final Exception e) {
     logger.debug("connectionClosedOnError", e);
     connected = false;
+    bot.leaveChatRoom();
   }
 
   @Override
@@ -84,6 +90,7 @@ public class ConnectionImpl implements Connection, ConnectionListener {
   public void reconnectionSuccessful() {
     logger.debug("reconnectionSuccessful");
     connected = true;
+    //bot.restart();
   }
 
   @Override

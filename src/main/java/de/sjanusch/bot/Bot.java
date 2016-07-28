@@ -17,4 +17,8 @@ public interface Bot extends RunnableBot {
     String getUsername() throws IOException;
 
     void startPrivateChat(String username);
+
+    void restart();
+
+    void leaveChatRoom();
 }

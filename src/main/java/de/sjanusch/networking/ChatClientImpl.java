@@ -122,6 +122,10 @@ public class ChatClientImpl implements ChatClient {
     }
   }
 
+  public void leaveRoom() {
+    chat.leave();
+  }
+
   private String extractUserId(final Occupant occupant) {
     final String[] values = occupant.getJid().split("/");
     if(values.length > 0){

@@ -61,6 +61,27 @@ public class BotImpl implements Bot {
     }
   }
 
+  public void restart() {
+    try {
+      boolean joined = false;
+      if (connection.isConnected()) {
+        joined = chatClient.joinChat(connection.getXmpp(), this.getBotroom(), this.getNickname(), this.getPassword());
+      }
+      logger.debug(this.getNickname() + "rejoined: " + joined + " in Room " + this.getBotroom());
+    } catch (final IOException e) {
+      logger.warn(e.getClass().getName(), e);
+      try {
+        connection.disconnect();
+      } catch (final XMPPException e2) {
+        logger.debug("disconnect failed", e2);
+      }
+    }
+  }
+
+  public void leaveChatRoom() {
+    chatClient.leaveRoom();
+  }
+
   @Override
   public void startPrivateChat(final String username) {
     chatClient.startPrivateChat(username);

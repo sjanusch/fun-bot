@@ -15,4 +15,6 @@ public interface ChatClient {
   boolean login(final XMPPConnection xmpp, String username, String password) throws LoginException;
 
   void startPrivateChat(String username);
+
+  void leaveRoom();
 }
