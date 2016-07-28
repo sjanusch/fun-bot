@@ -37,9 +37,9 @@ import java.util.regex.Pattern;
  */
 public class PreProcessor {
 
-  static private boolean DEBUG = false;
-
   private static final Logger logger = LoggerFactory.getLogger(PreProcessor.class);
+
+  static private boolean DEBUG = false;
 
   public int normalCount = 0;
 
@@ -83,22 +83,7 @@ public class PreProcessor {
     personCount = readSubstitutions(bot.getConfig_path() + "/person.txt", personPatterns, personSubs);
     person2Count = readSubstitutions(bot.getConfig_path() + "/person2.txt", person2Patterns, person2Subs);
     genderCount = readSubstitutions(bot.getConfig_path() + "/gender.txt", genderPatterns, genderSubs);
-    if (MagicBooleans.trace_mode) System.out.println("Preprocessor: " + normalCount + " norms " + personCount + " persons " + person2Count + " person2 ");
-  }
-
-  /**
-   * apply normalization substitutions to a request
-   *
-   * @param request client input
-   * @return normalized client input
-   */
-  public String normalize(String request) {
-    logger.debug("PreProcessor.normalize(request: " + request + ")");
-    String newRequest = removeUrl(request);
-    String result = substitute(newRequest, normalPatterns, normalSubs, normalCount);
-    result = result.replaceAll("(\r\n|\n\r|\r|\n)", " ");
-    logger.debug("PreProcessor.normalize() returning: " + result);
-    return result;
+    logger.debug("Preprocessor: " + normalCount + " norms " + personCount + " persons " + person2Count + " person2 ");
   }
 
   private static String removeUrl(String commentstr) {
@@ -114,6 +99,21 @@ public class PreProcessor {
       i++;
     }
     return commentstr;
+  }
+
+  /**
+   * apply normalization substitutions to a request
+   *
+   * @param request client input
+   * @return normalized client input
+   */
+  public String normalize(String request) {
+    logger.debug("PreProcessor.normalize(request: " + request + ")");
+    String newRequest = removeUrl(request);
+    String result = substitute(newRequest, normalPatterns, normalSubs, normalCount);
+    result = result.replaceAll("(\r\n|\n\r|\r|\n)", " ");
+    logger.debug("PreProcessor.normalize() returning: " + result);
+    return result;
   }
 
   /**
@@ -177,21 +177,19 @@ public class PreProcessor {
         String replacement = subs[i];
         Pattern p = patterns[i];
         Matcher m = p.matcher(result);
-        //System.out.println(i+" "+patterns[i].pattern()+"-->"+subs[i]);
+        logger.debug("Substitute: " + i + " " + patterns[i].pattern() + "-->" + subs[i]);
         if (m.find()) {
-          //System.out.println(i+" "+patterns[i].pattern()+"-->"+subs[i]);
-          //System.out.println(m.group());
+          logger.debug("Substitute find: " + m.group());
           result = m.replaceAll(replacement);
         }
-
-        //System.out.println(result);
+        logger.debug("Substitute result: " + result);
       }
       while (result.contains("  ")) result = result.replace("  ", " ");
       result = result.trim();
-      //System.out.println("Normalized: "+result);
+      logger.debug("Normalized: " + result);
     } catch (Exception ex) {
       ex.printStackTrace();
-      System.out.println("Request " + request + " Result " + result + " at " + index + " " + patterns[index] + " " + subs[index]);
+      logger.error("Request " + request + " Result " + result + " at " + index + " " + patterns[index] + " " + subs[index] +"Exception: " + ex.getMessage());
     }
     return result.trim();
   }
@@ -207,11 +205,10 @@ public class PreProcessor {
   public int readSubstitutionsFromInputStream(InputStream in, Pattern[] patterns, String[] subs) {
     BufferedReader br = new BufferedReader(new InputStreamReader(in));
     String strLine;
-    //Read File Line By Line
     int subCount = 0;
     try {
       while ((strLine = br.readLine()) != null) {
-        //System.out.println(strLine);
+        logger.debug("ReadSubstitutionsFromInputStream: " + strLine);
         strLine = strLine.trim();
         if (!strLine.startsWith(MagicStrings.text_comment_mark)) {
           Pattern pattern = Pattern.compile("\"(.*?)\",\"(.*?)\"", Pattern.DOTALL);
@@ -219,7 +216,7 @@ public class PreProcessor {
           if (matcher.find() && subCount < MagicNumbers.max_substitutions) {
             subs[subCount] = matcher.group(2);
             String quotedPattern = Pattern.quote(matcher.group(1));
-            //System.out.println("quoted pattern="+quotedPattern);
+            logger.debug("ReadSubstitutionsFromInputStream quoted pattern="+quotedPattern);
             patterns[subCount] = Pattern.compile(quotedPattern, Pattern.CASE_INSENSITIVE);
             subCount++;
           }
@@ -227,7 +224,7 @@ public class PreProcessor {
 
       }
     } catch (Exception ex) {
-      ex.printStackTrace();
+      logger.error("ReadSubstitutionsFromInputStream: " + ex.getMessage());
     }
     return subCount;
   }
@@ -254,8 +251,8 @@ public class PreProcessor {
         //Close the input stream
         fstream.close();
       }
-    } catch (Exception e) {//Catch exception if any
-      System.err.println("Error: " + e.getMessage());
+    } catch (Exception e) {
+      logger.error("Error: " + e.getMessage());
     }
     return (subCount);
   }
@@ -270,7 +267,7 @@ public class PreProcessor {
     line = line.replace("。", ".");
     line = line.replace("？", "?");
     line = line.replace("！", "!");
-    //System.out.println("Sentence split "+line);
+    logger.debug("Sentence split "+line);
     String result[] = line.split("[\\.!\\?]");
     for (int i = 0; i < result.length; i++) result[i] = result[i].trim();
     return result;
@@ -303,7 +300,7 @@ public class PreProcessor {
             for (String sentence : sentences) {
               sentence = sentence.trim();
               if (sentence.length() > 0) {
-                //System.out.println("'"+strLine+"'-->'"+norm+"'");
+                logger.debug("'"+strLine+"'-->'"+norm+"'");
                 bw.write(sentence);
                 bw.newLine();
               }
