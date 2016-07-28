@@ -67,6 +67,11 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
 
+    if (incomeMessage.equals("ich")) {
+      handleRandomGeneratedText();
+      return;
+    }
+
     if (chat != null) {
       messageRecieverBase.sendNotification(chat.chat(incomeMessage));
     } else {
