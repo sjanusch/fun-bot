@@ -72,8 +72,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
       messageRecieverBase.sendNotification(textHandler.getRandomText(incomeMessage));
       return;
     }
-    */
-
+      */
     if (chat != null) {
       messageRecieverBase.sendNotification(chat.chat(incomeMessage));
     } else {

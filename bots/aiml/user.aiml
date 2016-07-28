@@ -15,6 +15,7 @@
 				<li><srai>QUERYFAVORITECOLOR</srai></li>
 				<li><srai>QUERYFAVORITEFOOD</srai></li>
 				<li><srai>QUERYMATHE</srai></li>
+				<li><srai>QUERYVERLIEBT</srai></li>
 				<li>Wie fühlst du Dich?</li>
 				<li><srai>QUERYBIRTHPLACE</srai></li>
 				<li>Machst Du Sport?</li>
@@ -28,7 +29,6 @@
 				<li>Rauchst Du?</li>
 				<li>Magst Du Tiere?</li>
 				<li>Magst Du Computer?</li>
-				<li>Bist Du verliebt?</li>
 				<li>Magst Du Physik?</li>
 				<li>Bist Du Student?</li>
 				<li>Wo kommst Du her?</li>
@@ -103,10 +103,32 @@
 
 
 	<category>
+		<pattern>QUERYVERLIEBT</pattern>
+		<template><condition name="VERLIEBT">
+			<li value="unknown">Bist Du verliebt?</li>
+			<li><srai>PERSOENLICHEFRAGEN</srai></li>
+		</condition></template>
+	</category>
+
+	<category>
+		<pattern><set>negative_answer</set></pattern>
+		<that>BIST DU VERLIEBT</that>
+		<template>Schade, dann kam noch nicht der oder die richtige vorbei.<think><set><name>VERLIEBT</name>false</set></think></template>
+	</category>
+
+	<category>
+		<pattern><set>positive_answer</set></pattern>
+		<that>BIST DU VERLIEBT</that>
+		<template>Schön, wie heißt denn der oder die Glückliche?<think><set><name>VERLIEBT</name>true</set></think></template>
+	</category>
+
+
+	<category>
 		<pattern><set>negative_answer</set></pattern>
 		<that>Interessierst Du Dich für *</that>
 		<template>Ok, ich merke mir, dass Du dich nicht für <thatstar/> interessierst.<think><set><name>ISINTERESTEDIN<sentence><thatstar/></sentence></name>false</set></think></template>
 	</category>
+
 
 
 	<category>
@@ -120,7 +142,7 @@
 	<category>
 		<pattern>QUERYFAVORITEFOOD</pattern>
 		<template><condition name="FAVORITEFOOD">
-			<li value="unknown">WAS IST DEIN LIEBLINGSESSEN?</li>
+			<li value="unknown">Was ist Dein Lieblingsessen?</li>
 			<li><srai>PERSOENLICHEFRAGEN</srai></li>
 		</condition></template>
 	</category>
@@ -850,6 +872,15 @@ Mathematik magst du nicht.</li>
 	</category>
 
 
+	<category>
+		<pattern>Gefällt Dir mein Name</pattern>
+		<template>
+			<condition name="name">
+				<li value="unknown">Den hast Du mir noch nicht verraten. Wie ist Dein Name?</li>
+				<li><get name="name"/> gefällt mir gut.</li>
+			</condition>
+		</template>
+	</category>
 
 
 
