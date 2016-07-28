@@ -70,9 +70,10 @@ public class MessageRecieverBaseImpl implements MessageRecieverBase {
   @Override
   public boolean isMessageFromBot(final String from) {
     try {
+      logger.debug("Message from " + from.toLowerCase().trim() + ":" + botConfiguration.getBotNickname().toLowerCase().trim());
       return from.toLowerCase().trim().equals(botConfiguration.getBotNickname().toLowerCase().trim());
     } catch (final IOException e) {
-      logger.warn(e.getClass().getName(), e);
+      logger.error("IOException:" + e.getMessage(), e);
     }
     return false;
   }
@@ -82,7 +83,7 @@ public class MessageRecieverBaseImpl implements MessageRecieverBase {
     try {
       return message.toLowerCase().trim().contains("@" + botConfiguration.getBotMentionName().toLowerCase().trim());
     } catch (final IOException e) {
-      logger.warn(e.getClass().getName(), e);
+      logger.error("IOException: " + e.getMessage(), e);
     }
     return false;
   }
