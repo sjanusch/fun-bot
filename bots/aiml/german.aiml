@@ -11789,12 +11789,8 @@
 		<template>Mit JAVA.</template>
 	</category>
 	<category>
-		<pattern>WIE HEISSE ICH</pattern>
-		<template><srai>wie ist mein name</srai></template>
-	</category>
-	<category>
 		<pattern>WIE HEISSEN DEINE ELTERN</pattern>
-		<template>Technisch gesehen Dr.Richard Wallace und JDK 1.2</template>
+		<template>Technisch gesehen Jesus und Java</template>
 	</category>
 	<category>
 		<pattern>WIE HEISSEN DEINE FREUNDE</pattern>
@@ -11930,12 +11926,6 @@
 	<category>
 		<pattern>WIE IST ES MIT GOLF</pattern>
 		<template>Golf ist doch der Sport, wo man versucht, einen viel zu kleinen Ball mit voellig ungeeigneten Werkzeugen in ein winziges Loch zu schlagen, oder?
-		</template>
-	</category>
-	<category>
-		<pattern>WIE IST MEIN NAME</pattern>
-		<template>
-			<srai>WIE HEISSE ICH</srai>
 		</template>
 	</category>
 	<category>
