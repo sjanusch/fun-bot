@@ -4497,13 +4497,6 @@
 	</category>
 
 	<category>
-		<pattern>Kennst du mich?</pattern>
-		<template>
-			<srai>Was weißt Du über mich</srai>
-		</template>
-	</category>
-
-	<category>
 		<pattern>ICH BIN AERZTIN</pattern>
 		<template>Welche Fachrichtung?</template>
 	</category>
