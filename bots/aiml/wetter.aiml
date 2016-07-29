@@ -23,12 +23,6 @@
 	</category>
 
 	<category>
-		<pattern>Wetter</pattern>
-		<template><srai>Wetter <get name="clientheimat"/></srai></template>
-	</category>
-
-
-	<category>
 		<pattern>WIE IST DAS WETTER BEI DIR</pattern>
 		<template><srai>Wetter <bot name="location"/></srai></template>
 	</category>

@@ -39,10 +39,7 @@
 </category>
 
 
-	<category>
-		<pattern>WELCHES DATUM HABEN WIR HEUTE</pattern>
-		<template><srai>DATUM</srai></template>
-	</category>
+
 
 	<category>
 		<pattern>* ist am *</pattern>
