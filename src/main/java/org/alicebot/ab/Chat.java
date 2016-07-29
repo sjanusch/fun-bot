@@ -139,7 +139,7 @@ public class Chat {
   private String respond(String input, String that, String topic, History contextThatHistory) {
     logger.debug("chat.respond(input: " + input + ", that: " + that + ", topic: " + topic + ", contextThatHistory: " + contextThatHistory + ")");
     boolean repetition = true;
-    //inputHistory.printHistory();
+    inputHistory.printHistory();
     for (int i = 0; i < MagicNumbers.repetition_count; i++) {
       if (inputHistory.get(i) == null || !input.toUpperCase().equals(inputHistory.get(i).toUpperCase()))
         repetition = false;
