@@ -17,7 +17,7 @@
 <!-- For more information see http://www.alicebot.org -->
 <!--  -->
 <category><pattern>Zeig mir *</pattern>
-<template><srai>PICTUREBLAB <star/></srai><sraix hint="pic">SHOW ME <star/></sraix></template>
+<template><sraix>PICTUREBLAB <star/></sraix><sraix hint="pic">SHOW ME <star/></sraix></template>
 </category>
 <category><pattern>PICTUREBLAB *</pattern>
 <template><random>
@@ -31,75 +31,108 @@
 </random></template>
 </category>
 
-	<category>
-		<pattern>Wie sieht ein * aus</pattern>
-		<template><srai>Zeig mir <star/></srai></template>
-	</category>
+
+  <category>
+    <pattern>Zeig mir *</pattern>
+    <template><sraix>Zeig mir <star/></sraix></template>
+  </category>                                                                                               L62
+
+
+  <category>
+    <pattern>ZEIG MIR *</pattern>
+    <template><sraix>ZEIG MIR <star/></sraix></template>
+  </category>
 
 	<category>
-		<pattern>Wie sieht eine * aus</pattern>
-		<template><srai>Zeig mir <star/></srai></template>
-	</category>
+  	<pattern>Zeige mir *</pattern>
+  	<template><sraix>Zeige mir <star/></sraix></template>
+  </category>
 
-	<category>
-		<pattern>* Bild von * </pattern>
-		<template><srai>Zeig mir <star index="2"/></srai></template>
-	</category>
+  <category>
+    <pattern>ZEIGE MIR *</pattern>
+    <template><sraix>ZEIGE MIR <star/></sraix></template>
+  </category>
 
-	<category>
-		<pattern>* Bild über * </pattern>
-		<template><srai>Zeig mir <star index="2"/></srai></template>
-	</category>
+  	<category>
+  		<pattern>Wie sieht ein * aus</pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
 
-	<category>
-		<pattern>* Bild mit * </pattern>
-		<template><srai>Zeig mir <star index="2"/></srai></template>
-	</category>
+  	<category>
+  		<pattern>Wie sieht eine * aus</pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
+
+  	<category>
+  		<pattern>* Bild von * </pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
+
+  	<category>
+  		<pattern>* Bild über * </pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
+
+  	<category>
+  		<pattern>* Bild mit * </pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
 
 
-	<category>
-		<pattern>* Bilder von * </pattern>
-		<template><srai>Zeig mir <star index="2"/></srai></template>
-	</category>
+  	<category>
+  		<pattern>* Bilder von * </pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
 
-	<category>
-		<pattern>* Bilder mit * </pattern>
-		<template><srai>Zeig mir <star index="2"/></srai></template>
-	</category>
+  	<category>
+  		<pattern>* Bilder mit * </pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
 
-	<category>
-		<pattern>Bild über * </pattern>
-		<template><srai>Zeig mir <star index="2"/></srai></template>
-	</category>
+  	<category>
+  		<pattern>Bild über * </pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
 
-	<category>
-		<pattern>Bild * </pattern>
-		<template><srai>Zeig mir <star index="2"/></srai></template>
-	</category>
+  	<category>
+  		<pattern>Bild mit * </pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
 
-	<category>
-		<pattern>Zeig mir was schönes</pattern>
-		<template><srai>Zeig mir <srai>etwas schönes</srai></srai></template>
-	</category>
+  	<category>
+  		<pattern>Bild von * </pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
 
-	<category>
-		<pattern>Zeig mir etwas schönes</pattern>
-		<template><srai>Zeig mir <srai>etwas schönes</srai></srai></template>
-	</category>
+  	<category>
+  		<pattern>Bild * </pattern>
+  		<template><sraix>Zeig mir <star/></sraix></template>
+  	</category>
 
-	<category>
-		<pattern>etwas schönes</pattern>
-		<template><random>
-			<li>Strand</li>
-			<li>Palmen</li>
-			<li>Rose</li>
-			<li>Blume</li>
-			<li>Lachen</li>
-			<li>Sonne</li>
-			<li>Blume</li>
+  	<category>
+  		<pattern>Zeig mir was schönes</pattern>
+  		<template><sraix>Zeig mir <srai>ETWASSCHOENES</srai></sraix></template>
+  	</category>
 
-		</random></template>
-	</category>
+  	<category>
+  		<pattern>Zeig mir etwas schönes</pattern>
+  		<template><sraix>Zeig mir <srai>ETWASSCHOENES</srai></sraix></template>
+  	</category>
+
+  	<category>
+  		<pattern>ETWASSCHOENES</pattern>
+  		<template><random>
+  			<li>Strand</li>
+  			<li>Palmen</li>
+  			<li>Rose</li>
+  			<li>Blume</li>
+  			<li>Lachen</li>
+  			<li>Sonne</li>
+  			<li>Blume</li>
+        <li>Nacktmull</li>
+        <li>Kot</li>
+  		</random></template>
+  	</category>
 
 
 </aiml>
