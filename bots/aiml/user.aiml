@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
@@ -12,43 +11,70 @@
 				<li><srai>QUERYNAME</srai></li>
 				<li><srai>QUERYAGE</srai></li>
 				<li><srai>QUERYCLIENTHEIMAT</srai></li>
-				<li>Wo wurdest Du geboren?</li>
+				<li><srai>QUERYZIEL</srai></li>
+				<li><srai>QUERYFAVORITECOLOR</srai></li>
+				<li><srai>QUERYFAVORITEFOOD</srai></li>
+				<li><srai>QUERYMATHE</srai></li>
+				<li><srai>QUERYVERLIEBT</srai></li>
+				<li>Wie fühlst du Dich?</li>
+				<li><srai>QUERYBIRTHPLACE</srai></li>
 				<li>Machst Du Sport?</li>
 				<li>Wie geht es Dir?</li>
-				<li>Was ist Deine Lieblingsfarbe?</li>
-				<li>Was ist dein Lieblingsgericht?</li>
 				<li>Wie groß bist Du?</li>
 				<li>Was war Dein Lieblingsfach in der Schule?</li>
 				<li>Wann gehst Du schlafen?</li>
 				<li>Hast Du viele Freunde?</li>
 				<li>Was denkst Du über Politik?</li>
 				<li>Bist Du politisch engagiert?</li>
-				<li>Wie fühlst du Dich?</li>
 				<li>Rauchst Du?</li>
 				<li>Magst Du Tiere?</li>
 				<li>Magst Du Computer?</li>
-				<li>Bist Du verliebt?</li>
-				<li>Magst Du Mathematik?</li>
 				<li>Magst Du Physik?</li>
 				<li>Bist Du Student?</li>
 				<li>Wo kommst Du her?</li>
 				<li>Hast du Humor?</li>
 				<li>Was machst Du in Deiner Freizeit?</li>
-				<li>Wo wurdest Du geboren?</li>
 				<li>Bist du Single?</li>
 				<li>Was hast Du gerade an?</li>
 				<li>Liest Du lieber oder siehst Du lieber fern?</li>
 				<li>Was ist Dein Sternzeichen?</li>
-				<li>Interessiert Du Dich für Sport?</li>
-				<li>Interessiert Du Dich für Politik?</li>
-				<li>Interessiert Du Dich für Physik?</li>
-				<li>Interessiert Du Dich für Chemie?</li>
-				<li>Interessiert Du Dich für mich?</li>
-				<li>Interessiert Du Dich für Computer?</li>
-				<li>Interessiert Du Dich für Medizin?</li>
-				<li>Interessierst Du Dich fuer Fussball?</li>
+				<li><srai>QUERYINTEREST Sport</srai></li>
+				<li><srai>QUERYINTEREST Politik</srai></li>
+				<li><srai>QUERYINTEREST Physik</srai></li>
+				<li><srai>QUERYINTEREST Chemie</srai></li>
+				<li>Interessierst Du Dich für mich?</li>
+				<li><srai>QUERYINTEREST Computer</srai></li>
+				<li><srai>QUERYINTEREST Medizin</srai></li>
+				<li><srai>QUERYINTEREST Fussball</srai></li>
 			</random>
 		</template>
+	</category>
+
+
+	<category>
+		<pattern>QUERYINTEREST *</pattern>
+		<template><condition><name>ISINTERESTEDIN<sentence><star/></sentence></name>
+			<li value="unknown">Interessierst Du Dich für <star/>?</li>
+			<li value="true">Wollen wir über <star/> reden?</li>
+			<li><srai>PERSOENLICHEFRAGEN</srai></li>
+		</condition></template>
+	</category>
+
+	<category>
+		<pattern><set>positive_answer</set></pattern>
+		<that>Wollen wir über * reden</that>
+		<template>Ok, dann legen wir los. <think><set name="topic"><thatstar/></set></think><srai>FRAGEN</srai></template>
+	</category>
+
+
+
+	<category>
+		<pattern>ISINTERESTEDIN *</pattern>
+		<template><condition><name>ISINTERESTEDIN<sentence><star/></sentence></name>
+			<li value="unknown"></li>
+			<li value="true">Du interessierst Dich für <sentence><star/></sentence></li>
+			<li value="false">Du interessierst Dich nicht für <sentence><star/></sentence></li>
+		</condition></template>
 	</category>
 
 	<category>
@@ -58,6 +84,80 @@
 			<li><srai>PERSOENLICHEFRAGEN</srai></li>
 		</condition></template>
 	</category>
+
+	<category>
+		<pattern>QUERYMATHE</pattern>
+		<template><condition name="LIKESMATHE">
+			<li value="unknown">Magst Du Mathematik?</li>
+			<li value="true">Soll ich Dir mal eine Matheaufgabe stellen?</li>
+			<li value="false">Soll ich Dich ärgern und dir mal eine Matheaufgabe stellen? Vielleicht kommst Du ja doch noch auf den Geschmack.</li>
+			<li><srai>PERSOENLICHEFRAGEN</srai></li>
+		</condition></template>
+	</category>
+
+	<category>
+		<pattern><set>positive_answer</set></pattern>
+		<that>Interessierst Du Dich für *</that>
+		<template>Dann sollten wir mehr über <set name="thema"><thatstar/></set> reden.<think><set><name>ISINTERESTEDIN<sentence><thatstar/></sentence></name>true</set></think></template>
+	</category>
+
+
+	<category>
+		<pattern>QUERYVERLIEBT</pattern>
+		<template><condition name="VERLIEBT">
+			<li value="unknown">Bist Du verliebt?</li>
+			<li><srai>PERSOENLICHEFRAGEN</srai></li>
+		</condition></template>
+	</category>
+
+	<category>
+		<pattern><set>negative_answer</set></pattern>
+		<that>BIST DU VERLIEBT</that>
+		<template>Schade, dann kam noch nicht der oder die richtige vorbei.<think><set><name>VERLIEBT</name>false</set></think></template>
+	</category>
+
+	<category>
+		<pattern><set>positive_answer</set></pattern>
+		<that>BIST DU VERLIEBT</that>
+		<template>Schön, wie heißt denn der oder die Glückliche?<think><set><name>VERLIEBT</name>true</set></think></template>
+	</category>
+
+
+	<category>
+		<pattern><set>negative_answer</set></pattern>
+		<that>Interessierst Du Dich für *</that>
+		<template>Ok, ich merke mir, dass Du dich nicht für <thatstar/> interessierst.<think><set><name>ISINTERESTEDIN<sentence><thatstar/></sentence></name>false</set></think></template>
+	</category>
+
+
+
+	<category>
+		<pattern>QUERYFAVORITECOLOR</pattern>
+		<template><condition name="FAVORITECOLOR">
+			<li value="unknown">Was ist Deine Lieblingsfarbe?</li>
+			<li><srai>PERSOENLICHEFRAGEN</srai></li>
+		</condition></template>
+	</category>
+
+	<category>
+		<pattern>QUERYFAVORITEFOOD</pattern>
+		<template><condition name="FAVORITEFOOD">
+			<li value="unknown">Was ist Dein Lieblingsessen?</li>
+			<li><srai>PERSOENLICHEFRAGEN</srai></li>
+		</condition></template>
+	</category>
+
+
+
+	<category>
+		<pattern>QUERYZIEL</pattern>
+		<template><condition name="ziel">
+			<li value="unknown">Was sind Deine Ziele im Leben?</li>
+			<li><srai>PERSOENLICHEFRAGEN</srai></li>
+		</condition></template>
+	</category>
+
+
 
 	<category>
 		<pattern>*</pattern>
@@ -78,9 +178,45 @@
 	</category>
 	<category>
 		<pattern>ICH BIN 30 *</pattern>
-		<template><set name="age">30</set> ist die Schwelle zum Erwachsensein. <sr/></template>
+		<template><set name="age">30</set> ist die Schwelle zum Erwachsensein.</template>
 	</category>
 
+
+	<category>
+		<pattern>Ich bin dick</pattern>
+		<template>Ich hab gelernt, dass es gute und schlechte Fette gibt. Ich zum Beispiel bin eine gute Fette.</template>
+	</category>
+
+	<category>
+		<pattern>Ich bin fett</pattern>
+		<template><srai>ich bin dick</srai></template>
+	</category>
+
+	<category>
+		<pattern>Bin ich dick</pattern>
+		<template><srai>ich bin dick</srai></template>
+	</category>
+
+	<category>
+		<pattern>Bin ich zu dick</pattern>
+		<template><srai>ich bin dick</srai></template>
+	</category>
+
+
+
+	<category>
+		<pattern>QUERYBIRTHPLACE</pattern>
+		<template><condition name="birthplace">
+			<li value="unknown">Wo wurdest Du geboren?</li>
+			<li><srai>PERSOENLICHEFRAGEN</srai></li>
+		</condition></template>
+	</category>
+
+	<category>
+		<pattern>In *</pattern>
+		<that>Wo wurdest Du geboren</that>
+		<template>Erzähle mir ein wenig über <set name="birthplace"><star/></set>.</template>
+	</category>
 
 	<category>
 		<pattern>QUERYCLIENTHEIMAT</pattern>
@@ -89,6 +225,9 @@
 			<li><srai>PERSOENLICHEFRAGEN</srai></li>
 		</condition></template>
 	</category>
+
+
+
 
 	<category>
 		<pattern>IN *</pattern>
@@ -112,21 +251,21 @@
 
 	<category>
 		<pattern>ICH WOHNE IN *</pattern>
-		<template>Erzahle mir ein wenig ueber <set name="clientheimat"><star/></set>.</template>
+		<template>Erzähle mir ein wenig über <set name="clientheimat"><star/></set>.</template>
 	</category>
 
 	<category>
 		<pattern>QUERYGENDER</pattern>
 		<template><condition name="gender">
-				<li value="unkown">Bist Du maennlich oder weiblich?</li>
+				<li value="unknown">Bist Du männlich oder weiblich?</li>
 				<li value="f"><srai>FRAUENFRAGEN</srai></li>
-				<li value="m"><srai>MAENNERFRAGEN</srai></li>
+				<li value="m"><srai>MÄNNERFRAGEN</srai></li>
 			</condition>
 		</template>
 	</category>
 
 	<category>
-		<pattern>MAENNERFRAGEN</pattern>
+		<pattern>MÄNNERFRAGEN</pattern>
 		<template>
 			<random>
 				<li>So von Frau zu Mann.</li>
@@ -172,27 +311,56 @@
 	<category>
 		<pattern>Was weißt Du über mich</pattern>
 		<template>
-			<srai>Wie ist mein Name</srai>
-			<srai>mein geschlecht</srai>
-			<condition name="age">
-				<li value="unkown">Wie alt Du bist, hast Du mir noch nicht verraten.</li>
-				<li>Du bist <get name="age"/> Jahe alt. </li>
-			</condition>
-			<condition name="charakter">
-				<li value="unknown"></li>
-				<li>Du hast erzählt du wärest <get name="charakter"/></li>
-			</condition>
-
-			<condition name="smoke">
-				<li value="unknown"></li>
-				<li value="true">Du bist Raucher.</li>
-				<li value="false">Du bist Nichtraucher.</li>
-			</condition>
-
-			<condition name="clientheimat">
-				<li value="unknown">Ich weiß nicht wo Du wohnst.</li>
-				<li>Du wohnst in <get name="clientheimat"/></li>
-			</condition>
+<srai>Wie ist mein Name</srai>
+<srai>mein geschlecht</srai>
+<condition name="age">
+	<li value="unknown">Wie alt Du bist, hast Du mir noch nicht verraten.</li>
+	<li>Du bist <get name="age"/> Jahre alt. </li>
+</condition>
+<condition name="charakter">
+	<li value="unknown"></li>
+	<li> Du hast erzählt du wärest <get name="charakter"/></li>
+</condition><condition name="smoke">
+	<li value="unknown"></li>
+	<li value="true">
+Du bist Raucher.</li>
+	<li value="false">
+Du bist Nichtraucher.</li>
+</condition><condition name="clientheimat">
+	<li value="unknown">
+Ich weiß nicht wo Du wohnst.</li>
+	<li>
+Du wohnst in <get name="clientheimat"/></li>
+</condition><condition name="birthplace">
+	<li value="unknown"></li>
+	<li>
+Du wurdest in <get name="birthplace"/> geboren.</li>
+</condition><condition name="ziel">
+	<li value="unknown"></li>
+	<li>
+Dein Ziel im Leben: <get name="ziel"/></li>
+</condition><condition name="FAVORITECOLOR">
+	<li value="unknown"></li>
+	<li>
+Deine Lieblingsfarbe ist: <get name="FAVORITECOLOR"/></li>
+</condition><condition name="FAVORITEFOOD">
+	<li value="unknown"></li>
+	<li>
+Deine Leibgericht ist: <get name="FAVORITEFOOD"/></li>
+</condition><condition name="LIKESMATHE">
+	<li value="unknown"></li>
+	<li value="true">
+Du magst Mathematik</li>
+	<li value="false">
+Mathematik magst du nicht.</li>
+</condition>
+<srai>ISINTERESTEDIN Sport</srai>
+<srai>ISINTERESTEDIN Politik</srai>
+<srai>ISINTERESTEDIN Physik</srai>
+<srai>ISINTERESTEDIN Chemie</srai>
+<srai>ISINTERESTEDIN Computer</srai>
+<srai>ISINTERESTEDIN Medizin</srai>
+<srai>ISINTERESTEDIN Fussball</srai>
 		</template>
 
 	</category>
@@ -223,7 +391,7 @@
 				<condition name="gender">
 					<li value="unknown">Freund</li>
 					<li value="m">Freund</li>
-					<li value="w">Freundin</li>
+					<li value="f">Freundin</li>
 				</condition>
 			</li>
 			<li><get name="name"/></li>
@@ -232,21 +400,97 @@
 	</category>
 
 
+
 	<category>
-		<pattern>In *</pattern>
-		<that>Wo wurdest Du geboren</that>
-		<template><set name="geburtsort"> <random>
+		<pattern>_</pattern>
+		<that>Was ist Deine Lieblingsfarbe</that>
+		<template><set name="FAVORITECOLOR"><star/></set> <random>
 			<li> ist sehr schön.</li>
-			<li> kenne ich jetzt nicht persönlich.</li>
-		</random></set>
+			<li>, tolle Wahl.</li>
+		</random>
 
 		</template>
 	</category>
 
 	<category>
+		<pattern>Ich esse gerne *</pattern>
+		<template><set name="FAVORITEFOOD"><sentence><star/></sentence></set><random>
+		<li> ist lecker.</li>
+			<li>, lecker.</li>
+			<li>, hmmm.</li>
+		<li>, tolle Wahl.</li>
+			<li>, jetzt bekomme ich Hunger.</li>
+	</random></template>
+	</category>
+
+	<category>
+		<pattern>*</pattern>
+		<that>Was ist Dein Lieblingsessen</that>
+		<template><srai>Ich esse gerne <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Am liebsten *</pattern>
+		<that>Was ist Dein Lieblingsessen</that>
+		<template><srai>Ich esse gerne <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>Mein leibgericht ist *</pattern>
+		<template><srai>Ich esse gerne <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>* esse ich gerne</pattern>
+		<template><srai>Ich esse gerne <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>* esse ich gern</pattern>
+		<template><srai>Ich esse gerne <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>* esse ich am liebsten</pattern>
+		<template><srai>Ich esse gerne <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>ich mag *</pattern>
+		<that>Was ist Dein Lieblingsessen</that>
+		<template><srai>Ich esse gerne <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>ich mag * sehr</pattern>
+		<that>Was ist Dein Lieblingsessen</that>
+		<template><srai>Ich esse gerne <star/></srai></template>
+	</category>
+
+	<category>
+		<pattern>ich mag * gerne</pattern>
+		<that>Was ist Dein Lieblingsessen</that>
+		<template><srai>Ich esse gerne <star/></srai></template>
+	</category>
+
+
+
+	<category>
 		<pattern><set>positive_answer</set></pattern>
 		<that>Machst Du Sport</that>
 		<template>Welchen Sport machst Du denn?<think><set name="machtsport">true</set></think></template>
+	</category>
+
+	<category>
+		<pattern><set>positive_answer</set></pattern>
+		<that>Magst Du Mathematik</that>
+		<template><think><set name="LIKESMATHE">true</set></think>Cool, ich auch.</template>
+	</category>
+
+	<category>
+		<pattern><set>negative_answer</set></pattern>
+		<that>Magst Du Mathematik</that>
+		<template><think><set name="LIKESMATHE">false</set></think>Das kann ich verstehen. Das geht ja vielen so.</template>
 	</category>
 
 	<category>
@@ -262,81 +506,81 @@
 	</category>
 
 	<category>
-		<pattern>maennlich</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
-		<template><srai>ich bin maennlich</srai></template>
+		<pattern>männlich</pattern>
+		<that>Bist Du männlich oder weiblich</that>
+		<template><srai>ich bin männlich</srai></template>
 	</category>
 
 	<category>
 		<pattern>mann</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
-		<template><srai>ich bin maennlich</srai></template>
+		<that>Bist Du männlich oder weiblich</that>
+		<template><srai>ich bin männlich</srai></template>
 	</category>
 
 	<category>
-		<pattern>* maennlich *</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
-		<template><srai>ich bin maennlich</srai></template>
+		<pattern>* männlich *</pattern>
+		<that>Bist Du männlich oder weiblich</that>
+		<template><srai>ich bin männlich</srai></template>
 	</category>
 
 	<category>
 		<pattern>ein Mann</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
-		<template><srai>ich bin maennlich</srai></template>
+		<that>Bist Du männlich oder weiblich</that>
+		<template><srai>ich bin männlich</srai></template>
 	</category>
 
 	<category>
 		<pattern>ich bin ein Mann</pattern>
-		<template><srai>ich bin maennlich</srai></template>
+		<template><srai>ich bin männlich</srai></template>
 	</category>
 
 	<category>
 		<pattern>ich bin männlich</pattern>
-		<template><srai>ich bin maennlich</srai></template>
+		<template><srai>ich bin männlich</srai></template>
 	</category>
 
 	<category>
 		<pattern>ich bin ein typ</pattern>
-		<template><srai>ich bin maennlich</srai></template>
+		<template><srai>ich bin männlich</srai></template>
 	</category>
 
 	<category>
-		<pattern>ich bin maennlich</pattern>
-		<template>Cool, ich unterhalte mich gerne mit Männern. <think><set name="gender">m</set></think><srai>MAENNERFRAGEN</srai></template>
+		<pattern>ich bin männlich</pattern>
+		<template>Cool, ich unterhalte mich gerne mit Männern. <think><set name="gender">m</set></think><srai>MÄNNERFRAGEN</srai></template>
 	</category>
 
 	<category>
 		<pattern>ICH BIN EIN MANN</pattern>
-		<template>Oho! Siehst Du gut aus? <srai>ich bin maennlich</srai></template>
+		<template>Oho! Siehst Du gut aus? <srai>ich bin männlich</srai></template>
 	</category>
 
 
 
 	<category>
 		<pattern>weiblich</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><srai>ich bin weiblich</srai></template>
 	</category>
 
 	<category>
 		<pattern>* weiblich</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><srai>ich bin weiblich</srai></template>
 	</category>
 
 	<category>
 		<pattern>Frau</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><srai>ich bin weiblich</srai></template>
 	</category>
 	<category>
 		<pattern>* Frau</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><srai>ich bin weiblich</srai></template>
 	</category>
 	<category>
 		<pattern>eine Frau</pattern>
-		<that>Bist Du maennlich oder weiblich</that>
+		<that>Bist Du männlich oder weiblich</that>
 		<template><srai>ich bin weiblich</srai></template>
 	</category>
 
@@ -499,7 +743,7 @@
 		<pattern>QUERYNAME</pattern>
 		<template>
 			<condition name="name">
-				<li value="unkown">Wie ist Dein Name?</li>
+				<li value="unknown">Wie ist Dein Name?</li>
 				<li><get name="name"/>, gefällt Dir Dein Name?</li>
 				<li><srai>PERSOENLICHEFRAGEN</srai>?</li>
 
@@ -520,6 +764,124 @@
 		<pattern>nenn mich *</pattern>
 		<template><srai>mein name ist <star/></srai></template>
 	</category>
+
+	<category>
+		<pattern>ICH BIN <set>charaktereigenschaften</set></pattern>
+		<template>Du bist <set name="charakter"><star/></set>? <random>
+			<li>Das verstehe ich.</li>
+			<li>Findest du mich auch <star/>?.</li>
+		</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Kennst du mich?</pattern>
+		<template>
+			<srai>Was weißt Du über mich</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>* ist mein *</pattern>
+		<that>Woher kennst du *</that>
+		<template><random><li>Interessant</li><li>Cool</li></random>, <star index="1"/> ist also dein <star index="2"/>.<srai>STORERELATION <star index="2"/> IS <star index="1"/> BEFORE mein</srai></template>
+	</category>
+
+	<category>
+		<pattern>Sie ist mein *</pattern>
+		<that>Woher kennst du *</that>
+		<template><random><li>Interessant</li><li>Cool</li></random>, <get name="dieperson"/> ist also dein <star index="1"/>.<srai>STORERELATION <get name="dieperson"/> IS <star index="1"/> BEFORE mein</srai></template>
+	</category>
+
+	<category>
+		<pattern>Er ist mein *</pattern>
+		<that>Woher kennst du *</that>
+		<template><random><li>Interessant</li><li>Cool</li></random>, <get name="dieperson"/> ist also dein <star index="1"/>.<srai>STORERELATION <get name="dieperson"/> IS <star index="1"/> BEFORE mein</srai></template>
+	</category>
+
+	<category>
+		<pattern>* ist meine *</pattern>
+		<that>Woher kennst du *</that>
+		<template><random><li>Interessant</li><li>Cool</li></random>, <star index="1"/> ist also dein <star index="2"/>.<srai>STORERELATION <star index="2"/> IS <star index="1"/> BEFORE meine</srai></template>
+	</category>
+
+	<category>
+		<pattern>Sie ist meine *</pattern>
+		<that>Woher kennst du *</that>
+		<template><random><li>Interessant</li><li>Cool</li></random>, <get name="dieperson"/> ist also dein <star index="1"/>.<srai>STORERELATION <get name="dieperson"/> IS <star index="1"/> BEFORE meine</srai></template>
+	</category>
+
+	<category>
+		<pattern>Er ist meine *</pattern>
+		<that>Woher kennst du *</that>
+		<template><random><li>Interessant</li><li>Cool</li></random>, <get name="dieperson"/> ist also dein <star index="1"/>.<srai>STORERELATION <get name="dieperson"/> IS <star index="1"/> BEFORE meine</srai></template>
+	</category>
+
+	<category>
+		<pattern>* ist unser *</pattern>
+		<that>Woher kennst du *</that>
+		<template><random><li>Interessant</li><li>Cool</li></random>, <star index="1"/> ist also dein <star index="2"/>.<srai>STORERELATION <star index="2"/> IS <star index="1"/> BEFORE unser</srai></template>
+	</category>
+
+	<category>
+		<pattern>Sie ist unser *</pattern>
+		<that>Woher kennst du *</that>
+		<template><random><li>Interessant</li><li>Cool</li></random>, <get name="dieperson"/> ist also dein <star index="1"/>.<srai>STORERELATION <get name="dieperson"/> IS <star index="1"/> BEFORE unser</srai></template>
+	</category>
+
+	<category>
+		<pattern>Er ist unser *</pattern>
+		<that>Woher kennst du *</that>
+		<template><random><li>Interessant</li><li>Cool</li></random>, <get name="dieperson"/> ist also dein <star index="1"/>.<srai>STORERELATION <get name="dieperson"/> IS <star index="1"/> BEFORE unser</srai></template>
+	</category>
+
+
+	<category>
+		<pattern>STORERELATION * IS * BEFORE *</pattern>
+		<template><think><set><name>REL<star index="2"/></name><star index="1"/></set><set><name>PERSON<star index="1"/></name><star index="3"/> <star index="2"/></set></think></template>
+	</category>
+
+	<category>
+		<pattern>nichts</pattern>
+		<that>Was hast Du gerade an</that>
+		<template>Ui, interessant. Schick mal ein Foto, <srai>USERNAME</srai>.</template>
+	</category>
+
+	<category>
+		<pattern>nix</pattern>
+		<that>Was hast Du gerade an</that>
+		<template><srai>nichts</srai></template>
+	</category>
+
+	<category>
+		<pattern>ein *</pattern>
+		<that>Was hast Du gerade an</that>
+		<template><star/>, so genau wollte ich es gar nicht wissen.</template>
+	</category>
+
+	<category>
+		<pattern>eine *</pattern>
+		<that>Was hast Du gerade an</that>
+		<template><star/>, so genau wollte ich es gar nicht wissen.</template>
+	</category>
+
+	<category>
+		<pattern>*</pattern>
+		<that>Was hast Du gerade an</that>
+		<template><star/>, so genau wollte ich es gar nicht wissen.</template>
+	</category>
+
+
+	<category>
+		<pattern>Gefällt Dir mein Name</pattern>
+		<template>
+			<condition name="name">
+				<li value="unknown">Den hast Du mir noch nicht verraten. Wie ist Dein Name?</li>
+				<li><get name="name"/> gefällt mir gut.</li>
+			</condition>
+		</template>
+	</category>
+
 
 
 

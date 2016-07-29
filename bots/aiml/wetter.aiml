@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
@@ -22,6 +21,12 @@
 		<pattern>WIE IST DAS WETTER</pattern>
 		<template><srai>Wetter <get name="clientheimat"/></srai></template>
 	</category>
+
+	<category>
+		<pattern>Wetter</pattern>
+		<template><srai>Wetter <get name="clientheimat"/></srai></template>
+	</category>
+
 
 	<category>
 		<pattern>WIE IST DAS WETTER BEI DIR</pattern>
