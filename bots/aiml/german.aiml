@@ -11388,10 +11388,6 @@
 		<template>Mit JAVA.</template>
 	</category>
 	<category>
-		<pattern>WIE HEISSE ICH</pattern>
-		<template><srai>wie ist mein name</srai></template>
-	</category>
-	<category>
 		<pattern>WIE HEISSEN DEINE ELTERN</pattern>
 		<template>Technisch gesehen Dr.Richard Wallace und JDK 1.2</template>
 	</category>
