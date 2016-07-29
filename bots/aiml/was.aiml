@@ -455,6 +455,24 @@
 		<template><srai>Was ist <star/></srai></template>
 	</category>
 
+  <category>
+    <pattern>Zeig mir *</pattern>
+    <template><sraix>Zeig mir <star/></sraix></template>
+  </category>
 
+  <category>
+    <pattern>ZEIG MIR *</pattern>
+    <template><sraix>ZEIG MIR <star/></sraix></template>
+  </category>
+
+	<category>
+  	<pattern>Zeige mir *</pattern>
+  	<template><sraix>Zeige mir <star/></sraix></template>
+  </category>
+
+  <category>
+    <pattern>ZEIGE MIR *</pattern>
+    <template><sraix>ZEIGE MIR <star/></sraix></template>
+  </category>
 
 </aiml>
