@@ -60,7 +60,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
   }
 
   private void handleMessage(final Message message, final String from) throws IOException {
-    final String incomeMessage = message.getBody().toLowerCase().trim();
+    final String incomeMessage = messageRecieverBase.extractMessage(message.getBody().toLowerCase().trim());
     final String actualUser = messageHelper.convertNames(from);
     final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
 

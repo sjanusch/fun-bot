@@ -86,4 +86,18 @@ public class MessageRecieverBaseImpl implements MessageRecieverBase {
     }
     return false;
   }
+
+  @Override
+  public String extractMessage(final String message) {
+    try {
+      final String[] parts = message.toLowerCase().trim().split("@" + botConfiguration.getBotMentionName().toLowerCase().trim());
+      if(parts.length > 1){
+        return parts[1];
+      }
+      return message;
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return message;
+  }
 }

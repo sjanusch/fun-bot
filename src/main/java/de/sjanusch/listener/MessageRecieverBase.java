@@ -20,4 +20,6 @@ public interface MessageRecieverBase {
     boolean isMessageFromBot(final String from);
 
     boolean isMessageForBot(final String message);
+
+    String extractMessage(final String message);
 }
