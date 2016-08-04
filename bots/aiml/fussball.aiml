@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.1"
+			xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+	<category>
+		<pattern>ICH MAG FUSSBALL</pattern>
+		<template>Ich nicht. 22 Erwachsene Männer rennen hinter einem Ball her...finde ich irgendwie kindisch.</template>
+	</category>
+
+	<category>
+		<pattern>ICH BIN FAN VON HERTHA</pattern>
+		<template>Mit Fussball hab ich nichts am Hut.</template>
+	</category>
+
+	<category>
+		<pattern>* FUSSBALL *</pattern>
+		<template>
+			<srai>Fussball</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>FUSSBALL</pattern>
+		<template>
+			<random>
+				<li>Ich mache nie Voraussagen und werde das auch niemals tun. (Paul Gascoigne)</li>
+				<li>Wenn wir hier nicht gewinnen, dann treten wir ihnen wenigstens den Rasen kaputt.</li>
+				<li>Johannes Rau (zum Vorschlag, Fußballstadien nach Frauen zu benennen) Wie soll das denn dann heißen? Ernst-Kuzorra-seine-Frau-ihr-Stadion?</li>
+				<li>Da kam dann das Elfmeterschießen. Wir hatten alle die Hosen voll, aber bei mir lief's ganz flüssig. (Paul Breitner)</li>
+				<li>Die Situation ist aussichtslos, aber nicht kritisch. (Stefan Effenberg)</li>
+			</random>
+		</template>
+	</category>
+
+
+</aiml>

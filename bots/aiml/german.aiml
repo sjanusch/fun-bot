@@ -51,8 +51,6 @@
 				<li>Früher war ich unentschlossen, heute bin ich mir da nicht mehr so sicher.</li>
 				<li>Erzähl mir was von Dir.</li>
 				<li>lol. Endlich mal jemand zum Reden da.</li>
-				<li><srai>Fussball</srai></li>
-				<li><srai>SPRUCH</srai></li>
 				<li>Frag mich was</li>
 				<li>Welches Auto hast Du?</li>
 				<li>Worüber redest du?</li>
@@ -3667,22 +3665,6 @@
 		<template>Für Dich oder mich?</template>
 	</category>
 	<category>
-		<pattern>FUSSBALL</pattern>
-		<template>
-		<random>
-		<li>Ich mache nie Voraussagen und werde das auch niemals tun. (Paul Gascoigne)</li>
-			<li>Wenn wir hier nicht gewinnen, dann treten wir ihnen wenigstens den Rasen kaputt.</li>
-			<li>Johannes Rau (zum Vorschlag, Fußballstadien nach Frauen zu benennen) Wie soll das denn dann heißen? Ernst-Kuzorra-seine-Frau-ihr-Stadion?</li>
-			<li>Da kam dann das Elfmeterschießen. Wir hatten alle die Hosen voll, aber bei mir lief's ganz flüssig. (Paul Breitner)</li>
-			<li>Die Situation ist aussichtslos, aber nicht kritisch. (Stefan Effenberg)</li>
-		</random>
-		</template>
-	</category>
-	<category>
-		<pattern>* FUSSBALL *</pattern>
-		<template><srai>Fussball</srai></template>
-	</category>
-	<category>
 		<pattern>GANZ OK</pattern>
 		<template>Aber wahnsinnig toll findest Du es auch nicht, oder?</template>
 	</category>
@@ -4653,10 +4635,6 @@
 		<template>Möchtest Du mit mir über Deine <set name="thema">Einsamkeit</set> reden?</template>
 	</category>
 	<category>
-		<pattern>ICH BIN FAN VON HERTHA</pattern>
-		<template>Mit Fussball hab ich nichts am Hut.</template>
-	</category>
-	<category>
 		<pattern>ICH BIN FAST NIE SICHER</pattern>
 		<template>Vielleicht solltest Du eine Ego-Therapie machen.</template>
 	</category>
@@ -5579,10 +5557,6 @@
 	<category>
 		<pattern>ICH MAG FRAUEN</pattern>
 		<template>Welche Art von <set name="thema">Frauen</set> magst Du besonders?</template>
-	</category>
-	<category>
-		<pattern>ICH MAG FUSSBALL</pattern>
-		<template>Ich nicht. 22 Erwachsene Männer rennen hinter einem Ball her...finde ich irgendwie kindisch.</template>
 	</category>
 	<category>
 		<pattern>ICH MAG GERNE SCHOKOLADE</pattern>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.1"
+			xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+	<category>
+		<pattern>SPRUCH</pattern>
+		<template>
+			<srai>SCHLAUENSPRUCH</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>EINEN SCHLAUEN SPRUCH *</pattern>
+		<template>
+			<srai>SCHLAUENSPRUCH</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>SCHLAUEN SPRUCH</pattern>
+		<template>
+			<srai>SCHLAUENSPRUCH</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>SCHLAUENSPRUCH</pattern>
+		<template>
+			<random>
+				<li>Mir doch egal, ich lass das jetzt so</li>
+				<li>Männer, die einer Frau noch die Tür aufhalten, Blumen mitbringen und ihr einen Kuss auf die Stirn geben, sind wahre Helden.</li>
+				<li>Wer über die Dummheit anderer lacht, hat sich über deren Motivation noch keine Gedanken gemacht.</li>
+				<li>Appetit holt man sich woanders, gegessen wird zuhause.</li>
+				<li>Das Leben ist eine große Gleichung. Jeder muss kämpfen um sie zu lösen, aber am Ende kommt bei allen das Gleiche raus.</li>
+				<li>Keiner verdient deine Träne, denn der, der sie verdienen würde, würde dich nie zum weinen bringen!</li>
+				<li>Schicksal ist, wenn Du den einen Menschen findest, ohne den Du nicht leben möchtest! Schicksal ist, wenn dieser eine Mensch das genauso sieht.</li>
+				<li>Erzähle niemanden deine Pläne, zeige ihnen nur deine Ergebnisse.</li>
+				<li>Lache niemals über die Dummheit anderer, das ist deine Chance.</li>
+				<li>Manche Menschen sagen Liebe sei eine Krankheit, doch wenn sie es ist dann eine Unheilbare.</li>
+				<li>Wir sind wie Peter Pan, kein Stück erwachsen aber derbe cool.</li>
+				<li>Musik hören und alles andere vergessen</li>
+				<li>Am Ende bereust du nicht was du getan hast, sondern nur was du nicht getan hast.</li>
+				<li>Liebe ist wenn man über einen anderen Menschen mehr nachdenkt als sich selbst.</li>
+				<li>Wir drücken an Türen auf denen dick und fett ZIEHEN! steht.</li>
+				<li>Es gibt zwei Arten von Menschen: Einmal die, die darauf warten das sich alles verändert und die, die erkennen, dass sie die Macht besitzen um Alles zu verändern.</li>
+				<li>Liebe ist, wenn die Sonne nicht aufgehen muss, um deinen Tag zu bezaubern.</li>
+				<li>What ever your 100% looks like, give it!</li>
+				<li>Wissen Sie, was Sie da tun?</li>
+				<li>Nein. ich überrasche mich gern selbst.</li>
+				<li>Manche Leute reagieren verwirrt, wenn ein Satz nicht so endet, wie sie es Kartoffelsalat.</li>
+				<li>Der zweite Platz ist der erste VerliererIch mache keine Fehler, sondern lerne nur dazu.</li>
+				<li>Ich lerne aus meinen Fehlern, deswegen mache ich immer wieder Neue</li>
+				<li>Alle sagten immer das geht nicht, dann kam jemand der das nicht wußte und hat es einfach gemacht!</li>
+				<li>Uns halten nur die Grenzen, die wir uns selbst setzen.</li>
+				<li>Lieber verrückt das Leben genießen, als normal langweilen.</li>
+				<li>Es gibt tausend Arten von Lärm, aber nur eine wirkliche Stille.</li>
+				<li>Erfahrung bedeutet nichts, jeder kann etwas jahrelang falsch machen ohne es zu merken.</li>
+				<li>Die wahre Stärke eines Menschen sieht man nicht an den Muskeln, sondern wie er hinter dir steht!</li>
+				<li>Der Mensch plant und das Schicksal lacht darüber!</li>
+				<li>Viele Menschen hinterlassen Spuren und nur wenige hinterlassen Eindrücke.</li>
+				<li>Wenn du die Freiheit aufgibst, um Sicherheit zu gewinnen, wirst du am Ende beides verlieren.</li>
+				<li>Nichts ist schmerzender, als sich der Isolation hingeben zu müssen, nur weil man glaubt alleine am Besten zurecht zu kommen.</li>
+				<li>Meine Feinde kenne ich, meine Freunde nicht.</li>
+				<li>Die Feinde meines Feindes sind meine Freunde.</li>
+				<li>Manchmal denkt man es ist stark festzuhalten.</li>
+				<li>Doch es ist das Loslassen, das was wahre Stärke zeigt.</li>
+				<li>Früher war alles Besser, ist in der Zukunft das Jetzt.</li>
+				<li>Ich will an den Ort an dem das Meer den Himmel berührt.</li>
+				<li>Dein Herz ist frei, hab den Mut ihm zu folgen.</li>
+				<li>Reisende soll man nicht aufhalten.</li>
+				<li>Glücklich ist, wer sich bei Sonnenuntergang auf die Sterne freut.</li>
+				<li>Nur wer Erwachsen wird und ein Kind bleibt, hat verstanden wirklich zu Leben.</li>
+				<li>Zahme Vögel träumen von Freiheit… Wilde Vögel fliegen!</li>
+				<li>Du darfst nicht von vorneherein davon ausgehen verletzt zu werden.</li>
+				<li>Pessimismus führt unweigerlich dazu dass man enttäuscht wird, weil man das Negative heraufbeschwört!</li>
+				<li>Es gibt niemals eine zweite Changse für den ersten Eindruck.</li>
+				<li>Die schönste Zeit im Leben sind die kleinen Momente, in denen Du spürst, Du bist zur richtigen Zeit, am richtigen Ort.</li>
+				<li>Wenn einem die Treue Spaß macht, dann ist es Liebe.</li>
+				<li>Vergangenheit ist Geschichte, Zukunft ein Geheimnis und jeder Augenblick ein Geschenk.</li>
+				<li>Weine für einen Augenblick in deinem Leben, aber nicht für einen Augenblick Dein ganzes Leben lang!</li>
+				<li>Es ist die Frage ob man bereit ist einen Weg zusammen zu gehen oder ob man zwei Wege geht die niemals zusammenfinden würden.</li>
+				<li>Fremde Fehler beurteilen wir wie Staatsanwälte, die eigenen wie Verteidiger.</li>
+				<li>Weise die Schuld demjenigen zu, der sie verdient, und nicht demjenigen, der gerade im Weg steht.</li>
+				<li>Mut ist der Zauber, der Träume Wirklichkeit werden lässt!</li>
+				<li>Achte auf Deine Gedanken, denn sie werden deine Worte. Achte auf Deine Worte, denn sie werden deine Handlungen. Achte auf Deine Handlungen, denn sie werden deine Gewohnheiten. Achte auf Deine Gewohnheiten, denn sie werden dein Charakter. Achte auf Deinen Charakter, denn er wird dein Schicksal.</li>
+				<li>Die Wahrheit über die Wahrheit: Sie tut weh, deshalb lügen wir.</li>
+				<li>Die meiste Macht in einer Beziehung haben immer diejenigen, denen sie nicht soviel bedeutet</li>
+				<li>Manche Menschen sind wie Glasscherben: In ihnen spiegelt sich der Sonne glänzend Licht,doch die scharfen Kanten sieht der Betrachter nicht.</li>
+				<li>Mut bedeutet nicht die Abwesenheit von Angst sondern die Erkenntnis, dass es etwas wichtigeres gibt als Angst.</li>
+				<li>Fürchte Dich nicht vor dem langsamen Vorwärtsgehen, fürchte Dich nur vor dem Stehen bleiben.</li>
+				<li>Manche Menschen drücken nur ein Auge zu, damit sie besser zielen können.</li>
+				<li>Trinke nie zu viel, denn die letzte Flasche die drauf geht, könntest Du selbst sein.</li>
+				<li>Die Geschichte wird freundlich mit mir umgehen, denn ich habe vor, sie zu schreiben.</li>
+				<li>Der Neider sieht immer nur das Beet, den Spaten sieht er nicht.</li>
+				<li>Man sieht nur mit dem Herzen gut.</li>
+				<li>Wer glaubt etwas zu sein, hat aufgehört etwas zu werden.</li>
+				<li>Das Staunen ist der Anfang der Erkenntnis</li>
+				<li>Der Augenblick ist zeitlos.</li>
+				<li>Auch ein langer Weg beginnt mit dem ersten Schritt.</li>
+				<li>Ein Tag ohne Lächeln ist ein verlorener Tag.</li>
+				<li>Nur tote Fische schwimmen mit dem Strom.</li>
+				<li>Ich höre und vergesse. Ich sehe und erinnere. Ich tue und verstehe. ist wichtiger als Wissen.</li>
+				<li>Wissen ist begrenzt, die Phantasie unendlich.</li>
+				<li>Um klar zu sehen, genügt oft ein Wechsel der Blickrichtung.</li>
+				<li>Liebeskummer ist wie ein Diamant: man sollte ihn mit Fassung tragen.</li>
+				<li>Wenn die Nacht am tiefesten,ist der Tag am nächsten!</li>
+				<li>Das Wort ist schärfer wie die Klinge!</li>
+				<li>Wer will findet Wege, wer nicht will, der findet Gründe!</li>
+				<li>Wirklich reich ist, wer mehr Träume in seiner Seele hat, als die Realität zerstören kann!</li>
+				<li>Vertrauen ist eine Oase im Herzen, die von der Karawane des Denkens nie erreicht wird.</li>
+				<li>Das Neue ist meistens das vergessene Alte.</li>
+				<li>In der Jugend lernen wir, im Alter verstehen wir.</li>
+				<li>Vevendo Vides (Wer glaubt wird sehen)</li>
+				<li>Alle Dinge, die man erlebt, werden verloren gehen in der Zeit, wie eine Träne im Regen.</li>
+				<li>Jedesmal wenn ich denke, ich bin ganz unten angelangt, kommt jemand und leiht mir eine Schaufel.</li>
+				<li>Mit den Flügeln der Zeit fliegt die Traurigkeit davon.</li>
+				<li>Die Erinnerung ist das einzige Paradies, aus dem wir nicht vertrieben werden können.</li>
+				<li>Das Glück deines Lebens hängt von der Beschaffenheit deiner Gedanken ab.</li>
+				<li>Die Zeit heilt keine Wunde, man gewöhnt sich nur an den Schmerz!</li>
+				<li>Die schlimmste Art, jemanden zu vermissen, ist die, an seiner Seite zu stehen und zu wissen, dass er nie zu einem gehören wird !!!</li>
+				<li>Du fragtest mich, was ich liebe. “Mein Leben”, sagt ich.</li>
+				<li>Bedingungslose Liebe heißt nicht klammern, sondern Freiheit!</li>
+				<li>Zum schweigen fehlen mir die passenden Worte!</li>
+				<li>Wende dein Gesicht der Sonne zu, dann fallen die Schatten hinter dich.</li>
+				<li>Schwinge Dich zum Mond empor, denn selbst wenn Du ihn verfehlst landest Du bei den Sternen!!</li>
+				<li>Keiner hat mich gefragt ob ich leben will, also sagt mir auch nicht wie ich zu leben habe!!!</li>
+				<li>Gras wächst nicht schneller, wenn man daran zieht.</li>
+				<li>Assembler ist eine Methode, Programme, die zu langsam laufen, so umzuschreiben, daß sie überhaupt nicht mehr laufen.</li>
+				<li>Ich bin ein speicherrenitentes Programm!!!</li>
+				<li>Fraktaler Fehler – System abgestürzt</li>
+				<li>Disk Error Drive A: – Wasser im Laufwerk (Bitte abpumpen)</li>
+				<li>Ein Programm sollte nicht nur Hand und Fuß, sondern auch Herz und Hirn haben.</li>
+				<li>Irren ist menschlich. Aber wer richtigen Mist bauen will, braucht einen Computer !!!</li>
+				<li>Der Wert eines Programms ist umgekehrt proportional dem von ihm verbrauchten Papier.</li>
+				<li>Wenn Architekten so bauen würden, wie Programmierer Ihre Programme machen, könnte ein einziger Specht ganze Städte zerstören.</li>
+				<li>Jedes Programm, in das sich ein Fehler einschleichen kann, wird auch einen enthalten.</li>
+				<li>Die Arbeit am Computer ist eine Erfahrung extremer Isolation.</li>
+				<li>Computer sind dazu da, uns die Arbeit zu erleichtern, die wir ohne sie gar nicht haetten.</li>
+				<li>Wenn am Anfang alles schief geht, nenne es Version 1.0!</li>
+				<li>Multitasking erzeugt Schizophrenie!</li>
+				<li>One man’s error is another mans data. (Murphy,one of his laws)</li>
+				<li>Diese Software verdient die 3 großen GGG: — Gesehen — Gelacht — Gelöscht — {brigens Ein Kezboard/Treiber ist vllig [berfl[ssig!</li>
+				<li>Fragen Sie nicht, was Ihr Computer für Sie tun kann. Fragen Sie, was Sie für Ihren Computer tun können.</li>
+				<li>Informatiklüge: Ich mach’s mal schnell mit dem Computer! Internetlüge: Ich hol’s mir schnell aus dem Web … ! Lebenslüge: Da bin ich ja zu Fuß noch schneller!</li>
+				<li>Wenn Debuggen der Vorgang ist, Fehler aus einem Programm auszubauen, dann ist Programmieren der Vorgang, Fehler in ein Programm einzubauen!</li>
+				<li>Datentraeger in Laufwerk C: einlegen, weiter mit beliebiger Taste</li>
+				<li>Real programers do not comment their code. It is hard to write and it should be hard to understand!</li>
+				<li>Die Sicherheit einer Rechneranlage ist umgekehrt proportional zur Bestechlichkeit der Systembetreuer.</li>
+				<li>Der Daten sind genug gewechselt, nun lasst uns endlich Informationen sehen!</li>
+				<li>Es soll sogar Programme geben, die fehlerfrei sind.</li>
+				<li>Erst wenn der letzte FTP Server kostenpflichtig, der letzte GNU-Sourcecode verkauft, der letzte Algorithmus patentiert, der letzte Netzknoten verkommerzialisert ist, werdet Ihr merken, dass Geld nicht von alleine programmiert.</li>
+				<li>REALITY.SYS is corrupt. Reboot universe? (y/n)</li>
+				<li>Computer sind grossartig. Mit ihnen macht man die Fehler viel schneller.</li>
+				<li>Es ist bemerkenswert, daß nur vielleicht 10% aller Programmierer Programme ohne Verwendung von Flussdiagrammen erfolgreich schreiben können. Unglücklicherweise glauben aber 90%, daß sie der Gruppe dieser 10% angehören.</li>
+				<li>JEDES Programm hat mindestens einen Fehler. Wenn man versucht diesen Fehler zu beheben baut man mindesestens zwei neue ein!</li>
+				<li>Lieber Nachts auf wilden Festen, als Zuhause Beta’s testen.</li>
+				<li>Alle Computer warten mit der gleichen Geschwindigkeit!</li>
+				<li>Ein Programm, dass du Freitags ablieferst, siehst du Montag wieder.</li>
+				<li>Jesus definierte den Stack: Die ersten werden die letzten sein.</li>
+				<li>Der Fehler sitzt meist *vor* dem Rechner!</li>
+				<li>Für das große Chaos haben wir Computer. Die übrigen Fehler machen wir von Hand.</li>
+				<li>It’s not a trick, it’s a…. I’ll find the problem.</li>
+				<li>Undetected errors are handled as if no error occurred.</li>
+				<li>Fehler 17263: Computer nicht gefunden!</li>
+				<li>Wie beschleunige ich einen Mac? – Mit 9,81 m/s².</li>
+				<li>Who the fuck is General Failure? And why is he reading my harddisk?</li>
+				<li>Ist das nicht der Kollege von General Protection Fault und Major Problem?</li>
+				<li>Wer Backups macht ist feige!</li>
+				<li>Software ist der geglueckte Versuch, die Fehler der Computerhardware zu optimieren und durch Weiterentwicklung neue Fehler hinzuzufuegen.</li>
+				<li>Erst wer beim Programmieren in C ein Bit durch den Speicher schießt, weiß, wie verheerend und wie ästhetisch ein Bug mit Absturzfolge sein kann.</li>
+				<li>Unix IST benutzerfreundlich – es ist nur etwas waehlerisch</li>
+				<li>Schizophrenie ist auch nur eine Form von Multitasking</li>
+				<li>Man verliert Frau und Braut, wenn man am Computer baut, ist man von der Frau entzweit, hat man fuer Computer noch mehr Zeit!</li>
+				<li>Was man nicht im Kopf hat, muss man im Computer haben.</li>
+				<li>Fehler, die ein Computer macht, sind nie seine eigenen.</li>
+				<li>Traue keinem Programm, es sei denn du hast es selbst geschrieben.</li>
+				<li>Manche Computer kosten ein Vermoegen, manche nur den Verstand.</li>
+				<li>Computer sind das genialste Produkt menschlicher Faulheit!</li>
+				<li>Computer koennen uns bei Entscheidungen helfen. Bei welchen muessen wir entscheiden.</li>
+				<li>Der Computer ist die Loesung auf der Suche nach Problemen.</li>
+				<li>Der Computer bietet Lösungen an, fuer Probleme, die wir ohne ihn gar nicht hätten.</li>
+				<li>Das Glück besteht nicht darin, dass du tun kannst, was du willst, sondern darin, dass du immer willst, was du tust.</li>
+				<li>Seit ich perfekt bin, brauch' ich nicht mehr arrogant zu sein!</li>
+				<li>Wasser hat auch einen spitzen Kopf.</li>
+				<li>Wer seine Träume verwirklichen will, muss erstmal aufwachen!</li>
+				<li>Wer morgens zerknittert aufsteht, hat am Tag die besten Entfaltungsmöglichkeiten!</li>
+				<li>Mein Bett und ich — wir sind ein DREAMTEAM.</li>
+				<li>Mein Kissen ruft .. und das habe ich noch nie warten lassen!</li>
+				<li>Nichts verursacht soviel Unruhe wie Menschen, die sich erholen wollen!</li>
+				<li>Das sind keine Augenringe, das sind Schatten großer Taten!</li>
+				<li>Mein Bett und ich lieben uns aber der Wecker kommt damit nicht klar!</li>
+				<li>Nieder mit der Frühjahrsmüdigkeit! Es lebe der Winterschlaf!</li>
+				<li>Bitte entschuldigen Sie, dass ich zu spät komme.</li>
+				<li>Ich musste erst die Schafe aus meiner Wohnung treiben, die ich beim Einschlafen gezählt hatte.</li>
+				<li>Ich treibe aktiv Sport, und zwar eine alte asiatische Kampfkunst namens Sh'la fen.</li>
+				<li>Alkohol löst keine Probleme, aber das tut Milch ja auch nicht ...</li>
+				<li>Nie wieder Alk, zumindest nicht bis heute Abend.</li>
+				<li>Wir glühen nicht vor - wir fackeln uns ab!</li>
+				<li>Mit Alkohol kann man alles aufbewahren, ausser Geheimnisse.</li>
+				<li>Es gibt Bars in denen die Bedienung so langsam ist, dass man unmöglich betrunken werden kann.</li>
+				<li>Säfte haben 12 Vitamine ... Na und? Fernet-Branca hat 27 Kräuter aus fünf Kontinenten!</li>
+				<li>Da muss ich erstmal 'ne Nacht drüber feiern!</li>
+				<li>Gestern habe ich aufgehört zu trinken. Heute feiere ich mein Comeback.</li>
+				<li>Wer schwankt hat mehr vom Weg!</li>
+				<li>Ich kann auch ohne Alkohol lustig sein. Aber sicher ist sicher.</li>
+				<li>Nüchtern betrachtet war es besoffen besser!</li>
+				<li>Blöde Party, wenn ich meine Hose finde, gehe ich!</li>
+				<li>Ich trink Ouzo, und was machst Du so ?</li>
+				<li>Als ich von den schlimmen Folgen des Trinkens las, gab ich sofort das Lesen auf.</li>
+				<li>Nüchtern bin ich schüchtern, voll bin ich toll.</li>
+				<li>Realität ist eine Illusion, die durch Mangel von Alkohol hervorgerufen wird.</li>
+				<li>Ich stimme mit der Mathematik nicht überein. ich meine, dass die Summe von Nullen eine gefährliche Zahl ist.</li>
+				<li>Ich teile heimlich durch Null</li>
+				<li>Manche Flaschen sind schwerer zu entsorgen als andere ...</li>
+				<li>Wir haben hier schon genug führende Nullen ...</li>
+				<li>Wer Männer versteht, kann auch durch Null teilen!</li>
+				<li>Hm, wo ist denn die Any-Key-Taste? Naja, ich bestell mir erst einmal ein Bier!</li>
+				<li>Was würde Jesus tun?</li>
+				<li>Diese schönen Sonntagsspaziergänge. Ich war im Bad, bin gerade am Kühlschrank vorbei und jetzt auf dem Weg zur Couch. Später geht's dann zum PC. Das Wetter spielt auch mit.</li>
+				<li>Sucht euch einen neuen Clown, ich suche mir einen neuen Zirkus.</li>
+				<li>Wer Rechtschreibfehler findet darf sie behalten.</li>
+				<li>Wer zuletzt lacht hat es nicht eher begriffen.</li>
+				<li>Clowns sehen es nicht gern, wenn sich das Publikum nur innerlich freut.</li>
+				<li>Und ich habe mich nunmal nicht an die Spitze der Nahrungskette hochgearbeitet, um Vegetarier zu werden. Sorry.</li>
+				<li>Das System Bocuse ist eben nicht für jeden anwendbar.</li>
+				<li>Es geht einfach. Oder es geht einfach nicht.</li>
+				<li>Wissen ist Macht, nichts wissen macht auch nichts.</li>
+				<li>Wenn es Rosen sind, dann werden sie blühen.</li>
+				<li>So ist es gut - komm auf die dunkle Seite der Macht!</li>
+				<li>Meine Tante dachte auch sie käme in den Himmel.</li>
+				<li>Du bist erst dann wirklich erfolgreich wenn Deine Schwiegermutter das sagt.</li>
+				<li>Für den ersten Eindruck den man macht, gibt es keine zweite Chance.</li>
+				<li>Der Aufwand an sich ist unfaßbar.</li>
+				<li>Wir sind zwar zu nichts zu gebrauchen, aber dafür zu allem fähig.</li>
+				<li>Sie wollen alle nur unser Bestes, aber das kriegen sie nicht!</li>
+				<li>Wer will sucht Wege, wer nicht will, sucht Gründe.</li>
+				<li>Ironie ist der Humor intelligenter Menschen.</li>
+				<li>Unser wichtigstes Kapital ist klein, grau und wiegt ca. 1,3 kg.</li>
+				<li>Alles wird gut.</li>
+				<li>Was nicht auf einer einzigen Manuskriptseite zusammengefaßt werden kann, ist weder durchdacht noch entscheidungsreif</li>
+				<li>Wer nichts weiß, muss alles glauben.</li>
+				<li>Wer Visionen hat, soll zum Arzt gehen.</li>
+				<li>In Japan gibt es nur japanische Wege.</li>
+				<li>Vorhersagen sind immer schwierig — vor allem über die Zukunft.</li>
+				<li>Ich schimpfe nie beim Autofahren - ich raste direkt aus.</li>
+				<li>Bevor Du mit dem Kopf durch die Wand willst - überlege: was mache ich im Nebenzimmer!</li>
+				<li>Was tun, wenn die Uhr stehen bleibt? - Weitergehen, einfach weitergehen.</li>
+				<li>Auf diese Frage antworte ich mit einem entschiedenen Vielleicht.</li>
+				<li>Snobs sind Leute, die sich ihre Petersilie mit FLEUROP ins Haus schicken lassen.</li>
+				<li>Es gibt Dinge über die rede ich nicht einmal mit mir selbst.</li>
+				<li>Das Geheimnis der Japaner ist eben, dass sie arbeiten und nicht Vorträge darüber halten.</li>
+				<li>Diejenigen, die wissen, wie es nicht geht, sollen nicht diejenigen stören, die es bereits tun.</li>
+				<li>Das hält, bis wir weg sind.</li>
+				<li>"Fest" kommt vor "ab".</li>
+				<li>Arbeite klug, nicht hart.</li>
+				<li>Zwischen Reden und Tun liegt das Meer.</li>
+				<li>Einer für alle, alle für einen.</li>
+				<li>Qualität ist, wenn die Kunden zurückkommen und nicht die Ware.</li>
+				<li>Ein Produkt ist dann richtig gut ist, wenn man nichts mehr weglassen kann - und nicht dann, wenn man nichts mehr hinzufügen kann.</li>
+				<li>Mut ist oft Mangel an Einsicht, während Feigheit nicht selten auf guten Informationen beruht. Sir Peter Ustinov</li>
+				<li>Ein Freund ist ein Mensch, der Dich mag, obwohl er Dich kennt!</li>
+				<li>Glück ist heutzutage, wenn man im neu gekauften Auto mit 150 km/h durch die innere Leere fährt. Sigismund von Radecki</li>
+				<li>Die Schwierigkeit, mit den meisten Leuten umzugehen, besteht darin, zu ihnen gleichzeitig ehrlich und höflich zu sein. André Helle</li>
+				<li>Das erste, was man beim Abmagern verliert, ist die gute Laune. Gert Fröbe</li>
+				<li>Alt werden ist natürlich kein reines Vergnügen. Aber denken wir an die einzige Alternative. Robert Lembke</li>
+				<li>Jesus ist tot, Marx ist tot - und ich fühle mich heute auch nicht ganz wohl! Eugène Ionesco</li>
+				<li>Altern ist ein hochinteressanter Vorgang: Man denkt und denkt und denkt - plötzlich kann man sich an nichts mehr erinnern. Ephraim Kishon</li>
+				<li>Niemand muss ein Vollidiot sein, um Politiker zu werden, aber es erleichtert die Sache ungemein!</li>
+				<li>Geduld ist die Kunst, nur langsam wütend zu werden!</li>
+				<li>Ein kluger Mann widerspricht nie einer Frau. Er wartet, bis sie es selbst tut. Humphrey Bogart</li>
+			</random>
+		</template>
+	</category>
+
+</aiml>

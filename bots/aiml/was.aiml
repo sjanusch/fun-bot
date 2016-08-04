@@ -1,5 +1,5 @@
-<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
-			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<aiml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.1"
+			xmlns="http://alicebot.org/2001/AIML-1.0.1"
 			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
 
 
@@ -454,6 +454,5 @@
 		<pattern>Suche nach *</pattern>
 		<template><srai>Was ist <star/></srai></template>
 	</category>
-
 
 </aiml>

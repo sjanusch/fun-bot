@@ -50,7 +50,8 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
   public void messageEvent(final MessageRecivedEvent event) {
     try {
       final String from = event.from();
-      if (!messageRecieverBase.isMessageFromBot(from)) {
+      final String message = event.getMessage().getBody().toLowerCase().trim();
+      if (!messageRecieverBase.isMessageFromBot(from) && messageRecieverBase.isMessageForBot(message)) {
         handleMessage(event.getMessage(), from);
       }
     } catch (IOException e) {
