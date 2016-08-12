@@ -47,6 +47,8 @@ public class AIMLMap extends HashMap<String, String> {
 
   Inflector inflector = new Inflector();
 
+  Sraix sraix = new Sraix();
+
   Bot bot;
 
   /**
@@ -89,7 +91,7 @@ public class AIMLMap extends HashMap<String, String> {
     } else if (isExternal && MagicBooleans.enable_external_sets) {
       //String[] split = key.split(" ");
       String query = mapName.toUpperCase() + " " + key;
-      String response = Sraix.sraix(null, query, MagicStrings.default_map, null, host, botid, null, "0");
+      String response = sraix.sraix(null, query, MagicStrings.default_map, null, host, botid, null, "0");
       System.out.println("External " + mapName + "(" + key + ")=" + response);
       value = response;
     } else value = super.get(key);

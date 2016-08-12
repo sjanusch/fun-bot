@@ -46,7 +46,7 @@ public class MagicStrings {
   // <sraix> defaults
   public static String pannous_api_key = "guest";
 
-  public static String pannous_login = "test-user";
+  public static String pannous_login = "chrome-demo"; //"test-user";
 
   public static String sraix_failed = "SRAIXFAILED";
 

@@ -56,6 +56,8 @@ public class AIMLSet extends HashSet<String> {
 
   private static final Logger logger = LoggerFactory.getLogger(AIMLSet.class);
 
+  Sraix sraix = new Sraix();
+
   /**
    * constructor
    *
@@ -75,7 +77,7 @@ public class AIMLSet extends HashSet<String> {
       String[] split = s.split(" ");
       if (split.length > maxLength) return false;
       String query = MagicStrings.set_member_string + setName.toUpperCase() + " " + s;
-      String response = Sraix.sraix(null, query, "false", null, host, botid, null, "0");
+      String response = sraix.sraix(null, query, "false", null, host, botid, null, "0");
       if (response.equals("true")) {
         inCache.add(s);
         return true;

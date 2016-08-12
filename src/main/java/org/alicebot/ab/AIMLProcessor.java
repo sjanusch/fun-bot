@@ -46,6 +46,8 @@ public class AIMLProcessor {
 
   static private boolean DEBUG = false;
 
+  static Sraix sraix = new Sraix();
+
   /**
    * when parsing an AIML file, process a category element.
    *
@@ -428,7 +430,7 @@ public class AIMLProcessor {
     String limit = getAttributeOrTagValue(node, ps, "limit");
     String defaultResponse = getAttributeOrTagValue(node, ps, "default");
     String evalResult = evalTagContent(node, ps, attributeNames);
-    String result = Sraix.sraix(ps.chatSession, evalResult, defaultResponse, hint, host, botid, null, limit);
+    String result = sraix.sraix(ps.chatSession, evalResult, defaultResponse, hint, host, botid, null, limit);
     return result;
 
   }
