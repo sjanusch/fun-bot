@@ -7,19 +7,19 @@ package de.sjanusch.listener;
  */
 public interface MessageRecieverBase {
 
-    void sendMessageText(final String text, final String username);
+  void sendMessageText(final String text, final String username, final String roomId);
 
-    void sendNotification(final String text);
+  void sendNotification(final String text, final String roomId);
 
-    void sendNotificationError(final String text, final String username);
+  void sendNotificationError(final String text, final String roomId);
 
-    void sendNotificationSucess(final String text, final String username);
+  void sendNotificationSucess(final String text, final String roomId);
 
-    void sendMessageTextToRoom(final String text);
+  void sendMessageTextToRoom(final String text, final String roomId);
 
-    boolean isMessageFromBot(final String from);
+  boolean isMessageFromBot(final String from);
 
-    boolean isMessageForBot(final String message);
+  boolean isMessageForBot(final String message);
 
-    String extractMessage(final String message);
+  String extractMessage(final String message);
 }

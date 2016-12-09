@@ -1,58 +1,72 @@
 package de.sjanusch.model.hipchat;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 /**
  * Created by Sandro Janusch
  * Date: 17.05.16
  * Time: 20:38
  */
+
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@JsonIgnoreProperties(value = {"hipchatRoomId"})
 public class HipchatMessage {
 
-    private String color = "gray";
+  private String color = "gray";
 
-    private String message_format = "text";
+  private String message_format = "text";
 
-    private String message;
+  private String message;
 
-    private boolean notify = true;
+  private boolean notify = true;
 
-    public HipchatMessage(final String message, final String typ) {
-        this.message = message;
-        this.message_format = typ;
-    }
+  private String hipchatRoomId;
 
-    public HipchatMessage(final String message) {
-        this.message = message;
-    }
+  public HipchatMessage(final String hipchatRoomId, final String message, final String typ) {
+    this.message = message;
+    this.message_format = typ;
+    this.hipchatRoomId = hipchatRoomId;
+  }
 
-    public String getColor() {
-        return color;
-    }
+  public HipchatMessage(final String hipchatRoomId, final String message) {
+    this.message = message;
+    this.hipchatRoomId = hipchatRoomId;
+  }
 
-    public void setColor(final String color) {
-        this.color = color;
-    }
+  public String getColor() {
+    return color;
+  }
 
-    public String getMessage() {
-        return message;
-    }
+  public void setColor(final String color) {
+    this.color = color;
+  }
 
-    public void setMessage(final String message) {
-        this.message = message;
-    }
+  public String getMessage() {
+    return message;
+  }
 
-    public String getMessage_format() {
-        return message_format;
-    }
+  public void setMessage(final String message) {
+    this.message = message;
+  }
 
-    public void setMessage_format(final String message_format) {
-        this.message_format = message_format;
-    }
+  public String getMessage_format() {
+    return message_format;
+  }
 
-    public boolean isNotify() {
-        return notify;
-    }
+  public void setMessage_format(final String message_format) {
+    this.message_format = message_format;
+  }
 
-    public void setNotify(final boolean notify) {
-        this.notify = notify;
-    }
+  public boolean isNotify() {
+    return notify;
+  }
+
+  public void setNotify(final boolean notify) {
+    this.notify = notify;
+  }
+
+  public String getHipchatRoomId() {
+    return hipchatRoomId;
+  }
 }

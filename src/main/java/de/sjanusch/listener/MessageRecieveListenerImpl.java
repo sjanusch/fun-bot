@@ -5,7 +5,6 @@ import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.helper.MessageHelper;
 import de.sjanusch.protocol.MessageProtocol;
-import de.sjanusch.redis.Redis;
 import de.sjanusch.texte.TextHandler;
 import org.alicebot.ab.Bot;
 import org.alicebot.ab.Chat;
@@ -34,8 +33,6 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
   private final Bot bot = new Bot();
 
-  Redis redis = new Redis();
-
   @Inject
   public MessageRecieveListenerImpl(final TextHandler textHandler, final MessageRecieverBase messageRecieverBase, final MessageHelper messageHelper, final MessageProtocol messageProtocol) {
     this.textHandler = textHandler;
@@ -51,34 +48,32 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     try {
       final String from = event.from();
       final String message = event.getMessage().getBody().toLowerCase().trim();
-      //if (!messageRecieverBase.isMessageFromBot(from) && messageRecieverBase.isMessageForBot(message)) {
-      if (!messageRecieverBase.isMessageFromBot(from)){
-        handleMessage(event.getMessage(), from);
+      if (!messageRecieverBase.isMessageFromBot(from)) {
+        handleMessage(event.getMessage(), from, event.getRoom().getXMPPName());
       }
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
   }
 
-  private void handleMessage(final Message message, final String from) throws IOException {
+  private void handleMessage(final Message message, final String from, final String roomId) throws IOException {
     final String incomeMessage = messageRecieverBase.extractMessage(message.getBody().toLowerCase().trim());
     final String actualUser = messageHelper.convertNames(from);
     final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
 
-    //redis.startRedis();
-
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
 
     if (chat != null) {
-      messageRecieverBase.sendNotification(chat.chat(incomeMessage));
+      messageRecieverBase.sendNotification(chat.chat(incomeMessage), roomId);
     } else {
       final Chat newChat = new Chat(bot);
       messageProtocol.addFlowForUser(actualUser, newChat);
-      messageRecieverBase.sendNotification(newChat.chat(incomeMessage));
+      messageRecieverBase.sendNotification(newChat.chat(incomeMessage), roomId);
     }
     return;
   }
 
+  /*
   private void handleRandomText(final String message, final String actualUser) {
     messageRecieverBase.sendMessageText(actualUser, textHandler.getRandomText(message));
   }
@@ -114,5 +109,6 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
       messageRecieverBase.sendMessageText(textHandler.getThankYouText(), actualUser);
     }
   }
+  */
 
 }

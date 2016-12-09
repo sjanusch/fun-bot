@@ -1,6 +1,7 @@
 package de.sjanusch.configuration;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Sandro Janusch
@@ -15,7 +16,7 @@ public interface BotConfiguration {
 
     String getBotPassword() throws IOException;
 
-    String getBotChatRoom() throws IOException;
+    List<String> getBotChatRoom() throws IOException;
 
     String getBotMentionName() throws IOException;
 }

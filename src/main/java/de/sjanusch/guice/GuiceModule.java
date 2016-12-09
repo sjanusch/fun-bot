@@ -23,8 +23,6 @@ import de.sjanusch.listener.MessageRecieveListener;
 import de.sjanusch.listener.MessageRecieveListenerImpl;
 import de.sjanusch.listener.MessageRecieverBase;
 import de.sjanusch.listener.MessageRecieverBaseImpl;
-import de.sjanusch.listener.PrivateMessageRecieverBase;
-import de.sjanusch.listener.PrivateMessageRecieverBaseImpl;
 import de.sjanusch.networking.ChatClient;
 import de.sjanusch.networking.ChatClientImpl;
 import de.sjanusch.networking.Connection;
@@ -43,7 +41,6 @@ public class GuiceModule extends AbstractModule {
     bind(Bot.class).to(BotImpl.class);
     bind(BotRunner.class).to(BotRunnerImpl.class);
     bind(HipchatRequestHandler.class).to(HipchatRequestHandlerImpl.class);
-    bind(PrivateMessageRecieverBase.class).to(PrivateMessageRecieverBaseImpl.class);
     bind(BotConfiguration.class).to(BotConfigurationImpl.class);
     bind(ChatConnectionConfiguration.class).to(ChatConnectionConfigurationImpl.class);
     bind(HipchatConfiguration.class).to(HipchatConfigurationImpl.class);

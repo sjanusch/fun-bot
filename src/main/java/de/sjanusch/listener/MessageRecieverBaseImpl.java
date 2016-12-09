@@ -29,41 +29,41 @@ public class MessageRecieverBaseImpl implements MessageRecieverBase {
   }
 
   @Override
-  public void sendMessageText(final String text, final String username) {
+  public void sendMessageText(final String text, final String username, final String roomId) {
     if (text != null && username != null) {
-      hipchatRequestHandler.sendMessage(new HipchatMessage("@" + username + " " + text));
+      hipchatRequestHandler.sendMessage(new HipchatMessage(roomId, "@" + username + " " + text));
     }
   }
 
   @Override
-  public void sendNotification(final String text) {
+  public void sendNotification(final String text, final String roomId) {
     if (text != null) {
-      hipchatRequestHandler.sendNotification(new HipchatMessage(text, "html"));
+      hipchatRequestHandler.sendNotification(new HipchatMessage(roomId, text, "html"));
     }
   }
 
   @Override
-  public void sendNotificationError(final String text, final String username) {
-    if (text != null && username != null) {
-      final HipchatMessage hipchatMessage = new HipchatMessage(text, "html");
+  public void sendNotificationError(final String text, final String roomId) {
+    if (text != null) {
+      final HipchatMessage hipchatMessage = new HipchatMessage(roomId, text, "html");
       hipchatMessage.setColor("red");
       hipchatRequestHandler.sendMessage(hipchatMessage);
     }
   }
 
   @Override
-  public void sendNotificationSucess(final String text, final String username) {
-    if (text != null && username != null) {
-      final HipchatMessage hipchatMessage = new HipchatMessage(text, "html");
+  public void sendNotificationSucess(final String text, final String roomId) {
+    if (text != null) {
+      final HipchatMessage hipchatMessage = new HipchatMessage(roomId, text, "html");
       hipchatMessage.setColor("green");
       hipchatRequestHandler.sendMessage(hipchatMessage);
     }
   }
 
   @Override
-  public void sendMessageTextToRoom(final String text) {
+  public void sendMessageTextToRoom(final String text, final String roomId) {
     if (text != null) {
-      hipchatRequestHandler.sendMessage(new HipchatMessage(text));
+      hipchatRequestHandler.sendMessage(new HipchatMessage(roomId, text));
     }
   }
 
@@ -91,7 +91,7 @@ public class MessageRecieverBaseImpl implements MessageRecieverBase {
   public String extractMessage(final String message) {
     try {
       final String[] parts = message.toLowerCase().trim().split("@" + botConfiguration.getBotMentionName().toLowerCase().trim());
-      if(parts.length > 1){
+      if (parts.length > 1) {
         return parts[1];
       }
       return message;

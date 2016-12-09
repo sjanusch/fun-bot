@@ -1,6 +1,7 @@
 package de.sjanusch.configuration;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Sandro Janusch
@@ -32,12 +33,12 @@ public class BotConfigurationImpl implements BotConfiguration {
 
     @Override
     public String getBotPassword() throws IOException {
-        return this.configurationLoader.getPropertyStringValue("bot_password");
+        return System.getenv("HIPCHAT_PASSWORD");
     }
 
     @Override
-    public String getBotChatRoom() throws IOException {
-        return this.configurationLoader.getPropertyStringValue("bot_chat_room");
+    public List<String> getBotChatRoom() throws IOException {
+        return this.configurationLoader.getPropertyStringListValue("bot_chat_room");
     }
 
 }
