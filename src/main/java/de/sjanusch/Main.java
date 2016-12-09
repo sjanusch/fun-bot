@@ -20,7 +20,7 @@ public class Main {
         final BotRunner botRunner = injector.getInstance(BotRunner.class);
         final Thread t = botRunner.runBotDesync(bot);
 
-        NSQProducer producer = new NSQProducer("http://127.0.0.1:4151", "testTopic");
+        NSQProducer producer = new NSQProducer("http://localhost:4150", "testTopic");
 
         for(int i=0; i<100; i++) {
             try {
