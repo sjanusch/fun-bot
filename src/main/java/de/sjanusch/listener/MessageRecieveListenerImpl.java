@@ -1,5 +1,10 @@
 package de.sjanusch.listener;
 
+import com.github.brainlag.nsq.NSQConsumer;
+import com.github.brainlag.nsq.NSQProducer;
+import com.github.brainlag.nsq.exceptions.NSQException;
+import com.github.brainlag.nsq.lookup.DefaultNSQLookup;
+import com.github.brainlag.nsq.lookup.NSQLookup;
 import com.google.inject.Inject;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
@@ -13,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by Sandro Janusch
@@ -56,11 +62,47 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     }
   }
 
-  private void handleMessage(final Message message, final String from, final String roomId) throws IOException {
-    final String incomeMessage = messageRecieverBase.extractMessage(message.getBody().toLowerCase().trim());
+  private void handleMessage(final Message chatMessage, final String from, final String roomId) throws IOException {
+    final String incomeMessage = messageRecieverBase.extractMessage(chatMessage.getBody().toLowerCase().trim());
     final String actualUser = messageHelper.convertNames(from);
     final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
 
+
+    if(incomeMessage.equals("reader")){
+       NSQLookup lookup = new DefaultNSQLookup();
+       lookup.addLookupAddress("localhost", 4161);
+       NSQConsumer consumer = new NSQConsumer(lookup, "speedtest", "dustin", (message) -> {
+         logger.debug("received: " + message);
+         //now mark the message as finished.
+         message.finished();
+
+         //or you could requeue it, which indicates a failure and puts it back on the queue.
+         //message.requeue();
+       });
+
+       consumer.start();
+
+     }
+
+
+     if(incomeMessage.equals("write")) {
+       NSQProducer producer = new NSQProducer().addAddress("localhost", 4150).start();
+       try {
+         producer.produce("TestTopic", ("this is a message").getBytes());
+       } catch (NSQException e) {
+         e.printStackTrace();
+       } catch (TimeoutException e) {
+         e.printStackTrace();
+       }
+     }
+
+
+
+
+
+
+
+    /*
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
 
     if (chat != null) {
@@ -70,6 +112,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
       messageProtocol.addFlowForUser(actualUser, newChat);
       messageRecieverBase.sendNotification(newChat.chat(incomeMessage), roomId);
     }
+    */
     return;
   }
 
