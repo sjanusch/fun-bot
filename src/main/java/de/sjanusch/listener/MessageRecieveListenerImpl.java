@@ -75,7 +75,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
       NSQLookup lookup = new DefaultNSQLookup();
       logger.debug("NSQLookup: " + nsqConfiguration.getNSQLookupAdress() + ":" + nsqConfiguration.getNSQLookupAdressPort());
       lookup.addLookupAddress(nsqConfiguration.getNSQLookupAdress(), nsqConfiguration.getNSQLookupAdressPort());
-      NSQConsumer consumer = new NSQConsumer(lookup, "speedtest", "dustin", (message) -> {
+      NSQConsumer consumer = new NSQConsumer(lookup, "TestTopic", "dustin", (message) -> {
         logger.debug("received: " + message);
         //now mark the message as finished.
         message.finished();
@@ -94,9 +94,9 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
       try {
         producer.produce("TestTopic", ("this is a message").getBytes());
       } catch (NSQException e) {
-        e.printStackTrace();
+        logger.error("NSQException: " + e.getMessage());
       } catch (TimeoutException e) {
-        e.printStackTrace();
+        logger.error("TimeoutException: " + e.getMessage());
       }
     }
 
