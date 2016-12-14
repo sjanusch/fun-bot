@@ -22,15 +22,20 @@ public class Main {
     final Thread t = botRunner.runBotDesync(bot);
     t.start();
 
-    final NSQRunner instance = injector.getInstance(NSQRunner.class);
-    try {
-      instance.run("Ahllo du", "funbot");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+
+    Thread threadNsq = new Thread() {
+      @Override
+      public void run() {
+        final NSQRunner instance = injector.getInstance(NSQRunner.class);
+        try {
+          instance.run("funbot", "Hallo NSQ");
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    };
+    threadNsq.start();
 
   }
-
-
 
 }

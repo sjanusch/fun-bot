@@ -1,5 +1,7 @@
 package de.sjanusch.listener;
 
+import com.github.brainlag.nsq.NSQProducer;
+import com.github.brainlag.nsq.exceptions.NSQException;
 import com.google.inject.Inject;
 import de.sjanusch.configuration.NSQConfiguration;
 import de.sjanusch.eventsystem.EventHandler;
@@ -14,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by Sandro Janusch
@@ -53,11 +56,21 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
       final String from = event.from();
       final String message = event.getMessage().getBody().toLowerCase().trim();
       if (!messageRecieverBase.isMessageFromBot(from)) {
-        handleMessage(event.getMessage(), from, event.getRoom().getXMPPName());
+        final String incomeMessage = messageRecieverBase.extractMessage(message.toLowerCase().trim());
+        final String actualUser = messageHelper.convertNames(from);
+        final NSQProducer producer = new NSQProducer().addAddress(nsqConfiguration.getNSQAdress(), nsqConfiguration.getNSQAdressPort()).start();
+
+        producer.produce("TestTopic", (actualUser + "@" + event.getRoom().getXMPPName() + "@" + message).getBytes());
       }
+      //handleMessage(event.getMessage(), from, event.getRoom().getXMPPName());
+    } catch (NSQException e) {
+      logger.error("NSQException: " + e.getMessage());
+    } catch (TimeoutException e) {
+      logger.error("TimeoutException: " + e.getMessage());
     } catch (IOException e) {
-      logger.error(e.getMessage());
+      logger.error("IOException: " + e.getMessage());
     }
+
   }
 
   private void handleMessage(final Message chatMessage, final String from, final String roomId) throws IOException {
@@ -65,19 +78,17 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     final String actualUser = messageHelper.convertNames(from);
     final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
 
-
-
-    /*
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
 
     if (chat != null) {
+
       messageRecieverBase.sendNotification(chat.chat(incomeMessage), roomId);
     } else {
       final Chat newChat = new Chat(bot);
       messageProtocol.addFlowForUser(actualUser, newChat);
       messageRecieverBase.sendNotification(newChat.chat(incomeMessage), roomId);
     }
-    */
+
     return;
   }
 
