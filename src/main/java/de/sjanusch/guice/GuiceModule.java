@@ -9,6 +9,8 @@ import de.sjanusch.configuration.ChatConnectionConfiguration;
 import de.sjanusch.configuration.ChatConnectionConfigurationImpl;
 import de.sjanusch.configuration.HipchatConfiguration;
 import de.sjanusch.configuration.HipchatConfigurationImpl;
+import de.sjanusch.configuration.NSQConfiguration;
+import de.sjanusch.configuration.NSQConfigurationImpl;
 import de.sjanusch.configuration.TexteConfiguration;
 import de.sjanusch.configuration.TexteConfigurationImpl;
 import de.sjanusch.eventsystem.EventSystem;
@@ -51,6 +53,7 @@ public class GuiceModule extends AbstractModule {
     bind(MessageRecieveListener.class).to(MessageRecieveListenerImpl.class);
     bind(MessageRecieverBase.class).to(MessageRecieverBaseImpl.class);
     bind(MessageHelper.class).to(MessageHelperImpl.class);
+    bind(NSQConfiguration.class).to(NSQConfigurationImpl.class);
 
     bind(EventSystem.class).to(EventSystemImpl.class).asEagerSingleton();
     bind(Connection.class).to(ConnectionImpl.class).asEagerSingleton();

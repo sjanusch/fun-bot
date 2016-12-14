@@ -6,6 +6,7 @@ import com.github.brainlag.nsq.exceptions.NSQException;
 import com.github.brainlag.nsq.lookup.DefaultNSQLookup;
 import com.github.brainlag.nsq.lookup.NSQLookup;
 import com.google.inject.Inject;
+import de.sjanusch.configuration.NSQConfiguration;
 import de.sjanusch.eventsystem.EventHandler;
 import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.helper.MessageHelper;
@@ -39,12 +40,15 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
   private final Bot bot = new Bot();
 
+  private final NSQConfiguration nsqConfiguration;
+
   @Inject
-  public MessageRecieveListenerImpl(final TextHandler textHandler, final MessageRecieverBase messageRecieverBase, final MessageHelper messageHelper, final MessageProtocol messageProtocol) {
+  public MessageRecieveListenerImpl(final TextHandler textHandler, final MessageRecieverBase messageRecieverBase, final MessageHelper messageHelper, final MessageProtocol messageProtocol, final NSQConfiguration nsqConfiguration) {
     this.textHandler = textHandler;
     this.messageRecieverBase = messageRecieverBase;
     this.messageHelper = messageHelper;
     this.messageProtocol = messageProtocol;
+    this.nsqConfiguration = nsqConfiguration;
   }
 
   @SuppressWarnings("unused")
@@ -67,34 +71,32 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     final String actualUser = messageHelper.convertNames(from);
     final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
 
+    if (incomeMessage.equals("reader")) {
+      NSQLookup lookup = new DefaultNSQLookup();
+      lookup.addLookupAddress(nsqConfiguration.getNSQLookupAdress(), nsqConfiguration.getNSQLookupAdressPort());
+      NSQConsumer consumer = new NSQConsumer(lookup, "speedtest", "dustin", (message) -> {
+        logger.debug("received: " + message);
+        //now mark the message as finished.
+        message.finished();
 
-    if(incomeMessage.equals("reader")){
-       NSQLookup lookup = new DefaultNSQLookup();
-       lookup.addLookupAddress("localhost", 4161);
-       NSQConsumer consumer = new NSQConsumer(lookup, "speedtest", "dustin", (message) -> {
-         logger.debug("received: " + message);
-         //now mark the message as finished.
-         message.finished();
+        //or you could requeue it, which indicates a failure and puts it back on the queue.
+        //message.requeue();
+      });
 
-         //or you could requeue it, which indicates a failure and puts it back on the queue.
-         //message.requeue();
-       });
+      consumer.start();
 
-       consumer.start();
+    }
 
-     }
-
-
-     if(incomeMessage.equals("write")) {
-       NSQProducer producer = new NSQProducer().addAddress("localhost", 4150).start();
-       try {
-         producer.produce("TestTopic", ("this is a message").getBytes());
-       } catch (NSQException e) {
-         e.printStackTrace();
-       } catch (TimeoutException e) {
-         e.printStackTrace();
-       }
-     }
+    if (incomeMessage.equals("write")) {
+      NSQProducer producer = new NSQProducer().addAddress(nsqConfiguration.getNSQAdress(), nsqConfiguration.getNSQAdressPort()).start();
+      try {
+        producer.produce("TestTopic", ("this is a message").getBytes());
+      } catch (NSQException e) {
+        e.printStackTrace();
+      } catch (TimeoutException e) {
+        e.printStackTrace();
+      }
+    }
 
 
 
