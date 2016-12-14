@@ -83,9 +83,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.walkmod</groupId>
-			<artifactId>nsq-java</artifactId>
-			<version>1.1</version>
+			<groupId>com.github.brainlag</groupId>
+			<artifactId>nsq-client</artifactId>
+			<version>1.0.0.RC2</version>
 		</dependency>
 
 		<!-- Testing -->

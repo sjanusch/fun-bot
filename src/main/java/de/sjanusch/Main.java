@@ -1,5 +1,10 @@
 package de.sjanusch;
 
+import com.github.brainlag.nsq.NSQConsumer;
+import com.github.brainlag.nsq.NSQProducer;
+import com.github.brainlag.nsq.exceptions.NSQException;
+import com.github.brainlag.nsq.lookup.DefaultNSQLookup;
+import com.github.brainlag.nsq.lookup.NSQLookup;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import de.sjanusch.bot.Bot;
@@ -7,9 +12,8 @@ import de.sjanusch.guice.GuiceModule;
 import de.sjanusch.runner.BotRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.walkmod.nsq.NSQProducer;
-import org.walkmod.nsq.example.PrintReader;
-import org.walkmod.nsq.exceptions.NSQException;
+
+import java.util.concurrent.TimeoutException;
 
 public class Main {
 
@@ -20,27 +24,31 @@ public class Main {
     final Bot bot = injector.getInstance(Bot.class);
     final BotRunner botRunner = injector.getInstance(BotRunner.class);
     final Thread t = botRunner.runBotDesync(bot);
-    PrintReader.main(args);
+    t.start();
 
-
-    NSQProducer producer = new NSQProducer("http://localhost:4150", "testTopic");
-
-    for (int i = 0; i < 100; i++) {
-      try {
-        String message = "{\"foo\":\"bar\"}";
-        System.out.println("Sending: " + message);
-        producer.put(message);
-        Thread.sleep(1000);
-      } catch (NSQException e) {
-        logger.error("NSQException " + e.getMessage());
-        System.exit(1);
-      } catch (InterruptedException e) {
-        logger.error("InterruptedException " + e.getMessage());
-      }
+    NSQProducer producer = new NSQProducer().addAddress("localhost", 4150).start();
+    try {
+      producer.produce("TestTopic", ("this is a message").getBytes());
+    } catch (NSQException e) {
+      e.printStackTrace();
+    } catch (TimeoutException e) {
+      e.printStackTrace();
     }
 
 
-    t.start();
+    NSQLookup lookup = new DefaultNSQLookup();
+    lookup.addLookupAddress("localhost", 4161);
+    NSQConsumer consumer = new NSQConsumer(lookup, "speedtest", "dustin", (message) -> {
+     logger.debug("received: " + message);
+      //now mark the message as finished.
+      message.finished();
+
+      //or you could requeue it, which indicates a failure and puts it back on the queue.
+      //message.requeue();
+    });
+
+    consumer.start();
+
   }
 
 }
