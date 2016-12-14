@@ -7,7 +7,6 @@ import de.sjanusch.model.hipchat.HipchatMessage;
 import de.sjanusch.model.hipchat.HipchatRestError;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.glassfish.jersey.client.ClientProperties;
-import org.glassfish.jersey.jackson.JacksonFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +44,6 @@ public class HipchatRestClientImpl implements HipchatRestClient {
     final SSLContext sc = SSLContext.getInstance("SSL");
     sc.init(null, trustAllCerts, new java.security.SecureRandom());
     final Client client = ClientBuilder.newBuilder()
-      .register(JacksonFeature.class)
       .hostnameVerifier(new HostnameVerifierAllowAll())
       .sslContext(sc)
       .build();
@@ -87,10 +85,11 @@ public class HipchatRestClientImpl implements HipchatRestClient {
 
   private void hipchatRestApiNotification(final WebTarget target, final HipchatMessage chatMessage) throws IOException {
     logger.debug("Requesting  '" + target.getUri() + "' by POST ");
+    final ObjectMapper mapper = new ObjectMapper();
     try {
       final Response response = target.request(MediaType.APPLICATION_JSON_TYPE)
         .header("Authorization", "Bearer " + hipchatConfiguration.getHipchatRestApiKeyNotification())
-        .post(Entity.entity(chatMessage, MediaType.APPLICATION_JSON_TYPE));
+        .post(Entity.entity(mapper.writeValueAsString(chatMessage), MediaType.APPLICATION_JSON_TYPE));
       this.handleResponse(response, chatMessage);
     } catch (final ProcessingException e) {
       logger.error("Unexpected return code from calling", e);
@@ -99,10 +98,11 @@ public class HipchatRestClientImpl implements HipchatRestClient {
 
   private void hipchatRestApiMessage(final WebTarget target, final HipchatMessage chatMessage) throws IOException {
     logger.debug("Requesting  '" + target.getUri() + "' by POST ");
+    final ObjectMapper mapper = new ObjectMapper();
     try {
       final Response response = target.request(MediaType.APPLICATION_JSON_TYPE)
         .header("Authorization", "Bearer " + hipchatConfiguration.getHipchatRestApiKeyMessage())
-        .post(Entity.entity(chatMessage, MediaType.APPLICATION_JSON_TYPE));
+        .post(Entity.entity(mapper.writeValueAsString(chatMessage), MediaType.APPLICATION_JSON_TYPE));
       this.handleResponse(response, chatMessage);
     } catch (final ProcessingException e) {
       logger.error("Unexpected return code from calling", e);
@@ -111,10 +111,11 @@ public class HipchatRestClientImpl implements HipchatRestClient {
 
   private void hipchatRestApiPrivateMessage(final WebTarget target, final HipchatMessage chatMessage) throws IOException {
     logger.debug("Requesting  '{}' by POST - message: {}", target.getUri(), chatMessage.getMessage());
+    final ObjectMapper mapper = new ObjectMapper();
     try {
       final Response response = target.request(MediaType.APPLICATION_JSON_TYPE)
         .header("Authorization", "Bearer " + hipchatConfiguration.getHipchatRestApiKeyMessage())
-        .post(Entity.entity(chatMessage, MediaType.APPLICATION_JSON_TYPE));
+        .post(Entity.entity(mapper.writeValueAsString(chatMessage), MediaType.APPLICATION_JSON_TYPE));
       this.handleResponse(response, chatMessage);
     } catch (final ProcessingException e) {
       logger.error("Unexpected return code from calling", e);

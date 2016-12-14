@@ -1,6 +1,5 @@
 package org.alicebot.ab.utils;
 
-import org.glassfish.jersey.jackson.JacksonFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,7 +61,6 @@ public class NetworkUtils {
     sc.init(null, trustAllCerts, new java.security.SecureRandom());
 
     final Client client = ClientBuilder.newBuilder()
-      .register(JacksonFeature.class)
       .hostnameVerifier(new HostnameVerifierAllowAll())
       .sslContext(sc)
       .build();
