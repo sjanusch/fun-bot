@@ -71,34 +71,10 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     final String actualUser = messageHelper.convertNames(from);
     final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
 
-    if (incomeMessage.equals("reader")) {
-      NSQLookup lookup = new DefaultNSQLookup();
-      logger.debug("NSQLookup: " + nsqConfiguration.getNSQLookupAdress() + ":" + nsqConfiguration.getNSQLookupAdressPort());
-      lookup.addLookupAddress(nsqConfiguration.getNSQLookupAdress(), nsqConfiguration.getNSQLookupAdressPort());
-      NSQConsumer consumer = new NSQConsumer(lookup, "TestTopic", "dustin", (message) -> {
-        logger.debug("received: " + message);
-        //now mark the message as finished.
-        message.finished();
 
-        //or you could requeue it, which indicates a failure and puts it back on the queue.
-        //message.requeue();
-      });
+     this.nsq(from, incomeMessage);
 
-      consumer.start();
 
-    }
-
-    if (incomeMessage.equals("write")) {
-      logger.debug("NSQProducer: " + nsqConfiguration.getNSQAdress() + ":" + nsqConfiguration.getNSQAdressPort());
-      NSQProducer producer = new NSQProducer().addAddress(nsqConfiguration.getNSQAdress(), nsqConfiguration.getNSQAdressPort()).start();
-      try {
-        producer.produce("TestTopic", ("this is a message").getBytes());
-      } catch (NSQException e) {
-        logger.error("NSQException: " + e.getMessage());
-      } catch (TimeoutException e) {
-        logger.error("TimeoutException: " + e.getMessage());
-      }
-    }
 
 
 
@@ -118,6 +94,30 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     }
     */
     return;
+  }
+
+  public void nsq(String name, String text) throws IOException {
+    final NSQProducer producer = new NSQProducer().addAddress(nsqConfiguration.getNSQAdress(), nsqConfiguration.getNSQAdressPort()).start();
+    final NSQLookup lookup = new DefaultNSQLookup();
+    lookup.addLookupAddress(nsqConfiguration.getNSQLookupAdress(), nsqConfiguration.getNSQLookupAdressPort());
+    NSQConsumer consumer = new NSQConsumer(lookup, "TestTopic", name, (message) -> {
+      logger.debug("received: " + message);
+
+      try {
+        producer.produce("TestTopic", text.getBytes());
+      } catch (NSQException e) {
+        logger.error("NSQException: " + e.getMessage());
+      } catch (TimeoutException e) {
+        logger.error("TimeoutException: " + e.getMessage());
+      }
+      //now mark the message as finished.
+      message.finished();
+
+      //or you could requeue it, which indicates a failure and puts it back on the queue.
+      //message.requeue();
+    });
+
+    consumer.start();
   }
 
   /*
