@@ -26,6 +26,7 @@
 		<github.global.server>github</github.global.server>
 		<httpclient.version>4.5</httpclient.version>
 		<jsoup.version>1.8.2</jsoup.version>
+		<jackson.version>2.7.3</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -75,6 +76,17 @@
 			<version>1.8.2</version>
 		</dependency>
 		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jdk8</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>${jsoup.version}</version>
@@ -90,12 +102,6 @@
 			<groupId>com.github.brainlag</groupId>
 			<artifactId>nsq-client</artifactId>
 			<version>1.0.0.RC2</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.core</groupId>
-					<artifactId>jackson-databind</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<!-- Testing -->
