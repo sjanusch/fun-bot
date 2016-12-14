@@ -73,6 +73,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
     if (incomeMessage.equals("reader")) {
       NSQLookup lookup = new DefaultNSQLookup();
+      logger.debug("NSQLookup: " + nsqConfiguration.getNSQLookupAdress() + ":" + nsqConfiguration.getNSQLookupAdressPort());
       lookup.addLookupAddress(nsqConfiguration.getNSQLookupAdress(), nsqConfiguration.getNSQLookupAdressPort());
       NSQConsumer consumer = new NSQConsumer(lookup, "speedtest", "dustin", (message) -> {
         logger.debug("received: " + message);
@@ -88,6 +89,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     }
 
     if (incomeMessage.equals("write")) {
+      logger.debug("NSQProducer: " + nsqConfiguration.getNSQAdress() + ":" + nsqConfiguration.getNSQAdressPort());
       NSQProducer producer = new NSQProducer().addAddress(nsqConfiguration.getNSQAdress(), nsqConfiguration.getNSQAdressPort()).start();
       try {
         producer.produce("TestTopic", ("this is a message").getBytes());
