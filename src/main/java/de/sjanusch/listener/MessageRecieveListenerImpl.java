@@ -1,22 +1,14 @@
 package de.sjanusch.listener;
 
-import com.github.brainlag.nsq.NSQProducer;
-import com.github.brainlag.nsq.exceptions.NSQException;
 import com.google.inject.Inject;
-import de.sjanusch.configuration.NSQConfiguration;
-import de.sjanusch.eventsystem.EventHandler;
-import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
 import de.sjanusch.helper.MessageHelper;
 import de.sjanusch.protocol.MessageProtocol;
-import de.sjanusch.texte.TextHandler;
 import org.alicebot.ab.Bot;
 import org.alicebot.ab.Chat;
-import org.jivesoftware.smack.packet.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.concurrent.TimeoutException;
 
 /**
  * Created by Sandro Janusch
@@ -27,8 +19,6 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
   private static final Logger logger = LoggerFactory.getLogger(MessageRecieveListenerImpl.class);
 
-  private final TextHandler textHandler;
-
   private final MessageRecieverBase messageRecieverBase;
 
   private final MessageHelper messageHelper;
@@ -37,51 +27,27 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
   private final Bot bot = new Bot();
 
-  private final NSQConfiguration nsqConfiguration;
-
   @Inject
-  public MessageRecieveListenerImpl(final TextHandler textHandler, final MessageRecieverBase messageRecieverBase, final MessageHelper messageHelper, final MessageProtocol messageProtocol, final NSQConfiguration nsqConfiguration) {
-    this.textHandler = textHandler;
+  public MessageRecieveListenerImpl(final MessageRecieverBase messageRecieverBase, final MessageHelper messageHelper, final MessageProtocol messageProtocol) {
     this.messageRecieverBase = messageRecieverBase;
     this.messageHelper = messageHelper;
     this.messageProtocol = messageProtocol;
-    this.nsqConfiguration = nsqConfiguration;
   }
 
-  @SuppressWarnings("unused")
-  @EventHandler
   @Override
-  public void messageEvent(final MessageRecivedEvent event) {
-    try {
-      final String from = event.from();
-      final String message = event.getMessage().getBody().toLowerCase().trim();
-      if (!messageRecieverBase.isMessageFromBot(from)) {
-        final String incomeMessage = messageRecieverBase.extractMessage(message.toLowerCase().trim());
-        final String actualUser = messageHelper.convertNames(from);
-        final NSQProducer producer = new NSQProducer().addAddress(nsqConfiguration.getNSQAdress(), nsqConfiguration.getNSQAdressPort()).start();
+  public boolean handleMessage(final String chatMessage, final String from, final String roomId) throws IOException {
 
-        producer.produce("TestTopic", (actualUser + "@" + event.getRoom().getXMPPName() + "@" + message).getBytes());
-      }
-      //handleMessage(event.getMessage(), from, event.getRoom().getXMPPName());
-    } catch (NSQException e) {
-      logger.error("NSQException: " + e.getMessage());
-    } catch (TimeoutException e) {
-      logger.error("TimeoutException: " + e.getMessage());
-    } catch (IOException e) {
-      logger.error("IOException: " + e.getMessage());
+    if (messageRecieverBase.isMessageFromBot(from)) {
+      return true;
     }
 
-  }
-
-  private void handleMessage(final Message chatMessage, final String from, final String roomId) throws IOException {
-    final String incomeMessage = messageRecieverBase.extractMessage(chatMessage.getBody().toLowerCase().trim());
+    final String incomeMessage = messageRecieverBase.extractMessage(chatMessage.toLowerCase().trim());
     final String actualUser = messageHelper.convertNames(from);
     final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
 
     logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
 
     if (chat != null) {
-
       messageRecieverBase.sendNotification(chat.chat(incomeMessage), roomId);
     } else {
       final Chat newChat = new Chat(bot);
@@ -89,7 +55,7 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
       messageRecieverBase.sendNotification(newChat.chat(incomeMessage), roomId);
     }
 
-    return;
+    return true;
   }
 
 

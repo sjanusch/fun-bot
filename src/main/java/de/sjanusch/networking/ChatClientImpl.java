@@ -1,13 +1,17 @@
 package de.sjanusch.networking;
 
+import com.github.brainlag.nsq.NSQProducer;
+import com.github.brainlag.nsq.exceptions.NSQException;
 import com.google.inject.Inject;
-import de.sjanusch.bot.Bot;
 import de.sjanusch.configuration.ChatConnectionConfiguration;
-import de.sjanusch.eventsystem.EventSystem;
-import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
-import de.sjanusch.eventsystem.events.model.PrivateMessageRecivedEvent;
+import de.sjanusch.configuration.NSQConfiguration;
 import de.sjanusch.model.hipchat.Room;
+import de.sjanusch.model.nsq.NsqPrivateMessage;
+import de.sjanusch.model.nsq.NsqPublicMessage;
 import de.sjanusch.networking.exceptions.LoginException;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.PacketListener;
@@ -24,6 +28,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by Sandro Janusch
@@ -37,21 +42,16 @@ public class ChatClientImpl implements ChatClient {
 
   private final ChatConnectionConfiguration chatConnectionConfiguration;
 
-  private final EventSystem eventSystem;
-
-  private final Bot bot;
-
-  private MultiUserChat chat;
+  private final NSQConfiguration nsqConfiguration;
 
   @Inject
-  public ChatClientImpl(final ChatConnectionConfiguration chatConnectionConfiguration, final EventSystem eventSystem, final Bot bot) {
+  public ChatClientImpl(final ChatConnectionConfiguration chatConnectionConfiguration, final NSQConfiguration nsqConfiguration) {
     this.chatConnectionConfiguration = chatConnectionConfiguration;
-    this.eventSystem = eventSystem;
-    this.bot = bot;
+    this.nsqConfiguration = nsqConfiguration;
   }
 
   @Override
-  public boolean login(final XMPPConnection xmpp, final String username, final String password) throws LoginException {
+  public boolean login(final XMPPConnection xmpp, final String username, final String password) throws LoginException, IOException {
     if (!username.contains("hipchat.com")) {
       logger.error("The username being used does not look like a Jabber ID. Are you sure this is the correct username?");
       return false;
@@ -65,15 +65,15 @@ public class ChatClientImpl implements ChatClient {
   }
 
   @Override
-  public boolean joinChat(final XMPPConnection xmpp, final String room, final String user, final String password) {
+  public MultiUserChat joinChat(final XMPPConnection xmpp, final String room, final String user, final String password) {
     if (user.equals("") || password.equals("")) {
-      return false;
+      return null;
     }
     try {
-      chat = new MultiUserChat(xmpp, this.getChatRoomName(room));
+      final MultiUserChat chat = new MultiUserChat(xmpp, this.getChatRoomName(room));
       chat.join(user, password);
-      final Room obj = joinChatRoom(new Room(bot, eventSystem), room, xmpp);
-      if (obj != null) {
+      final Room chatRoom = joinChatRoom(new Room(), room, xmpp, chat);
+      if (chatRoom != null) {
         chat.addMessageListener(new PacketListener() {
 
           @Override
@@ -81,11 +81,26 @@ public class ChatClientImpl implements ChatClient {
             final Message m = new Message();
             m.setBody(toMessage(paramPacket));
             m.setFrom(paramPacket.getFrom().split("\\/")[1]);
-            final MessageRecivedEvent event = new MessageRecivedEvent(obj, m);
-            eventSystem.callEvent(event);
+            try {
+              NsqPublicMessage nsqPublicMessage = new NsqPublicMessage(m.getFrom(), m.getBody(), chatRoom.getXMPPName());
+              if (nsqPublicMessage.getText() != null && nsqPublicMessage.getFullName() != null && nsqPublicMessage.getRoom() != null) {
+                final byte[] serializedObject = serializeObject(nsqPublicMessage);
+                if (serializedObject != null) {
+                  final NSQProducer producer = new NSQProducer();
+                  producer.addAddress(nsqConfiguration.getNSQAdress(), nsqConfiguration.getNSQAdressPort()).start();
+                  producer.produce("FunChat", serializedObject);
+                }
+              }
+            } catch (NSQException e) {
+              logger.error("NSQException " + e.getMessage());
+            } catch (TimeoutException e) {
+              logger.error("TimeoutException " + e.getMessage());
+            } catch (IOException e) {
+              logger.error("IOException " + e.getMessage());
+            }
           }
         });
-        return true;
+        return chat;
       } else {
         logger.error("Cannot join in room " + room);
       }
@@ -94,11 +109,11 @@ public class ChatClientImpl implements ChatClient {
     } catch (final XMPPException e) {
       logger.warn(e.getClass().getName(), e);
     }
-    return false;
+    return null;
   }
 
   @Override
-  public void startPrivateChat(final String username) {
+  public void startPrivateChat(final String username, final MultiUserChat chat) {
     final Iterator<String> occupantIterator = chat.getOccupants();
     while (occupantIterator.hasNext()) {
       final String occupantString = occupantIterator.next();
@@ -112,8 +127,23 @@ public class ChatClientImpl implements ChatClient {
               final Message m = new Message();
               m.setBody(message.getBody());
               m.setFrom(username);
-              final PrivateMessageRecivedEvent event = new PrivateMessageRecivedEvent(m);
-              eventSystem.callEvent(event);
+              try {
+                NsqPrivateMessage nsqPrivateMessage = new NsqPrivateMessage(username, m.getBody());
+                if (nsqPrivateMessage.getText() != null && nsqPrivateMessage.getFullName() != null) {
+                  final byte[] serializedObject = serializeObject(nsqPrivateMessage);
+                  if (serializedObject != null) {
+                    final NSQProducer producer = new NSQProducer();
+                    producer.addAddress(nsqConfiguration.getNSQAdress(), nsqConfiguration.getNSQAdressPort()).start();
+                    producer.produce("PrivateFunChat", serializedObject);
+                  }
+                }
+              } catch (NSQException e) {
+                logger.error("NSQException " + e.getMessage());
+              } catch (TimeoutException e) {
+                logger.error("TimeoutException " + e.getMessage());
+              } catch (IOException e) {
+                logger.error("IOException " + e.getMessage());
+              }
             }
           });
           logger.debug("Private Chat with " + userId + " created");
@@ -122,19 +152,15 @@ public class ChatClientImpl implements ChatClient {
     }
   }
 
-  public void leaveRoom() {
-    chat.leave();
-  }
-
   private String extractUserId(final Occupant occupant) {
     final String[] values = occupant.getJid().split("/");
-    if(values.length > 0){
+    if (values.length > 0) {
       return values[0];
     }
     return null;
   }
 
-  private Room joinChatRoom(final Room roomObject, final String roomName, final XMPPConnection con) {
+  private Room joinChatRoom(final Room roomObject, final String roomName, final XMPPConnection con, final MultiUserChat chat) {
     try {
       roomObject.setName(roomName);
       roomObject.setChat(chat);
@@ -166,6 +192,21 @@ public class ChatClientImpl implements ChatClient {
     } catch (final Exception e) {
       return "";
     }
+  }
+
+  private byte[] serializeObject(final Object object) {
+    try {
+      final ObjectMapper mapper = new ObjectMapper();
+      final String json = mapper.writeValueAsString(object);
+      return json.getBytes();
+    } catch (JsonGenerationException e) {
+      logger.error("JsonGenerationException " + e.getMessage());
+    } catch (JsonMappingException e) {
+      logger.error("JsonMappingException " + e.getMessage());
+    } catch (IOException e) {
+      logger.error("IOException " + e.getMessage());
+    }
+    return null;
   }
 
 }

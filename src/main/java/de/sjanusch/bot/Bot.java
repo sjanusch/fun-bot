@@ -6,17 +6,14 @@ import java.io.IOException;
 
 public interface Bot extends RunnableBot {
 
-    void run();
+  @Override
+  void run();
 
-    String getNickname() throws IOException;
+  String getNickname() throws IOException;
 
-    String getPassword() throws IOException;
+  String getPassword() throws IOException;
 
-    String getUsername() throws IOException;
+  String getUsername() throws IOException;
 
-    void startPrivateChat(String username);
-
-    void restart();
-
-    void leaveChatRoom();
+  void startPrivateChat(String username);
 }

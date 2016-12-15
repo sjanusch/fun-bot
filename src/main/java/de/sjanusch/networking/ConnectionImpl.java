@@ -20,14 +20,11 @@ public class ConnectionImpl implements Connection, ConnectionListener {
 
   private final XMPPConnection xmpp;
 
-  private final Bot bot;
-
   private boolean connected;
 
   @Inject
   public ConnectionImpl(final ChatConnectionConfiguration chatConnectionConfiguration, final Bot bot) throws IOException {
     this.chatConnectionConfiguration = chatConnectionConfiguration;
-    this.bot = bot;
     this.xmpp = new XMPPConnection(
       new ConnectionConfiguration(this.chatConnectionConfiguration.getXmppUrl(), this.chatConnectionConfiguration.getXmppPort()));
   }
@@ -65,14 +62,12 @@ public class ConnectionImpl implements Connection, ConnectionListener {
   public void connectionClosed() {
     logger.debug("connectionClosed");
     connected = false;
-    bot.leaveChatRoom();
   }
 
   @Override
   public void connectionClosedOnError(final Exception e) {
     logger.debug("connectionClosedOnError", e);
     connected = false;
-    bot.leaveChatRoom();
   }
 
   @Override

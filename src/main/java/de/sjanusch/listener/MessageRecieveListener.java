@@ -1,15 +1,14 @@
 package de.sjanusch.listener;
 
-import de.sjanusch.eventsystem.Listener;
-import de.sjanusch.eventsystem.events.model.MessageRecivedEvent;
+import java.io.IOException;
 
 /**
  * Created by Sandro Janusch
  * Date: 13.05.16
  * Time: 20:43
  */
-public interface MessageRecieveListener extends Listener {
+public interface MessageRecieveListener {
 
-    void messageEvent(final MessageRecivedEvent event);
+  boolean handleMessage(final String chatMessage, final String from, final String roomId) throws IOException;
 
 }
