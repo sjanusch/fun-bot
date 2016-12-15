@@ -36,25 +36,30 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
 
   @Override
   public boolean handleMessage(final String chatMessage, final String from, final String roomId) throws IOException {
-
-    if (messageRecieverBase.isMessageFromBot(from)) {
-      return true;
-    }
-
     final String incomeMessage = messageRecieverBase.extractMessage(chatMessage.toLowerCase().trim());
     final String actualUser = messageHelper.convertNames(from);
-    final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
-
-    logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
-
-    if (chat != null) {
-      messageRecieverBase.sendNotification(chat.chat(incomeMessage), roomId);
-    } else {
-      final Chat newChat = new Chat(bot);
-      messageProtocol.addFlowForUser(actualUser, newChat);
-      messageRecieverBase.sendNotification(newChat.chat(incomeMessage), roomId);
+    if (!messageRecieverBase.isMessageFromBot(from)) {
+      if (incomeMessage.equals("/talkmode on")) {
+        messageProtocol.setTalkMode(true);
+        return true;
+      }
+      if (incomeMessage.equals("/talkmode off")) {
+        messageProtocol.setTalkMode(false);
+        return true;
+      }
+      if (messageProtocol.isTalkMode()) {
+        final Chat chat = messageProtocol.getCurrentFlowForUser(actualUser);
+        logger.debug("Handle Message from " + actualUser + ": " + incomeMessage);
+        if (chat != null) {
+          messageRecieverBase.sendNotification(chat.chat(incomeMessage), roomId);
+        } else {
+          final Chat newChat = new Chat(bot);
+          messageProtocol.addFlowForUser(actualUser, newChat);
+          messageRecieverBase.sendNotification(newChat.chat(incomeMessage), roomId);
+        }
+        return true;
+      }
     }
-
     return true;
   }
 

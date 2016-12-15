@@ -9,10 +9,14 @@ import org.alicebot.ab.Chat;
  */
 public interface MessageProtocol {
 
-    void addFlowForUser(final String username, final Chat chat);
+  void addFlowForUser(final String username, final Chat chat);
 
-    void removeFlowForUser(final String username);
+  void removeFlowForUser(final String username);
 
-    Chat getCurrentFlowForUser(final String username);
+  Chat getCurrentFlowForUser(final String username);
+
+  boolean isTalkMode();
+
+  void setTalkMode(final boolean talkMode);
 
 }

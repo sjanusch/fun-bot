@@ -12,26 +12,35 @@ import java.util.Map;
  */
 public class MessageProtocolImpl implements MessageProtocol {
 
-    private Map<String, Chat> messageProtocol = new HashMap<>();
+  private Map<String, Chat> messageProtocol = new HashMap<>();
 
-    public void addFlowForUser(final String username, final Chat chat) {
-        if (!messageProtocol.containsKey(username)) {
-            messageProtocol.put(username, chat);
-        }
+  private boolean talkMode = true;
+
+  public void addFlowForUser(final String username, final Chat chat) {
+    if (!messageProtocol.containsKey(username)) {
+      messageProtocol.put(username, chat);
     }
+  }
 
-    public void removeFlowForUser(final String username) {
-        if (messageProtocol.containsKey(username)) {
-            messageProtocol.remove(username);
-        }
+  public void removeFlowForUser(final String username) {
+    if (messageProtocol.containsKey(username)) {
+      messageProtocol.remove(username);
     }
+  }
 
-    public Chat getCurrentFlowForUser(final String username) {
-        if (messageProtocol.containsKey(username)) {
-            final Chat chat = messageProtocol.get(username);
-            return chat;
-        }
-        return null;
+  public Chat getCurrentFlowForUser(final String username) {
+    if (messageProtocol.containsKey(username)) {
+      final Chat chat = messageProtocol.get(username);
+      return chat;
     }
+    return null;
+  }
 
+  public boolean isTalkMode() {
+    return talkMode;
+  }
+
+  public void setTalkMode(final boolean talkMode) {
+    this.talkMode = talkMode;
+  }
 }
