@@ -64,7 +64,7 @@ public class NSQ implements Runnable {
       final NSQConsumer consumer = new NSQConsumer(lookup, "FunChat", botConfiguration.getBotNickname(), (message) -> {
         try {
           if (messageToString(message).equals("ping")) {
-            logger.debug("FunChat Queue is a life:");
+            logger.debug("FunChat Queue is alife.");
             finishMessage(message, true);
           } else {
             logger.debug("received fun message: " + messageToString(message));

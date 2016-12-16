@@ -6,7 +6,6 @@ import com.google.inject.Inject;
 import de.sjanusch.configuration.ChatConnectionConfiguration;
 import de.sjanusch.configuration.NSQConfiguration;
 import de.sjanusch.model.hipchat.Room;
-import de.sjanusch.model.nsq.NsqPrivateMessage;
 import de.sjanusch.model.nsq.NsqPublicMessage;
 import de.sjanusch.networking.exceptions.LoginException;
 import org.codehaus.jackson.JsonGenerationException;
@@ -127,6 +126,7 @@ public class ChatClientImpl implements ChatClient {
               final Message m = new Message();
               m.setBody(message.getBody());
               m.setFrom(username);
+              /*
               try {
                 NsqPrivateMessage nsqPrivateMessage = new NsqPrivateMessage(username, m.getBody());
                 if (nsqPrivateMessage.getText() != null && nsqPrivateMessage.getFullName() != null) {
@@ -144,6 +144,7 @@ public class ChatClientImpl implements ChatClient {
               } catch (IOException e) {
                 logger.error("IOException " + e.getMessage());
               }
+              */
             }
           });
           logger.debug("Private Chat with " + userId + " created");

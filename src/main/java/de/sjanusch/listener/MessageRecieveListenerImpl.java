@@ -40,10 +40,12 @@ public class MessageRecieveListenerImpl implements MessageRecieveListener {
     final String actualUser = messageHelper.convertNames(from);
     if (!messageRecieverBase.isMessageFromBot(from)) {
       if (incomeMessage.equals("/talkmode on")) {
+        messageRecieverBase.sendMessageTextToRoom("Bot Talk Modus ON", roomId);
         messageProtocol.setTalkMode(true);
         return true;
       }
       if (incomeMessage.equals("/talkmode off")) {
+        messageRecieverBase.sendMessageTextToRoom("Bot Talk Modus OFF", roomId);
         messageProtocol.setTalkMode(false);
         return true;
       }
