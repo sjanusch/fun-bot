@@ -38,7 +38,6 @@ public class GuiceModule extends AbstractModule {
 
   @Override
   protected void configure() {
-    bind(Bot.class).to(BotImpl.class);
     bind(BotRunner.class).to(BotRunnerImpl.class);
     bind(HipchatRequestHandler.class).to(HipchatRequestHandlerImpl.class);
     bind(BotConfiguration.class).to(BotConfigurationImpl.class);
