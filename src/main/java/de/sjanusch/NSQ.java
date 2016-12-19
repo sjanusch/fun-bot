@@ -43,7 +43,13 @@ public class NSQ implements Runnable {
   @Override
   public void run() {
     Thread nsqFunThread = this.nsqFunThread();
+    try {
+      nsqFunThread.join();
+    } catch (InterruptedException e) {
+      logger.error("InterruptedException: " + e.getMessage());
+    }
     nsqFunThread.start();
+    logger.debug("NSQ Fun started");
   }
 
   private Thread nsqFunThread() {

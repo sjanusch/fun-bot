@@ -23,8 +23,13 @@ public class Xmpp implements Runnable {
 
   @Override
   public void run() {
-    logger.debug("Funbot started");
     final Thread t = botRunner.runBotDesync(bot);
+    try {
+      t.join();
+    } catch (InterruptedException e) {
+      logger.error("InterruptedException: " + e.getMessage());
+    }
     t.start();
+    logger.debug("Fun Bot started");
   }
 }
