@@ -15,9 +15,9 @@ public class Main {
     final NSQ nsq = injector.getInstance(NSQ.class);
     final Xmpp xmpp = injector.getInstance(Xmpp.class);
     final IsALifeTimer isALifeTimer = injector.getInstance(IsALifeTimer.class);
-    xmpp.run();
     nsq.run();
     isALifeTimer.run();
+    xmpp.run();
   }
 
 }
