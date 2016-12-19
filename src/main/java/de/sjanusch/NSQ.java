@@ -67,13 +67,13 @@ public class NSQ implements Runnable {
     try {
       final NSQLookup lookup = new DefaultNSQLookup();
       lookup.addLookupAddress(nsqConfiguration.getNSQLookupAdress(), nsqConfiguration.getNSQLookupAdressPort());
-      final NSQConsumer consumer = new NSQConsumer(lookup, "FunChat", botConfiguration.getBotNickname(), (message) -> {
+      final NSQConsumer consumer = new NSQConsumer(lookup, nsqConfiguration.getNsqTopicName(), botConfiguration.getBotNickname(), (message) -> {
         try {
           if (messageToString(message).equals("ping")) {
-            logger.debug("FunChat Queue is alife.");
+            logger.debug(nsqConfiguration.getNsqTopicName() + " Queue is alife.");
             finishMessage(message, true);
           } else {
-            logger.debug("received fun message: " + messageToString(message));
+            logger.debug("received message: " + nsqConfiguration.getNsqTopicName() + ": " + messageToString(message));
             final NsqPublicMessage nsqPublicMessage = mapper.readValue(messageToString(message), NsqPublicMessage.class);
             if (nsqPublicMessage.getText() != null && nsqPublicMessage.getFullName() != null && nsqPublicMessage.getRoom() != null) {
               finishMessage(message, messageRecieveListener.handleMessage(nsqPublicMessage.getText(), nsqPublicMessage.getFullName(), nsqPublicMessage.getRoom()));

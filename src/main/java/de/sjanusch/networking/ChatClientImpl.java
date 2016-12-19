@@ -87,7 +87,7 @@ public class ChatClientImpl implements ChatClient {
                 if (serializedObject != null) {
                   final NSQProducer producer = new NSQProducer();
                   producer.addAddress(nsqConfiguration.getNSQAdress(), nsqConfiguration.getNSQAdressPort()).start();
-                  producer.produce("FunChat", serializedObject);
+                  producer.produce(nsqConfiguration.getNsqTopicName(), serializedObject);
                 }
               }
             } catch (NSQException e) {

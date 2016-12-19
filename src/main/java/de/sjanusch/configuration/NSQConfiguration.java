@@ -16,4 +16,6 @@ public interface NSQConfiguration {
   Integer getNSQLookupAdressPort() throws IOException;
 
   Integer getNSQAdressPort() throws IOException;
+
+  String getNsqTopicName() throws IOException;
 }
