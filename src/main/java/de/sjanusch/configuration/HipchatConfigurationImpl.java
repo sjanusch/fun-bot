@@ -22,12 +22,12 @@ public class HipchatConfigurationImpl implements HipchatConfiguration {
 
     @Override
     public String getHipchatRestApiKeyNotification() throws IOException {
-        return this.configurationLoader.getPropertyStringValue("hipchat_rest_api_key_notification");
+        return System.getenv("HIPCHAT_REST_API_KEY_NOTIFICATION");
     }
 
     @Override
     public String getHipchatRestApiKeyMessage() throws IOException {
-        return this.configurationLoader.getPropertyStringValue("hipchat_rest_api_key_message");
+        return System.getenv("HIPCHAT_REST_API_KEY_MESSAGE");
     }
 
     @Override
